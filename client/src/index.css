@@ -1,13 +1,18 @@
 @import "tailwindcss";
 
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@custom-variant dark (&:where(.dark, .dark *));
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --bg: #ffffff;
+  --text: #000000;
 }
 
+ * {
+  transition: all 0.3s ease-in-out;
+ }
+
+
+body {
+  @apply bg-white text-black dark:bg-zinc-900 dark:text-white;
+  /* transition: all 0.5s ease-in-out; */
+}

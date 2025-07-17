@@ -1,9 +1,21 @@
+import { BrowserRouter, Routes, Route } from "react-router";
+import Layout from "./layouts/Layout";
+import Home from "./pages/Home";
+import About from "./pages/About";
 
 const App = () => {
 
   return (
     <>
-      <h1 className='text-2xl font-bold text-red-300'>Hello</h1>
+      <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          {/* Nested inside Layout */}
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+        </Route>
+      </Routes>
+      </BrowserRouter>
     </>
   )
 }
