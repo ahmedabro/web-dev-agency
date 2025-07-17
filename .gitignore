@@ -1,0 +1,48 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.*.local
+
+# Dependency directories
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Build output
+dist/
+build/
+client/dist/
+client/build/
+server/dist/
+
+# Vite cache
+client/.vite/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE/editor settings
+.vscode/
+.idea/
+
+# npm/yarn/pnpm lock files (optional to ignore)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Coverage reports
+coverage/
+client/coverage/
+server/coverage/
+
+# Optional: test outputs or temp files
+*.tsbuildinfo
+tmp/
+temp/
