@@ -2,10 +2,46 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-:root {
-  --bg: #ffffff;
-  --text: #000000;
+
+/* Theme Variables */
+@theme {
+  /* Light Theme Colors */
+  --color-lightBackground: #f7fafc;
+  --color-lightText: #1a202c;
+  --color-lightPrimary: #2b6cb0;
+  --color-lightSecondary: #2c5282;
+  --color-lightAccent: #4a5568;
+  --color-lightBorder: #cbd5e0;
+  --color-lightShadow: rgba(0, 0, 0, 0.1);
+  --color-lightHighlight: #edf2f7;
+  --color-lightSuccess: #38a169;
+  --color-lightWarning: #dd6b20;
+  --color-lightError: #e53e3e;
+  --color-lightInfo: #3182ce;
+  --color-lightLink: #2b6cb0;
+  --color-lightLinkHover: #2c5282;
+
+
+
+  /* Dark Theme Colors */
+  --color-darkBackground: #1a202c; 
+  --color-darkText: #f7fafc; 
+  --color-darkPrimary: #2b6cb0;
+  --color-darkSecondary: #2c5282;
+  --color-darkAccent: #4a5568;
+  --color-darkBorder: #2d3748;
+  --color-darkShadow: rgba(0, 0, 0, 0.5);
+  --color-darkHighlight: #2d3748;
+  --color-darkSuccess: #38a169;
+  --color-darkWarning: #dd6b20;
+  --color-darkError: #e53e3e;
+  --color-darkInfo: #3182ce;
+  --color-darkLink: #2b6cb0;
+  --color-darkLinkHover: #2c5282;
+
 }
+
+
 
  * {
   transition: all 0.3s ease-in-out;
@@ -13,6 +49,6 @@
 
 
 body {
-  @apply bg-white text-black dark:bg-zinc-900 dark:text-white;
-  /* transition: all 0.5s ease-in-out; */
+  @apply bg-lightBackground text-lightText dark:bg-darkBackground dark:text-darkText;
 }
+
