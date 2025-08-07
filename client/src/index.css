@@ -1,6 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@300..700&display=swap');
 @import "tailwindcss";
 
+
 @custom-variant dark (&:where(.dark, .dark *));
+
+.google-sans-code-bold {
+  font-family: "Google Sans Code", monospace;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.space-grotesk-light {
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+.space-grotesk-regular {
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+.space-grotesk-medium {
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+.space-grotesk-semibold {
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+.space-grotesk-bold {
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
 
 
 /* Theme Variables */
@@ -56,8 +97,15 @@
 
 body {
   @apply bg-dark-background text-dark-textColor;
+  font-family: "Space Grotesk", sans-serif;
 }
 
 .dark body {
   @apply bg-dark-background text-dark-textColor;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.box-shaddow {
+  /* background: radial-gradient(circle, rgba(46, 255, 126, 1) 0%, rgba(46, 255, 126, 0) 70%);  */
+  box-shadow: 0px 0px 400px 100px rgb(100 243 155 / 61%); /* Green glowing effect around the div */
 }
