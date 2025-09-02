@@ -3,23 +3,56 @@ import bannerImage from '../assets/images/banner2-cropped.gif'
 import { Link, NavLink } from 'react-router'
 import { FaFacebookF } from "react-icons/fa";
 import { FaXTwitter, FaLinkedinIn, FaGithub } from "react-icons/fa6";
+import { motion } from 'framer-motion'
 
 const Banner = () => {
   return (
-    <div className='relative overflow-hidden w-full h-screen flex items-center px-15 bg-dark-secondary isolate'>
-        <div className='w-1/2 h-full self-start flex flex-col justify-between pt-30'>
+    <div className='section-container relative overflow-hidden h-screen flex items-center bg-dark-secondary isolate'>
+        <div className='w-1/2 h-full self-start flex flex-col justify-between pt-32'>
             <div className='flex flex-col gap-4'>
-              <h3 className='font-bold text-2xl'>Hey, I'm a Full Stack Developer</h3>
-              <h1 className='space-grotesk-bold text-dark-primary text-7xl font-bold'>AHMED FAROOQ</h1>
-              <p>
+              <motion.h3 
+                className='font-bold text-2xl'
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, type: 'spring', stiffness: 100, damping: 10 }}
+              >
+                Hey, I'm a Full Stack Developer
+              </motion.h3>
+              <motion.h1 
+                className='space-grotesk-bold text-dark-primary text-8xl font-bold w-[900px]'
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3, type: 'spring', stiffness: 100, damping: 10 }}
+              >
+                AHMED FAROOQ
+                </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6, type: 'spring', stiffness: 100, damping: 10 }}
+              >
               I craft fast, scalable, and user-friendly web applications with modern JavaScript frameworks — combining React on the frontend with robust server-side solutions using Node.js.
-              </p>
+              </motion.p>
               <div className='flex gap-3'>
-                <NavLink to="contact" className='bg-dark-primary text-dark-background rounded-full hover:bg-dark-textColor transition duration-300 ease-in-out w-50 font-bold text-center py-3'>Contact Me</NavLink>
-                <NavLink to="contact" className='bg-dark-secondary text-dark-primary border rounded-full hover:bg-dark-textColor transition duration-300 ease-in-out w-50 font-bold text-center py-3'>Download Resume</NavLink>
+                <motion.div 
+                  className='w-50'
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.9, type: 'spring', stiffness: 200, damping: 5 }}
+                >
+                  <NavLink to="contact" className='bg-dark-primary text-dark-background rounded-full hover:bg-dark-textColor transition duration-500 ease-in-out w-full block font-bold text-center py-3'><span>Contact Me</span></NavLink>
+                </motion.div>
+                <motion.div 
+                  className='w-50'
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 1.2, type: 'spring', stiffness: 200, damping: 5 }}
+                >
+                  <NavLink to="contact" className='bg-dark-secondary text-dark-primary border rounded-full hover:bg-dark-textColor transition duration-500 ease-in-out w-full block font-bold text-center py-3'>Download Resume</NavLink>
+                </motion.div>
               </div>
             </div>
-            <div className='flex items-center gap-4 pb-5'>
+            <div className='flex items-center gap-4 pb-8'>
               <a href="" target='_blank' className='flex justify-center items-center w-10 h-10 border-2 border-white rounded-full hover:bg-dark-primary hover:text-dark-background hover:scale-125'><FaFacebookF /></a>
               <a href="" target='_blank' className='flex justify-center items-center w-10 h-10 border-2 border-white rounded-full hover:bg-dark-primary hover:text-dark-background hover:scale-125'><FaXTwitter /></a>
               <a href="" target='_blank' className='flex justify-center items-center w-10 h-10 border-2 border-white rounded-full hover:bg-dark-primary hover:text-dark-background hover:scale-125'><FaLinkedinIn /></a>

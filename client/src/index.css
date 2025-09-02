@@ -81,18 +81,20 @@
    --color-dark-error:   #FF6B6B;
  
    --color-dark-background: #111111;
-   --color-dark-surface: #1E1E1E;
+   --color-dark-surface: #7070704d;
    --color-dark-textColor: #ffffff;
    --color-dark-muted: #BDBDBD;
  
    --color-dark-header: #1A1A1A;
    --color-dark-footer: #1A1A1A;
 
-}
 
+
+}
+/* 
  * {
   transition: all 0.3s ease-in-out;
- }
+ } */
 
 
 body {
@@ -108,4 +110,44 @@ body {
 .box-shaddow {
   /* background: radial-gradient(circle, rgba(46, 255, 126, 1) 0%, rgba(46, 255, 126, 0) 70%);  */
   box-shadow: 0px 0px 400px 100px rgb(100 243 155 / 61%); /* Green glowing effect around the div */
+}
+
+.section-container {
+  @apply w-full px-4 mb-16 sm:px-6 sm:mb-16 lg:px-16 lg:mb-20 xl:px-24 xl:mb-24;
+}
+
+.overlay::before {
+  /* @apply before:absolute before:inset-0 before:bg-black/50; */
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  left: 0;
+  bottom: 0;
+  background: linear-gradient(0deg,rgba(0, 0, 0, 0.9) 0%, rgba(253, 187, 45, 0) 100%);
+}
+
+.green-bg {
+  @apply relative after:absolute after:bottom-0 after:bg-dark-primary after:w-full after:h-[80%] after:-z-10 after:rounded-t-full;
+}
+
+.section-subheading {
+  @apply relative w-fit flex items-center text-xl font-bold text-dark-primary mb-3 after:absolute after:w-20 after:h-[1.5px] after:bg-dark-primary after:-right-22;
+}
+
+.section-mainheading {
+  @apply text-6xl font-bold text-white w-[65%];
+}
+
+.section-header {
+  @apply mb-15;
+}
+
+.theme-button {
+  @apply relative overflow-hidden flex items-center justify-center gap-2 w-35 h-35 border border-gray-500 rounded-full font-bold transition-all duration-300 ease-in-out after:transition-all after:duration-700 after:ease-in-out after:absolute after:-left-2 after:-bottom-2 after:bg-dark-primary after:w-12 after:h-12 after:rounded-full after:-z-10 hover:after:w-[120%] hover:after:h-[120%] hover:text-dark-secondary hover:border-0 hover:scale-110;
+}
+
+.secondary-gradient {
+  background: #7070704d;
+background: linear-gradient(180deg,rgba(42, 123, 155, 0) 50%, rgba(25, 24, 24, 1) 100%);
 }
