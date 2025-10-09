@@ -6,40 +6,11 @@ import FullstackImage from '../assets/images/fullstack.jpg'
 import UIImage from '../assets/images/uiDesign.jpg'
 import { NavLink } from 'react-router';
 import { MdArrowOutward } from "react-icons/md";
+import { services } from '../utilities/services';
 
-const SERVICES = [
-  {
-    id: 1,
-    title: 'Custom Web Development',
-    description: 'Build complete web applications from scratch — frontend to backend — optimized for speed, security, and scalability.',
-    color: 'bg-dark-primary',
-    image: UIImage
-  },
-  {
-    id: 2,
-    title: 'Frontend Development',
-    description: 'Create feature-rich online stores with secure payment gateways, user-friendly interfaces, and robust inventory management.',
-    color: 'bg-dark-primary',
-    image: FrontendImage
-  },
-  {
-    id: 3,
-    title: 'Server Logic & API Development',
-    description: 'Develop custom CMS solutions for easy content creation, management, and publishing tailored to your business needs.',
-    color: 'bg-dark-primary',
-    image: BackendImage
-  },
-  {
-    id: 4,
-    title: 'Full Stack Application Development',
-    description: 'Build RESTful APIs for seamless integration with third-party services, mobile apps, or other web applications.',
-    color: 'bg-dark-primary',
-    image: FullstackImage
-  },
-];
 
 const ServiceComponent = () => {
-  const [activeService, setActiveService] = useState(SERVICES[0].id);
+  const [activeService, setActiveService] = useState(services[0].id);
 
   return (
     <div className='section-container secondary-gradient pb-30'>
@@ -50,7 +21,7 @@ const ServiceComponent = () => {
 
       <div className='w-full flex items-start gap-25'>
         <div className='w-1/2 relative'>
-          {SERVICES.map((service, index) => (
+          {services.map((service, index) => (
             <div
               key={service.id}
               onClick={() => setActiveService(service.id)}
@@ -88,7 +59,7 @@ const ServiceComponent = () => {
                       {service.description}
                     </p>
                     
-                      <NavLink to="Contact" className={`text-dark-primary text-sm font-bold border-b mt-4 inline-flex items-center gap-2`}>Hire Me <MdArrowOutward className='text-xl group-hover:rotate-45' /></NavLink>
+                      <NavLink to={`services/${service.id}`} className={`text-dark-primary text-sm font-bold border-b mt-4 inline-flex items-center gap-2`}>Hire Me <MdArrowOutward className='text-xl group-hover:rotate-45' /></NavLink>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -103,7 +74,7 @@ const ServiceComponent = () => {
         <motion.div className={``}>
           <motion.img
           key={activeService}
-          src={SERVICES.find(s => s.id === activeService)?.image}
+          src={services.find(s => s.id === activeService)?.image}
           alt="Service Preview"
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}

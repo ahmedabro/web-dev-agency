@@ -2,6 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@300..700&display=swap');
 @import "tailwindcss";
 
+html, body {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -72,8 +76,8 @@
 
    /* Dark Theme */
 
-   --color-dark-primary: #7af298;       /* Same for brand consistency */
-   --color-dark-secondary: #191818;
+   --color-dark-primary: #37e062;       /* #7af298 Same for brand consistency */
+   --color-dark-secondary: #1a1a1a;
    --color-dark-accent: #F2994A;
  
    --color-dark-success: #6FCF97;
@@ -81,7 +85,7 @@
    --color-dark-error:   #FF6B6B;
  
    --color-dark-background: #111111;
-   --color-dark-surface: #7070704d;
+   --color-dark-surface: #212121;
    --color-dark-textColor: #ffffff;
    --color-dark-muted: #BDBDBD;
  
@@ -113,7 +117,7 @@ body {
 }
 
 .section-container {
-  @apply w-full px-4 mb-16 sm:px-6 sm:mb-16 lg:px-16 lg:mb-20 xl:px-24 xl:mb-24;
+  @apply w-full px-4 mb-16 sm:px-6 sm:mb-20 lg:px-16 lg:mb-24 xl:px-32 xl:mb-32;
 }
 
 .overlay::before {
@@ -121,10 +125,11 @@ body {
   position: absolute;
   content: "";
   width: 100%;
-  height: 100%;
+  height: 80%;
   left: 0;
   bottom: 0;
   background: linear-gradient(0deg,rgba(0, 0, 0, 0.9) 0%, rgba(253, 187, 45, 0) 100%);
+  z-index: -1;
 }
 
 .green-bg {
@@ -136,7 +141,7 @@ body {
 }
 
 .section-mainheading {
-  @apply text-6xl font-bold text-white w-[65%];
+  @apply text-7xl font-bold text-white w-[65%];
 }
 
 .section-header {
@@ -144,10 +149,101 @@ body {
 }
 
 .theme-button {
-  @apply relative overflow-hidden flex items-center justify-center gap-2 w-35 h-35 border border-gray-500 rounded-full font-bold transition-all duration-300 ease-in-out after:transition-all after:duration-700 after:ease-in-out after:absolute after:-left-2 after:-bottom-2 after:bg-dark-primary after:w-12 after:h-12 after:rounded-full after:-z-10 hover:after:w-[120%] hover:after:h-[120%] hover:text-dark-secondary hover:border-0 hover:scale-110;
+  @apply relative isolate overflow-hidden flex items-center justify-center gap-2 w-36 h-36 border border-gray-500 rounded-full font-bold transition-all duration-300 ease-in-out after:transition-all after:duration-700 after:ease-in-out after:absolute after:-left-2 after:-bottom-2 after:bg-dark-primary after:w-12 after:h-12 after:rounded-full after:-z-10 hover:after:w-[120%] hover:after:h-[120%] hover:text-dark-secondary hover:border-0 hover:scale-110;
 }
 
 .secondary-gradient {
   background: #7070704d;
 background: linear-gradient(180deg,rgba(42, 123, 155, 0) 50%, rgba(25, 24, 24, 1) 100%);
+}
+
+
+#blog-content p {
+  @apply mb-4 text-gray-400;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+
+.work_together::after {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 200px;
+  top: 0;
+  right: 0;
+  background: var(--color-dark-surface);
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+}
+
+
+.navbar span.MuiAccordionSummary-content.Mui-expanded.MuiAccordionSummary-contentGutters.css-yfrx4k-MuiAccordionSummary-content {
+    margin: 0;
+}
+
+.navbar button#panel1-header {
+    height: auto;
+    min-height: auto;
+    padding: 8px 16px;
+}
+
+.navbar span.MuiAccordionSummary-content.MuiAccordionSummary-contentGutters.css-yfrx4k-MuiAccordionSummary-content {
+    margin: 0;
+}
+
+button#panel1-header.Mui-expanded {
+  @apply bg-gray-200;
+}
+.navbar .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiAccordion-root.MuiAccordion-rounded.MuiAccordion-gutters.css-1808mag-MuiPaper-root-MuiAccordion-root {
+    box-shadow: none;
+}
+
+
+
+.faq-section .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiAccordion-root.MuiAccordion-rounded.MuiAccordion-gutters.css-1808mag-MuiPaper-root-MuiAccordion-root {
+    @apply bg-dark-surface text-gray-200 mb-3 px-4 py-3 rounded-xl;
+}
+
+
+
+.faq-section .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiAccordion-root.MuiAccordion-rounded.Mui-expanded.MuiAccordion-gutters.css-1808mag-MuiPaper-root-MuiAccordion-root {
+    @apply bg-dark-primary text-dark-surface;
+}
+
+.faq-section span.MuiAccordionSummary-expandIconWrapper.css-1wqf3nl-MuiAccordionSummary-expandIconWrapper svg {
+    @apply text-gray-300;
+}
+
+.faq-section span.MuiAccordionSummary-expandIconWrapper.Mui-expanded.css-1wqf3nl-MuiAccordionSummary-expandIconWrapper svg {
+    @apply text-dark-surface;
+}
+
+.faq-section .css-1wqf3nl-MuiAccordionSummary-expandIconWrapper.Mui-expanded {
+    transform: rotate(45deg);
+}
+
+.contact-section input, .contact-section textarea {
+  @apply w-full bg-dark-secondary px-4 py-3 text-sm text-gray-300 mt-2 h-fit border-b outline-none focus:outline-none transition duration-300 ease-in-out placeholder:text-gray-500 placeholder:text-sm focus:placeholder:text-dark-primary placeholder:transition placeholder:duration-300 placeholder:ease-in-out;
+}
+
+.shadow-custom {
+    box-shadow: 0px 0px 100px 10px #37e06226;
+}
+
+
+
+
+
+
+
+
+.embla {
+  overflow: hidden;
+}
+.embla__container {
+  display: flex;
+}
+.embla__slide {
+  flex: 0 0 100%;
+  min-width: 0;
 }
