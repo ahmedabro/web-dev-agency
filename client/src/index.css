@@ -121,27 +121,21 @@ body {
 }
 
 .overlay::before {
-  /* @apply before:absolute before:inset-0 before:bg-black/50; */
-  position: absolute;
+  @apply absolute w-[300px] md:w-full h-[80%] m-auto bottom-0 -z-1;
   content: "";
-  width: 100%;
-  height: 80%;
-  left: 0;
-  bottom: 0;
   background: linear-gradient(0deg,rgba(0, 0, 0, 0.9) 0%, rgba(253, 187, 45, 0) 100%);
-  z-index: -1;
 }
 
 .green-bg {
-  @apply relative after:absolute after:bottom-0 after:bg-dark-primary after:w-full after:h-[80%] after:-z-10 after:rounded-t-full;
+  @apply relative after:absolute after:bottom-0 after:bg-dark-primary after:w-[300px] md:after:w-full after:h-[80%] after:-z-10 after:rounded-t-full;
 }
 
 .section-subheading {
-  @apply relative w-fit flex items-center text-xl font-bold text-dark-primary mb-3 after:absolute after:w-20 after:h-[1.5px] after:bg-dark-primary after:-right-22;
+  @apply relative w-fit flex items-center text-lg md:text-xl font-bold text-dark-primary mb-3 after:absolute after:w-20 after:h-[1.5px] after:bg-dark-primary after:-right-22;
 }
 
 .section-mainheading {
-  @apply text-7xl font-bold text-white w-[65%];
+  @apply text-3xl md:text-7xl font-bold text-white md:w-[65%];
 }
 
 .section-header {
@@ -149,7 +143,7 @@ body {
 }
 
 .theme-button {
-  @apply relative isolate overflow-hidden flex items-center justify-center gap-2 w-36 h-36 border border-gray-500 rounded-full font-bold transition-all duration-300 ease-in-out after:transition-all after:duration-700 after:ease-in-out after:absolute after:-left-2 after:-bottom-2 after:bg-dark-primary after:w-12 after:h-12 after:rounded-full after:-z-10 hover:after:w-[120%] hover:after:h-[120%] hover:text-dark-secondary hover:border-0 hover:scale-110;
+  @apply relative isolate overflow-hidden flex items-center justify-center gap-2 w-30 h-30 text-sm md:w-36 md:h-36 md:text-[16px] border border-gray-500 rounded-full font-bold transition-all duration-300 ease-in-out after:transition-all after:duration-700 after:ease-in-out after:absolute after:-left-2 after:-bottom-2 after:bg-dark-primary after:w-12 after:h-12 after:rounded-full after:-z-10 hover:after:w-[120%] hover:after:h-[120%] hover:text-dark-secondary hover:border-0 hover:scale-110;
 }
 
 .secondary-gradient {

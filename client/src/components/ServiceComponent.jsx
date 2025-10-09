@@ -20,7 +20,7 @@ const ServiceComponent = () => {
       </div>
 
       <div className='w-full flex items-start gap-25'>
-        <div className='w-1/2 relative'>
+        <div className='w-full md:w-1/2 relative'>
           {services.map((service, index) => (
             <div
               key={service.id}
@@ -68,7 +68,7 @@ const ServiceComponent = () => {
           ))}
         </div>
 
-        <div className='w-1/2'>
+        <div className='hidden md:w-1/2 md:visible'>
         <AnimatePresence mode="wait">
       {activeService && (
         <motion.div className={``}>
