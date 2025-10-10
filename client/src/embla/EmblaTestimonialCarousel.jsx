@@ -38,23 +38,23 @@ const EmblaTestimonialCarousel = (props) => {
         <div className="embla__container">
           {slides.map((item, index) => (
             <div className="embla__slide" key={index}>
-              <div className='flex items-center gap-15'>
-                <div className='w-2/5'>
+              <div className='flex flex-col sm:flex-row items-center gap-15'>
+                <div className='sm:w-2/5'>
                   <img src={item.picture} alt={item.author} className='w-full rounded-full rounded-br-none' />
                 </div>
-                <div className='w-3/5 relative'>
-                  <div className='text-9xl text-dark-primary absolute -top-20 -left-5 -z-10 opacity-25'>
+                <div className='sm:w-3/5 relative'>
+                  <div className='text-7xl md:text-9xl text-dark-primary absolute -top-9 -left-0 md:-top-20 md:-left-5 -z-10 opacity-25'>
                     <FaQuoteLeft />
                   </div>
-                  <p className='text-xl text-gray-300 font-medium mb-8'>{item.text}</p>
+                  <p className='md:text-xl text-gray-300 font-medium mb-8'>{item.text}</p>
                   <div className='flex items-center gap-1 mb-8'>
                     {[...Array(Math.floor(item.rating))].map((_, i) => (
-                      <FaStar key={i} className="text-yellow-400 text-lg" />
+                      <FaStar key={i} className="text-yellow-400 text-sm md:text-lg" />
                     ))}
                   </div>
                   <div className='pl-5 border-l-2 border-dark-primary'>
-                    <h4 className='text-lg font-semibold mb-2'>{item.author}</h4>
-                    <h5 className='text-sm text-gray-400'>{item.designation}, {item.company}</h5>
+                    <h4 className='text-base md:text-lg font-semibold mb-2'>{item.author}</h4>
+                    <h5 className='text-xs md:text-sm text-gray-400'>{item.designation}, {item.company}</h5>
                   </div>
                 </div>
               </div>

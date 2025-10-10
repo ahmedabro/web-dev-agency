@@ -131,7 +131,7 @@ body {
 }
 
 .section-subheading {
-  @apply relative w-fit flex items-center text-lg md:text-xl font-bold text-dark-primary mb-3 after:absolute after:w-20 after:h-[1.5px] after:bg-dark-primary after:-right-22;
+  @apply relative w-fit flex items-center text-lg md:text-xl font-bold text-dark-primary mb-3 sm:after:absolute sm:after:w-20 sm:after:h-[1.5px] sm:after:bg-dark-primary sm:after:-right-22;
 }
 
 .section-mainheading {
@@ -240,4 +240,5 @@ button#panel1-header.Mui-expanded {
 .embla__slide {
   flex: 0 0 100%;
   min-width: 0;
+  padding: 60px 30px;
 }

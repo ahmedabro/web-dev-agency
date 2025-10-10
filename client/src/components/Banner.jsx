@@ -20,7 +20,7 @@ const Banner = () => {
                 Hey, I'm a Full Stack Developer
               </motion.h3>
               <motion.h1 
-                className='space-grotesk-bold text-dark-primary text-5xl md:text-8xl font-bold lg:w-[900px]'
+                className='space-grotesk-bold text-dark-primary text-4xl md:text-8xl font-bold lg:w-[900px]'
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3, type: 'spring', stiffness: 100, damping: 10 }}

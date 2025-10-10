@@ -37,10 +37,10 @@ const ServiceComponent = () => {
 
               <div className="relative z-10">
                 <div className={`flex justify-between items-center ${activeService === service.id && 'mb-6'}`}>
-                <h3 className={`font-bold text-xl text-white`}>
+                <h3 className={`font-bold text-lg md:text-xl text-white`}>
                   {service.title}
                 </h3>
-                <h4 className='text-gray-400 font-medium text-lg'>({index + 1})</h4>
+                <h4 className='text-gray-400 font-medium text-sm md:text-lg'>({index + 1})</h4>
                 </div>
 
                 <AnimatePresence>
@@ -68,7 +68,7 @@ const ServiceComponent = () => {
           ))}
         </div>
 
-        <div className='hidden md:w-1/2 md:visible'>
+        <div className='hidden md:w-1/2 md:block'>
         <AnimatePresence mode="wait">
       {activeService && (
         <motion.div className={``}>

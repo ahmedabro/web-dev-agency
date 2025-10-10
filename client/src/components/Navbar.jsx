@@ -52,12 +52,12 @@ const Navbar = () => {
             : { height: "3rem", borderRadius: "2rem", top: "50%", translateY: "-50%" }
         }
         transition={{ duration: 0.4, ease: "easeInOut" }}
-        className="absolute right-4 sm:right-15 z-10 w-40 md:w-55 overflow-hidden bg-dark-textColor"
+        className="absolute right-4 sm:right-15 z-10 w-37 md:w-55 overflow-hidden bg-dark-textColor"
       >
         {/* Toggle button */}
         <button
           onClick={() => setShowMenu((prev) => !prev)}
-          className={`text-dark-background w-full h-12 flex justify-between items-center font-bold text-lg px-4 transition-colors duration-500 ease-in-out ${
+          className={`text-dark-background w-full h-12 flex justify-between items-center font-bold text-[16px] md:text-lg px-4 transition-colors duration-500 ease-in-out ${
             showMenu ? 'hover:bg-dark-textColor' : 'hover:bg-dark-primary'
           }`}
         >

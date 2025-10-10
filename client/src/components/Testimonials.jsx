@@ -39,7 +39,7 @@ const Testimonials = () => {
         <h2 className='section-mainheading !text-center !w-full mb-8'>What Our Clients Say</h2>
         <p className='text-center text-gray-400 max-w-2xl m-auto mb-16'>Here are some of the testimonials from our satisfied clients. We take pride in delivering exceptional service and results.</p>
       </div>
-      <div className='px-[12%] relative'>
+      <div className='px-[6%] sm:px-[8%] md:px-[12%] relative'>
         <EmblaTestimonialCarousel slides={testimonials} options={{ loop: false }} />
       </div>
     </div>

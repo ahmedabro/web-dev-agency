@@ -53,17 +53,17 @@ const Skills = ({serviceType}) => {
       <div className='section-header w-full'>
         <h3 className='section-subheading justify-center m-auto'>Professional Skills</h3>
         <h2 className='section-mainheading !text-center !w-full mb-8'>Tech Stack</h2>
-        <p className='text-center text-gray-400 max-w-2xl m-auto mb-16'>Here are some of the technologies and tools I have worked with in my projects and professional experience. I am always eager to learn and explore new technologies to enhance my skills and deliver better solutions.</p>
+        <p className='text-center text-gray-400 max-w-2xl m-auto md:mb-16'>Here are some of the technologies and tools I have worked with in my projects and professional experience. I am always eager to learn and explore new technologies to enhance my skills and deliver better solutions.</p>
       </div>
-      <div className='grid grid-cols-3 justify-center items-center w-full m-auto'>
+      <div className='flex flex-wrap justify-center w-full m-auto'>
         {skills.map((skillCategory, index) => (
-          <div key={skillCategory.category} className={`skill-category h-full ${index !== skills.length - 1 ? 'border-r-2 border-gray-700' : ''} px-5 py-10`}>
+          <div key={skillCategory.category} className={`skill-category h-full sm:w-1/2 md:w-1/3 ${index !== skills.length - 1 ? 'md:border-r-2 md:border-gray-700' : ''} px-5 py-10`}>
             <img src={skillCategory.category === "Frontend" ? FrontendImage : skillCategory.category === "Backend" ? BackendImage : CloudImage} alt="" className='brightness-0 invert w-15 m-auto mb-5' />
             <h4 className='text-center font-bold text-3xl mb-6'>{skillCategory.category}</h4>
             <div className='flex flex-wrap justify-center gap-4'>
               {skillCategory.items.map((skill) => (
-                <div key={skill.name} className='skill-item w-[25%] mt-5 flex flex-col items-center justify-center'>
-                  <div className='group relative border-2 border-gray-600 rounded-full w-22 h-22 overflow-hidden flex flex-col justify-center items-center p-6 hover:scale-125 hover:border-dark-primary transition-all duration-400'>
+                <div key={skill.name} className='skill-item mt-5 flex flex-col items-center justify-center'>
+                  <div className='group relative border-2 border-gray-600 rounded-full w-18 h-18 md:w-22 md:h-22 overflow-hidden flex flex-col justify-center items-center p-4 md:p-6 hover:scale-125 hover:border-dark-primary transition-all duration-400'>
                     <div dangerouslySetInnerHTML={{ __html: skill.icon }} className='w-full'></div>
                     <div className='skill-name text-[12px] font-bold absolute -bottom-100 bg-dark-secondary w-full h-full flex justify-center items-center group-hover:bottom-0 transition-all duration-500'><span className=''>{skill.name}</span></div>
                   </div>
