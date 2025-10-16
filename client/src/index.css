@@ -7,6 +7,10 @@ html, body {
   overflow-x: hidden;
 }
 
+* {
+  transition: all 0.3s ease-in-out;
+}
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 .google-sans-code-bold {
@@ -160,14 +164,15 @@ background: linear-gradient(180deg,rgba(42, 123, 155, 0) 50%, rgba(25, 24, 24, 1
 
 
 .work_together::after {
+  @apply absolute md:w-[150px] md:h-[200px] top-0 right-0 bg-dark-surface sm:[clip-path:polygon(100%_0,0_0,100%_100%)];
   content: "";
-  position: absolute;
+  /* position: absolute;
   width: 150px;
   height: 200px;
   top: 0;
   right: 0;
   background: var(--color-dark-surface);
-  clip-path: polygon(100% 0, 0 0, 100% 100%);
+  clip-path: polygon(100% 0, 0 0, 100% 100%); */
 }
 
 
@@ -235,7 +240,9 @@ button#panel1-header.Mui-expanded {
   overflow: hidden;
 }
 .embla__container {
+  transition: height 0.2s;
   display: flex;
+  align-items: flex-start; /* Add this */
 }
 .embla__slide {
   flex: 0 0 100%;

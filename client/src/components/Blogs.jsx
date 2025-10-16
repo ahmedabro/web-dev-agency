@@ -59,21 +59,21 @@ const Blogs = () => {
         <h2 className='section-mainheading'>Latest Articles & Insights</h2>
       </div>
         
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
+      <div className='flex flex-wrap justify-center gap-7 lg:gap-5 xl:gap-10'>
         { blogs.map(blog => (
-        <div key={blog.id} className='border-2 border-gray-700'>
-            <div className='w-full h-90 overflow-hidden'>
-                <img src={blog.images[0]} alt="" className='w-full' />
+        <div key={blog.id} className='w-full sm:w-[calc(50%-2.5rem)] lg:w-[calc(34%-2.5rem)] border-2 border-gray-700'>
+            <div className='w-full h-75 overflow-hidden'>
+                <img src={blog.images[0]} alt="" className='w-full h-full object-cover object-center' />
             </div>
-            <div className='py-8 px-6'>
-                <div className='flex items-center justify-between mb-6'>
-                <span className="bg-dark-surface text-dark-primary px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2">
-                    <BsTags className='text-xl' />
+            <div className='py-6 px-4 xl:py-8 xl:px-6'>
+                <div className='flex flex-wrap items-center justify-between mb-6'>
+                <span className="bg-dark-surface text-dark-primary px-4 py-2 rounded-full text-xs xl:text-sm font-medium flex items-center gap-2">
+                    <BsTags className='text-sm md:text-md lg:text-lg xl:text-xl' />
                         {blog.category}
                       </span>
-                      <span className="text-gray-300 text-sm flex items-center gap-2"><IoCalendarOutline className='text-xl' /> {blog.date}</span>
+                      <span className="text-gray-300 text-xs xl:text-sm flex items-center gap-2"><IoCalendarOutline className='text-sm md:text-md lg:text-lg xl:text-xl' /> {blog.date}</span>
             </div>
-            <h4 className='text-2xl font-semibold mb-3'>{blog.title}</h4>
+            <h4 className='text-lg lg:text-xl xl:text-2xl font-semibold mb-3'>{blog.title}</h4>
             <div id='blog-content' dangerouslySetInnerHTML={{ __html: blog.content }} />
             <Link to={`/blogs/${blog.id}`} className='text-dark-primary font-semibold inline-flex gap-2 items-center border-b'>Read More <GoArrowUpRight /></Link>
             </div>

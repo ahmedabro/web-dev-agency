@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { DotButton, useDotButton } from './EmblaCarouselDotButtons'
+import AutoHeight from 'embla-carousel-auto-height'
 import {
   PrevButton,
   NextButton,
@@ -13,7 +14,8 @@ import { FaQuoteLeft, FaStar } from "react-icons/fa6";
 const EmblaTestimonialCarousel = (props) => {
   const { slides, options } = props
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [
-    Autoplay({ playOnInit: true, delay: 3000, stopOnMouseEnter: true, stopOnInteraction: false })
+    // Autoplay({ playOnInit: true, delay: 5000, stopOnMouseEnter: true, stopOnInteraction: false }),
+     AutoHeight()
   ])
 
   useEffect(() => {
@@ -63,13 +65,13 @@ const EmblaTestimonialCarousel = (props) => {
         </div>
       </div>
 
-      <div className="embla__controls">
-        <div className="embla__buttons">
+      <div className="embla__controls flex items-center justify-between px-[30px] sm:px-0 sm:block">
+        <div className="embla__buttons flex gap-3 sm:block">
           <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
           <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
         </div>
 
-        <div className="embla__dots flex gap-3 justify-center mt-10">
+        <div className="embla__dots flex gap-3 justify-center">
           {scrollSnaps.map((_, index) => (
             <DotButton
               key={index}
