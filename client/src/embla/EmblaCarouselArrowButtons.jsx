@@ -40,7 +40,7 @@ export const PrevButton = (props) => {
 
   return (
     <button
-      className="embla__button embla__button--prev sm:absolute sm:left-0 sm:top-1/2 sm:-translate-y-1/2 text-3xl sm:text-4xl lg:text-5xl text-dark-primary"
+      className="embla__button embla__button--prev sm:absolute sm:left-0 sm:top-1/2 sm:-translate-y-1/2 !text-3xl !sm:text-4xl !lg:text-5xl text-dark-primary"
       type="button"
       {...restProps}
     >
@@ -55,7 +55,7 @@ export const NextButton = (props) => {
 
   return (
     <button
-      className="embla__button embla__button--next sm:absolute sm:right-0 sm:top-1/2 sm:-translate-y-1/2 text-3xl sm:text-4xl lg:text-5xl text-dark-primary"
+      className="embla__button embla__button--next sm:absolute sm:right-0 sm:top-1/2 sm:-translate-y-1/2 !text-3xl !sm:text-4xl !lg:text-5xl text-dark-primary"
       type="button"
       {...restProps}
     >

@@ -37,7 +37,7 @@ const Navbar = () => {
         scrolled ? 'bg-dark-background' : 'bg-transparent'
       }`}
     >
-      <Link className="text-2xl md:text-3xl font-bold">
+      <Link className="!text-2xl !md:text-3xl font-bold">
         <span className="text-dark-primary text-2xl">&lt;</span>
         A.F Dev
         <span className="text-dark-primary text-2xl">/&gt;</span>

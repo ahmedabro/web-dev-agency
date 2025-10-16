@@ -34,12 +34,12 @@ const testimonials = [
 const Testimonials = () => {
   return (
     <div className='section-container'>
-        <div className='section-header w-full !m-4'>
+        <div className='section-header w-full !m-0'>
         <h3 className='section-subheading justify-center m-auto'>Testimonials</h3>
         <h2 className='section-mainheading !text-center !w-full mb-8'>What Our Clients Say</h2>
         <p className='text-center text-gray-400 max-w-2xl m-auto'>Here are some of the testimonials from our satisfied clients. We take pride in delivering exceptional service and results.</p>
       </div>
-      <div className='px-[6%] sm:px-[8%] md:px-[12%] relative'>
+      <div className='sm:px-[8%] md:px-[12%] relative'>
         <EmblaTestimonialCarousel slides={testimonials} options={{ loop: false }} />
       </div>
     </div>
