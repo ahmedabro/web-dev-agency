@@ -4,7 +4,8 @@
 
 html, body {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  clip-path: inset(0 0 0 0);
+  /* overflow-x: hidden; */
 }
 
 /* * {
@@ -125,13 +126,13 @@ body {
 }
 
 .overlay::before {
-  @apply absolute w-[300px] md:w-full h-[80%] m-auto bottom-0 -z-1;
+  @apply absolute w-[300px] sm:w-full h-[80%] m-auto bottom-0 -z-1;
   content: "";
   background: linear-gradient(0deg,rgba(0, 0, 0, 0.9) 0%, rgba(253, 187, 45, 0) 100%);
 }
 
 .green-bg {
-  @apply relative after:absolute after:bottom-0 after:bg-dark-primary after:w-[300px] md:after:w-full after:h-[80%] after:-z-10 after:rounded-t-full;
+  @apply relative after:absolute after:bottom-0 after:bg-dark-primary after:w-[300px] sm:after:w-full after:h-[80%] after:-z-10 after:rounded-t-full;
 }
 
 .section-subheading {
@@ -139,7 +140,7 @@ body {
 }
 
 .section-mainheading {
-  @apply text-3xl md:text-7xl font-bold text-white md:w-[65%];
+  @apply text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-bold text-white sm:w-[65%];
 }
 
 .section-header {
@@ -147,7 +148,7 @@ body {
 }
 
 .theme-button {
-  @apply relative isolate overflow-hidden flex items-center justify-center gap-2 w-30 h-30 text-sm md:w-36 md:h-36 md:text-[16px] border border-gray-500 rounded-full font-bold transition-all duration-300 ease-in-out after:transition-all after:duration-700 after:ease-in-out after:absolute after:-left-2 after:-bottom-2 after:bg-dark-primary after:w-12 after:h-12 after:rounded-full after:-z-10 hover:after:w-[120%] hover:after:h-[120%] hover:text-dark-secondary hover:border-0 hover:scale-110;
+  @apply relative isolate overflow-hidden flex items-center justify-center gap-2 w-28 h-28 text-xs xl:w-36 xl:h-36 xl:text-base border border-gray-500 rounded-full font-bold transition-all duration-300 ease-in-out after:transition-all after:duration-700 after:ease-in-out after:absolute after:-left-2 after:-bottom-2 after:bg-dark-primary after:w-10 after:h-10 xl:after:w-12 xl:after:h-12 after:rounded-full after:-z-10 hover:after:w-[120%] hover:after:h-[120%] hover:text-dark-secondary hover:border-0 hover:scale-110;
 }
 
 .secondary-gradient {
@@ -164,7 +165,7 @@ background: linear-gradient(180deg,rgba(42, 123, 155, 0) 50%, rgba(25, 24, 24, 1
 
 
 .work_together::after {
-  @apply absolute md:w-[150px] md:h-[200px] top-0 right-0 bg-dark-surface sm:[clip-path:polygon(100%_0,0_0,100%_100%)];
+  @apply absolute lg:w-[150px] lg:h-[200px] top-0 right-0 bg-dark-surface sm:[clip-path:polygon(100%_0,0_0,100%_100%)];
   content: "";
   /* position: absolute;
   width: 150px;
@@ -181,9 +182,7 @@ background: linear-gradient(180deg,rgba(42, 123, 155, 0) 50%, rgba(25, 24, 24, 1
 }
 
 .navbar button#panel1-header {
-    height: auto;
-    min-height: auto;
-    padding: 8px 16px;
+    @apply h-auto min-h-auto py-2 px-2 lg:px-4;
 }
 
 .navbar span.MuiAccordionSummary-content.MuiAccordionSummary-contentGutters.css-yfrx4k-MuiAccordionSummary-content {
@@ -230,7 +229,7 @@ button#panel1-header.Mui-expanded {
 }
 
 
-p, a, li, span, button, input, textarea {
+p, a, li, input, textarea {
   @apply text-sm md:text-base xl:text-lg
 }
 

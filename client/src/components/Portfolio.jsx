@@ -79,7 +79,7 @@ const Portfolio = () => {
         )
         :
         (<div className='w-full'>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-4">
             {portfolioItems
               .filter((item, index) => index < 5) // Show only first 6 items
               .map((item) => (
@@ -104,7 +104,7 @@ const Portfolio = () => {
       <div className='flex justify-center mt-5 md:mt-20'>
         {location.pathname === '/' && (
           <NavLink className="theme-button group" to="portfolio">
-            All Projects <MdArrowOutward className='text-xl group-hover:rotate-45 transition-rotate duration-300 ease-in-out' />
+            All Projects <MdArrowOutward className='text-base xl:text-xl group-hover:rotate-45 transition-rotate duration-300 ease-in-out' />
           </NavLink>
         )}
       </div>

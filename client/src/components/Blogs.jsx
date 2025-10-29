@@ -59,9 +59,9 @@ const Blogs = () => {
         <h2 className='section-mainheading'>Latest Articles & Insights</h2>
       </div>
         
-      <div className='flex flex-wrap justify-center gap-7 lg:gap-5 xl:gap-10'>
+      <div className='flex flex-wrap justify-center gap-6 sm:gap-5 lg:gap-5 xl:gap-10'>
         { blogs.map(blog => (
-        <div key={blog.id} className='w-full sm:w-[calc(50%-2.5rem)] lg:w-[calc(34%-2.5rem)] border-2 border-gray-700'>
+        <div key={blog.id} className='w-full sm:w-[calc(50%-1.5rem)] lg:w-[calc(33.3%-1.8rem)] border-2 border-gray-700'>
             <div className='w-full h-75 overflow-hidden'>
                 <img src={blog.images[0]} alt="" className='w-full h-full object-cover object-center' />
             </div>
@@ -82,7 +82,7 @@ const Blogs = () => {
       </div>
       {location.pathname !== '/blogs' && (
         <div className='flex justify-center mt-20'>
-          <Link to="blogs" className='theme-button group'>View All <MdArrowOutward className='text-xl group-hover:rotate-45 transition-rotate duration-300 ease-in-out' /></Link>
+          <Link to="blogs" className='theme-button group'>View All <MdArrowOutward className='text-base xl:text-xl group-hover:rotate-45 transition-rotate duration-300 ease-in-out' /></Link>
         </div>
       )}
     </div>

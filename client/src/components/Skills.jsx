@@ -57,7 +57,7 @@ const Skills = ({serviceType}) => {
       </div>
       <div className='flex flex-wrap justify-center items-stretch w-full m-auto'>
         {skills.map((skillCategory, index) => (
-          <div key={skillCategory.category} className={`skill-category relative sm:w-1/2 md:w-1/3 ${index !== skills.length - 1 ? 'md:after:content-[""] md:after:block md:after:w-[2px] md:after:h-full md:after:bg-gray-700 md:after:absolute md:after:right-0 md:after:top-0' : ''} px-5 py-10`}>
+          <div key={skillCategory.category} className={`skill-category relative sm:w-1/2 lg:w-1/3 ${index !== skills.length - 1 ? 'lg:after:content-[""] lg:after:block lg:after:w-[2px] lg:after:h-full lg:after:bg-gray-700 lg:after:absolute lg:after:right-0 lg:after:top-0' : ''} px-5 py-10`}>
             <img src={skillCategory.category === "Frontend" ? FrontendImage : skillCategory.category === "Backend" ? BackendImage : CloudImage} alt="" className='brightness-0 invert w-12 md:w-15 m-auto mb-5' />
             <h4 className='text-center font-bold text-xl md:text-3xl mb-6'>{skillCategory.category}</h4>
             <div className='flex flex-wrap justify-center gap-4'>
@@ -65,7 +65,7 @@ const Skills = ({serviceType}) => {
                 <div key={skill.name} className='skill-item mt-5 flex flex-col items-center justify-center'>
                   <div className='group relative border-2 border-gray-600 rounded-full w-18 h-18 md:w-22 md:h-22 overflow-hidden flex flex-col justify-center items-center p-4 md:p-6 hover:scale-125 hover:border-dark-primary transition-all duration-400'>
                     <div dangerouslySetInnerHTML={{ __html: skill.icon }} className='w-full'></div>
-                    <div className='skill-name text-[12px] font-bold absolute -bottom-100 bg-dark-secondary w-full h-full flex justify-center items-center group-hover:bottom-0 transition-all duration-500'><span className=''>{skill.name}</span></div>
+                    <div className='skill-name !text-[12px] font-bold absolute -bottom-100 bg-dark-secondary w-full h-full flex justify-center items-center group-hover:bottom-0 transition-all duration-500'><span className='!text-[12px]'>{skill.name}</span></div>
                   </div>
                 </div>
               ))}

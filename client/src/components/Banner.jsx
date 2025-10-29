@@ -8,11 +8,11 @@ import { MdArrowOutward } from "react-icons/md";
 
 const Banner = () => {
   return (
-    <div className='section-container relative overflow-hidden md:h-screen md:flex items-center bg-dark-secondary isolate'>
-        <div className='md:w-1/2 h-full self-start flex flex-col justify-between pt-32'>
+    <div className='section-container relative overflow-hidden xl:h-screen flex flex-col sm:flex-row items-center bg-dark-secondary isolate'>
+        <div className='sm:w-1/2 h-full self-start flex flex-col justify-between pt-32'>
             <div className='flex flex-col gap-4'>
               <motion.h3 
-                className='font-bold text-xl md:text-2xl'
+                className='font-bold text-xl lg:text-2xl'
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, type: 'spring', stiffness: 100, damping: 10 }}
@@ -20,7 +20,7 @@ const Banner = () => {
                 Hey, I'm a Full Stack Developer
               </motion.h3>
               <motion.h1 
-                className='space-grotesk-bold text-dark-primary text-4xl md:text-8xl font-bold lg:w-[900px]'
+                className='space-grotesk-bold text-dark-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold sm:w-[800px] lg:w-[900px]'
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3, type: 'spring', stiffness: 100, damping: 10 }}
@@ -41,7 +41,7 @@ const Banner = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.9, type: 'spring', stiffness: 200, damping: 5 }}
                 >
-                  <NavLink to="/contact" className={`group theme-button`}>Hire Me <MdArrowOutward className='text-xl group-hover:rotate-45 transition-rotate duration-300 ease-in-out' /></NavLink>
+                  <NavLink to="/contact" className={`group theme-button`}>Hire Me <MdArrowOutward className='text-base xl:text-xl group-hover:rotate-45 transition-rotate duration-300 ease-in-out' /></NavLink>
                 </motion.div>
                 {/* <motion.div 
                   className='w-50'
@@ -53,14 +53,14 @@ const Banner = () => {
                 </motion.div> */}
               </div>
             </div>
-            <div className='flex items-center gap-4 pb-8 mt-10 md:mt-0'>
+            <div className='flex items-center gap-2 lg:gap-3 xl:gap-4 pb-8 mt-10'>
               <a href={import.meta.env.VITE_FACEBOOK_URL} target='_blank' className='flex justify-center items-center w-8 h-8 md:w-10 md:h-10 text-sm md:text-lg border-1 border-gray-500 bg-dark-surface rounded-full hover:bg-dark-primary hover:text-dark-background hover:scale-125'><FaFacebookF /></a>
               <a href={import.meta.env.VITE_TWITTER_URL} target='_blank' className='flex justify-center items-center w-8 h-8 md:w-10 md:h-10 text-sm md:text-lg border-1 border-gray-500 bg-dark-surface rounded-full hover:bg-dark-primary hover:text-dark-background hover:scale-125'><FaXTwitter /></a>
               <a href={import.meta.env.VITE_LINKEDIN_URL} target='_blank' className='flex justify-center items-center w-8 h-8 md:w-10 md:h-10 text-sm md:text-lg border-1 border-gray-500 bg-dark-surface rounded-full hover:bg-dark-primary hover:text-dark-background hover:scale-125'><FaLinkedinIn /></a>
               <a href={import.meta.env.VITE_GITHUB_URL} target='_blank' className='flex justify-center items-center w-8 h-8 md:w-10 md:h-10 text-sm md:text-lg border-1 border-gray-500 bg-dark-surface rounded-full hover:bg-dark-primary hover:text-dark-background hover:scale-125'><FaGithub /></a>
             </div>
         </div>
-        <div className='md:w-1/2 self-end'>
+        <div className='sm:w-1/2 self-end'>
             <img src={bannerImage} alt="" className='w-full' />
         </div>
         <div className='absolute left-0 right-0 bottom-0 m-auto w-[500px] rounded-full -z-10 box-shaddow overflow-visible'></div>

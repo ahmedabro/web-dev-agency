@@ -19,7 +19,7 @@ const ServiceComponent = () => {
         <h2 className='section-mainheading'>End-to-End Web Development Services</h2>
       </div>
 
-      <div className='w-full flex items-start gap-25'>
+      <div className='w-full flex items-start md:gap-10 lg:gap-20 xl:gap-25'>
         <div className='w-full md:w-1/2 relative'>
           {services.map((service, index) => (
             <div
@@ -51,7 +51,7 @@ const ServiceComponent = () => {
                       animate={{ opacity: 1, height: 'auto' }}
                       exit={{ opacity: 0, height: 0 }}
                       transition={{ duration: 0.4 }}
-                      className="text-white mb-0 pr-12 text-sm leading-7"
+                      className="text-white mb-0 md:pr-8 xl:pr-12 text-sm leading-7"
                     >
                     <p
                       
@@ -59,7 +59,7 @@ const ServiceComponent = () => {
                       {service.description}
                     </p>
                     
-                      <NavLink to={`services/${service.id}`} className={`text-dark-primary text-sm font-bold border-b mt-4 inline-flex items-center gap-2`}>Hire Me <MdArrowOutward className='text-xl group-hover:rotate-45' /></NavLink>
+                      <NavLink to={`services/${service.id}`} className={`text-dark-primary text-sm font-bold border-b mt-4 inline-flex items-center gap-2`}>Hire Me <MdArrowOutward className='text-base xl:text-xl group-hover:rotate-45' /></NavLink>
                     </motion.div>
                   )}
                 </AnimatePresence>

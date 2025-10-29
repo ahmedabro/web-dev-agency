@@ -12,10 +12,10 @@ const Footer = () => {
   return (
     <section className=''>
       <div className='bg-dark-secondary section-container !mb-0'>
-      <div className='flex flex-col md:flex-row justify-center gap-10 py-15'>
-        <div className='md:w-[32%]'>
+      <div className='flex flex-col sm:flex-row sm:flex-wrap lg:flex-nowrap justify-center gap-10 py-15'>
+        <div className='sm:w-[calc(50%-2.5rem)] lg:w-[32%]'>
         <h1 className='text-2xl font-bold mb-4'>About Me</h1>
-        <p className='text-gray-400 mb-10'>With a passion for creating stunning and functional websites, I am a dedicated web developer.</p>
+        <p className='text-gray-400 mb-10 xl:pr-8'>With a passion for creating stunning and functional websites, I am a dedicated web developer.</p>
         <div className='flex items-center gap-4 pb-8'>
                       <a href={import.meta.env.VITE_FACEBOOK_URL} target='_blank' className='flex justify-center items-center w-8 h-8 bg-dark-surface rounded-full hover:bg-dark-primary hover:text-dark-background hover:scale-125'><FaFacebookF /></a>
                       <a href={import.meta.env.VITE_TWITTER_URL} target='_blank' className='flex justify-center items-center w-8 h-8 bg-dark-surface rounded-full hover:bg-dark-primary hover:text-dark-background hover:scale-125'><FaXTwitter /></a>
@@ -23,7 +23,7 @@ const Footer = () => {
                       <a href={import.meta.env.VITE_GITHUB_URL} target='_blank' className='flex justify-center items-center w-8 h-8 bg-dark-surface rounded-full hover:bg-dark-primary hover:text-dark-background hover:scale-125'><FaGithub /></a>
                     </div>
         </div>
-        <div className='md:w-[18%]'>
+        <div className='sm:w-[calc(50%-2.5rem)] lg:w-[18%]'>
           <h1 className='text-2xl font-bold mb-4'>Quick Links</h1>
           <ul className='text-gray-400 flex flex-col gap-3'>
             {
@@ -33,7 +33,7 @@ const Footer = () => {
             }
           </ul>
         </div>
-        <div className='md:w-[18%]'>
+        <div className='sm:w-[calc(50%-2.5rem)] lg:w-[18%]'>
           <h1 className='text-2xl font-bold mb-4'>Services</h1>
           <ul className='text-gray-400 flex flex-col gap-3'>
             {
@@ -43,7 +43,7 @@ const Footer = () => {
             }
           </ul>
         </div>
-        <div className='md:w-[32%]'>
+        <div className='sm:w-[calc(50%-2.5rem)] lg:w-[32%] xl:pl-8'>
           <h1 className='text-2xl font-bold mb-4'>Newsletter</h1>
           <p className='text-gray-400 mb-8'>Get occasional tips, project updates, and web dev insights — straight to your inbox.</p>
           <form className='relative flex items-center justify-end'>

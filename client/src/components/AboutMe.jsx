@@ -17,17 +17,17 @@ const AboutMe = ({children}) => {
         <h3 className='section-subheading'>About Me</h3>
         <h2 className='section-mainheading'>Passion for Full Stack Development</h2>
       </div>
-      <div className='w-full md:flex items-center gap-25'>
+      <div className='w-full flex flex-col sm:flex-row items-center sm:gap-8 lg:gap-20'>
         <motion.div 
-          className='md:w-[35%] flex justify-center items-center green-bg overlay'
+          className='sm:w-[35%] flex justify-center items-center green-bg overlay'
           ref={ref}
           initial={{ opacity: 0, x: -100 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.8, ease: 'easeOut' }}
         >
-            <img src={PersonImage} alt="Ahmed Farooq" className='max-w-[500px] md:max-w-none md:w-full' />
+            <img src={PersonImage} alt="Ahmed Farooq" className='max-w-[500px] sm:max-w-none sm:w-full' />
         </motion.div>
-        <div className='md:w-[65%] mt-10 md:mt-0 flex flex-col gap-8'>
+        <div className='sm:w-[65%] mt-10 sm:mt-0 flex flex-col gap-8'>
             <p>
             My journey began with a simple yet powerful idea: to revolutionise the digital landscape through innovative solutions and exceptional creativity. 
             </p>
@@ -39,7 +39,7 @@ const AboutMe = ({children}) => {
             location.pathname === "/" && <Stats />
             } */}
             {location.pathname === "/" && (
-              <NavLink to="about" className={`group theme-button`}>ABOUT ME <MdArrowOutward className='text-xl group-hover:rotate-45 transition-rotate duration-300 ease-in-out' /></NavLink>
+              <NavLink to="about" className={`group theme-button`}>ABOUT ME <MdArrowOutward className='text-base xl:text-xl group-hover:rotate-45 transition-rotate duration-300 ease-in-out' /></NavLink>
             )}
         </div>
       </div>
