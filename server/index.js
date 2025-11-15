@@ -6,6 +6,7 @@
   import statsRouter from './routes/statsRoute.js';
   import serviceRouter from './routes/serviceRoute.js';
   import projectRouter from './routes/projectRouter.js';
+  import technologiesRouter from './routes/technologiesRouter.js'
 
 
   // Load environment variables
@@ -35,6 +36,7 @@
   app.use('/api', statsRouter);
   app.use('/api', serviceRouter);
   app.use('/api', projectRouter);
+  app.use('/api', technologiesRouter);
 
 
 
