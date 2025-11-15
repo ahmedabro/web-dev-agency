@@ -1,17 +1,19 @@
 import { configureStore } from '@reduxjs/toolkit'
 import themeReducer from './features/themeSlice'
 import { serviceApi } from './api/serviceApi'
-import statsReducer from './features/statsSlice'
-import serviceReducer from './features/serviceSlice'
-import projectReducer from './features/projectSlice'
-
+import { statsApi } from './api/statsApi'
+import { projectApi } from './api/projectApi'
 export const store = configureStore({
   reducer: {
     theme: themeReducer,
-    stats: statsReducer,
-    projects: projectReducer,
+    [statsApi.reducerPath]: statsApi.reducer,
     [serviceApi.reducerPath]: serviceApi.reducer,
+    [projectApi.reducerPath]: projectApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(serviceApi.middleware),
+    getDefaultMiddleware().concat(
+      statsApi.middleware,
+      serviceApi.middleware,
+      projectApi.middleware,
+    ),
 })

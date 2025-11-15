@@ -2,21 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router';
 import { MdArrowOutward } from "react-icons/md";
 import { useLocation } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchProjects } from '../redux/features/projectSlice';
+import { useGetProjectsQuery } from '../redux/api/projectApi';
 
 const Portfolio = () => {
   const location = useLocation();
-  const dispatch = useDispatch();
-  const portfolioItems = useSelector((state) => state.projects.projects);
+  const {data, isLoading, isError, error} = useGetProjectsQuery()
 
-  useEffect(() => {
-    dispatch(fetchProjects());
-  }, [dispatch]);
+  const portfolioItems = data?.projects || [];
 
   const tabs = [...new Set(portfolioItems?.map(item => item?.category))];
   tabs.unshift("All Works");
   const [activeTab, setActiveTab] = useState(tabs[0]);
+
+  if(isLoading) return <p>Loading...</p>;
+  if(isError) return <p>Error: {error}</p>;
 
   return (
     <div className="section-container overflow-visible">

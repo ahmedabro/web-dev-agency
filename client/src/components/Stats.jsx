@@ -1,22 +1,13 @@
 import React from 'react'
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchStats } from '../redux/features/statsSlice';
+import { useGetStatsQuery } from '../redux/api/statsApi';
 
 const Stats = () => {
-  const dispatch = useDispatch();
-  const stats = useSelector((state) => state.stats.stats);
-  const status = useSelector((state) => state.stats.status);
-  const error = useSelector((state) => state.stats.error);
+  const {data, isLoading, isError, error} = useGetStatsQuery()
 
-  useEffect(() => {
-    if(status === 'idle') {
-      dispatch(fetchStats());
-    }
-  }, [dispatch]);
+  if(isLoading) return <p>Loading...</p>;
+  if(isError) return <p>Error: {error}</p>;
 
-  if (status === 'loading') return <p>Loading...</p>;
-  if (status === 'failed') return <p>Error: {error}</p>;
+  const stats = data?.stats || [];
 
   return (
     <div className='section-container !px-0 py-0 bg-dark-secondary'>

@@ -7,23 +7,22 @@ import { useGetServicesQuery } from '../redux/api/serviceApi';
 
 const ServiceComponent = () => {
 
-  const { data, isLoading, isError } = useGetServicesQuery();
+  const { data, isLoading, isError, error } = useGetServicesQuery();
 
   const [activeService, setActiveService] = useState(null);
 
-  console.log(data)
+  const services = data?.services || [];
 
 
   useEffect(() => {
-    if (data?.services?.length > 0) {
-      setActiveService(data.services[0].id);
+    if (services.length > 0) {
+      setActiveService(services[0].id);
     }
-  }, [data]);
-
-  
+  }, [services]);
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error: {error}</p>;
+
 
   return (
     <div className='section-container secondary-gradient pb-30'>
@@ -34,7 +33,7 @@ const ServiceComponent = () => {
 
       <div className='w-full flex items-start md:gap-10 lg:gap-20 xl:gap-25'>
         <div className='w-full md:w-1/2 relative'>
-          {data?.services?.map((service, index) => (
+          {services.map((service, index) => (
             <div
               key={service.id}
               onClick={() => setActiveService(service.id)}
@@ -87,7 +86,7 @@ const ServiceComponent = () => {
         <motion.div className={``}>
           <motion.img
           key={activeService}
-          src={data?.services?.find(s => s.id === activeService)?.image}
+          src={services.find(s => s.id === activeService)?.image}
           loading='lazy'
           alt="Service Preview"
           initial={{ opacity: 0, x: 100 }}
