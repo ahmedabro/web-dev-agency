@@ -1,5 +1,4 @@
 import React from 'react'
-import bannerImage from '../assets/images/banner2-cropped.gif'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router'
 
@@ -40,7 +39,7 @@ const InnerBanner = (props) => {
 
         </div>
         <div className='w-2/5 self-end'>
-            <img src={bannerImage} alt="" className='w-full' />
+            <img loading='lazy' src={"https://res.cloudinary.com/dvmmkvu4o/image/upload/f_auto,q_auto/v1762855127/banner2-cropped_jnvi74.gif"} alt="" className='w-full' />
         </div>
 
 

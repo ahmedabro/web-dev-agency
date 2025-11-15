@@ -5,9 +5,19 @@ import { BsCalendarPlusFill } from "react-icons/bs";
 import { services } from '../utilities/services';
 import { IoIosSend } from "react-icons/io";
 import { Form, Formik, Field } from 'formik'
+import axios from 'axios';
 
 const ContactForm = () => {
-    
+
+    const handleSubmit = async (values) => {
+        try {
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/send-email`, values);
+            console.log(response.data);
+        } catch (error) {
+            console.error('Error sending email:', error);
+        }
+    };
+
   return (
     <div className='contact-section section-container'>
       
@@ -30,6 +40,8 @@ const ContactForm = () => {
                 onSubmit={(values, { resetForm }) => {
                     // Handle form submission
                     console.log(values);
+                    handleSubmit(values);
+                    
                     resetForm();
                 }}
             >

@@ -76,8 +76,8 @@ const EmblaTestimonialCarousel = (props) => {
             <DotButton
               key={index}
               onClick={() => onDotButtonClick(index)}
-              className={'embla__dot'.concat(
-                index === selectedIndex ? ' embla__dot--selected w-3 h-3 border-2 border-dark-primary rounded-full' : ' w-3 h-3 border-2 border-dark-primary rounded-full opacity-25'
+              className={'embla__dot transition-width duration-400 ease-in-out'.concat(
+                index === selectedIndex ? ' embla__dot--selected w-8 h-3 border-2 border-dark-primary bg-dark-primary rounded-full' : ' w-3 h-3 border-2 border-dark-primary rounded-full opacity-40'
               )}
             />
           ))}

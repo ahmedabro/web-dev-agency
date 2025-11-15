@@ -5,23 +5,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
+import useNavLinks from '../hooks/useNavLinks';
 
-export const navLinks = [
-  { name: 'Home', path: '/' },
-  { name: 'About', path: 'about' },
-  { name: 'Services', path: 'services', subLinks: [
-      { name: 'Frontend Development', path: 'frontend-development' },
-      { name: 'Backend Development', path: 'backend-development' },
-      { name: 'Fullstack Development', path: 'fullstack-development' },
-  ]},
-  { name: 'Portfolio', path: 'portfolio' },
-  { name: 'Blogs', path: 'blogs' },
-  { name: 'Contact', path: 'contact' },
-];
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const navLinks = useNavLinks()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,6 +21,7 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
 
   return (
     <div

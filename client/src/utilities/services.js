@@ -1,14 +1,10 @@
-import FrontendImage from '../assets/images/frontend.jpg'
-import BackendImage from '../assets/images/backend.webp'
-import FullstackImage from '../assets/images/fullstack.jpg'
-import UIImage from '../assets/images/uiDesign.jpg'
 
 export const services = [
   {
     id: "frontend-development",
     title: "Frontend Development",
     description: "Crafting stunning, responsive interfaces that engage users from the first click.",
-    image: FrontendImage,
+    image: "https://res.cloudinary.com/dvmmkvu4o/image/upload/f_auto,q_auto/v1762855127/frontend_h5rpgj.jpg",
     solutions: [
       {
         title: "Responsive Design",
@@ -71,7 +67,7 @@ export const services = [
     id: "backend-development",
     title: "Backend Development",
     description: "Building powerful, secure, and scalable backend systems that power your app's core.",
-    image: BackendImage,
+    image: "https://res.cloudinary.com/dvmmkvu4o/image/upload/f_auto,q_auto/v1762855125/backend_tzjv6m.webp",
     solutions: [
       {
         title: "Custom API Development",
@@ -134,7 +130,7 @@ export const services = [
     id: "fullstack-development",
     title: "Full Stack Development",
     description: "Delivering complete digital solutions with end-to-end development expertise.",
-    image: FullstackImage,
+    image: "https://res.cloudinary.com/dvmmkvu4o/image/upload/f_auto,q_auto/v1762855127/fullstack_mddef5.jpg",
     solutions: [
       {
         title: "End-to-End Application Development",

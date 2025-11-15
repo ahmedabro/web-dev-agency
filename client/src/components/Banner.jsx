@@ -1,5 +1,4 @@
 import React from 'react'
-import bannerImage from '../assets/images/banner2-cropped.gif'
 import { Link, NavLink } from 'react-router'
 import { FaFacebookF } from "react-icons/fa";
 import { FaXTwitter, FaLinkedinIn, FaGithub } from "react-icons/fa6";
@@ -61,7 +60,7 @@ const Banner = () => {
             </div>
         </div>
         <div className='sm:w-1/2 self-end'>
-            <img src={bannerImage} alt="" className='w-full' />
+            <img src={"https://res.cloudinary.com/dvmmkvu4o/image/upload/f_auto,q_auto/v1762855127/banner2-cropped_jnvi74.gif"} loading='lazy' alt="Web Development" className='w-full' />
         </div>
         <div className='absolute left-0 right-0 bottom-0 m-auto w-[500px] rounded-full -z-10 box-shaddow overflow-visible'></div>
     </div>

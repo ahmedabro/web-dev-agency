@@ -3,10 +3,11 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaXTwitter, FaLinkedinIn, FaGithub } from "react-icons/fa6";
 import { LuArrowUpRight } from "react-icons/lu";
 import { Link } from 'react-router';
-import { navLinks } from './Navbar';
+import useNavLinks from '../hooks/useNavLinks';
 import { IoIosSend } from "react-icons/io";
 
 const Footer = () => {
+  const navLinks = useNavLinks();
   const quickLinks = navLinks.filter(link => !link.subLinks);
   const services = navLinks.find(link => link.name === 'Services')?.subLinks || [];
   return (

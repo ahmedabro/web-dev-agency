@@ -1,5 +1,4 @@
 import React, { useRef } from 'react'
-import PersonImage from '../assets/images/person2.png'
 import { NavLink, useLocation } from 'react-router'
 import { MdArrowOutward } from "react-icons/md";
 import { motion, useInView } from 'framer-motion'
@@ -25,7 +24,7 @@ const AboutMe = ({children}) => {
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.8, ease: 'easeOut' }}
         >
-            <img src={PersonImage} alt="Ahmed Farooq" className='max-w-[500px] sm:max-w-none sm:w-full' />
+            <img src={"https://res.cloudinary.com/dvmmkvu4o/image/upload/f_auto,q_auto/v1762855132/person2_fwviow.png"} loading='lazy' alt="Ahmed Farooq" className='max-w-[500px] sm:max-w-none sm:w-full' />
         </motion.div>
         <div className='sm:w-[65%] mt-10 sm:mt-0 flex flex-col gap-8'>
             <p>

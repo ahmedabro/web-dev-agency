@@ -1,16 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import FrontendImage from '../assets/images/frontend.jpg'
-import BackendImage from '../assets/images/backend.webp'
-import FullstackImage from '../assets/images/fullstack.jpg'
-import UIImage from '../assets/images/uiDesign.jpg'
 import { NavLink } from 'react-router';
 import { MdArrowOutward } from "react-icons/md";
-import { services } from '../utilities/services';
+import { useGetServicesQuery } from '../redux/api/serviceApi';
 
 
 const ServiceComponent = () => {
-  const [activeService, setActiveService] = useState(services[0].id);
+
+  const { data, isLoading, isError } = useGetServicesQuery();
+
+  const [activeService, setActiveService] = useState(null);
+
+  console.log(data)
+
+
+  useEffect(() => {
+    if (data?.services?.length > 0) {
+      setActiveService(data.services[0].id);
+    }
+  }, [data]);
+
+  
+
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>Error: {error}</p>;
 
   return (
     <div className='section-container secondary-gradient pb-30'>
@@ -21,7 +34,7 @@ const ServiceComponent = () => {
 
       <div className='w-full flex items-start md:gap-10 lg:gap-20 xl:gap-25'>
         <div className='w-full md:w-1/2 relative'>
-          {services.map((service, index) => (
+          {data?.services?.map((service, index) => (
             <div
               key={service.id}
               onClick={() => setActiveService(service.id)}
@@ -59,7 +72,7 @@ const ServiceComponent = () => {
                       {service.description}
                     </p>
                     
-                      <NavLink to={`services/${service.id}`} className={`text-dark-primary text-sm font-bold border-b mt-4 inline-flex items-center gap-2`}>Hire Me <MdArrowOutward className='text-base xl:text-xl group-hover:rotate-45' /></NavLink>
+                      <NavLink to={`/services/${service.id}`} className={`text-dark-primary text-sm font-bold border-b mt-4 inline-flex items-center gap-2`}>Hire Me <MdArrowOutward className='text-base xl:text-xl group-hover:rotate-45' /></NavLink>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -74,7 +87,8 @@ const ServiceComponent = () => {
         <motion.div className={``}>
           <motion.img
           key={activeService}
-          src={services.find(s => s.id === activeService)?.image}
+          src={data?.services?.find(s => s.id === activeService)?.image}
+          loading='lazy'
           alt="Service Preview"
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
