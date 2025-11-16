@@ -9,6 +9,9 @@ const experienceSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    location: {
+        type: String,
+    },
     type: {
         type: String,
         required: true
@@ -25,7 +28,12 @@ const experienceSchema = new mongoose.Schema({
     },
     endDate: {
         type: Date,
-        required: true
+    },
+    isCurrent: {
+        type: Boolean,
+        default: function () {
+            return !this.endDate;
+        }
     }
 })
 

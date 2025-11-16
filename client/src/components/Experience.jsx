@@ -1,40 +1,15 @@
 import React from 'react'
 import { MdOutlineCalendarToday } from "react-icons/md";
-
-const experience = [
-    {
-        id: 1,
-        role: "Software Developer",
-        company: "Workstream Automation",
-        type: "Full-time",
-        duration: "Jan 2020 - Present",
-        responsibilities: [
-            "Developed and maintained code for in-house and client websites primarily using HTML, CSS, Sass, JavaScript, and React.",
-        ]
-    },
-    {
-        id: 2,
-        role: "Exexutive Frontend Developer",
-        company: "ProByte",
-        type: "Full-time",
-        duration: "Jun 2019 - Dec 2019",
-        responsibilities: [
-            "Assisted in the development of client websites and web applications using modern web technologies.",
-        ]
-    },
-    {
-        id: 3,
-        role: "Associate MEAN Stack Developer",
-        company: "Nukes Lab",
-        type: "Internship",
-        duration: "Jan 2018 - May 2019",
-        responsibilities: [
-            "Collaborated with designers and senior developers to create responsive and user-friendly web applications.",
-        ]
-    }
-]
+import { useGetExperiencesQuery } from '../redux/api/experienceApi';
 
 const Experience = () => {
+  const { data, isLoading, isError, error } = useGetExperiencesQuery();
+
+  const experiences = data?.experiences || [];
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error fetching experiences</div>;
+
   return (
     <div className='section-container h-full bg-dark-secondary py-25'>
         
@@ -45,8 +20,8 @@ const Experience = () => {
 
 
       <div className='border-l-2 border-gray-700 pl-8 md:pl-12 xl:pl-20 flex flex-col gap-5'>
-        {experience.map((exp) => (
-          <div key={exp.id} className='bg-black px-6 py-5 md:px-8 md:py-8 xl:px-12 xl:py-10 relative flex flex-col justify-center'>
+        {experiences.map((exp) => (
+          <div key={exp._id} className='bg-black px-6 py-5 md:px-8 md:py-8 xl:px-12 xl:py-10 relative flex flex-col justify-center'>
             <div className='sm:flex items-center justify-between'>
                 <div>
                     <h3 className='text-lg sm:text-xl xl:text-2xl font-bold mb-2'>{exp.role}</h3>
@@ -55,7 +30,10 @@ const Experience = () => {
                     </div>
                 </div>
                 <div className='flex items-center gap-2 text-lg'>
-                    <MdOutlineCalendarToday className='text-dark-primary text-lg sm:text-xl md:text-2xl' /> <span className='text-gray-300 text-xs xl:text-sm'>{exp.duration}</span>
+                    <MdOutlineCalendarToday className='text-dark-primary text-lg sm:text-xl md:text-2xl' /> 
+                    <span className='text-gray-300 text-xs xl:text-sm'>
+                      {new Date(exp.startDate).toLocaleDateString("en-US", { year: "numeric", month: "short" })} - {exp.isCurrent ? "Present" : new Date(exp.endDate).toLocaleDateString("en-US", { year: "numeric", month: "short" })}
+                    </span>
                 </div>
             </div>
             
