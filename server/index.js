@@ -8,6 +8,7 @@
   import projectRouter from './routes/projectRouter.js';
   import technologiesRouter from './routes/technologiesRouter.js'
   import experienceRouter from './routes/experienceRouter.js'
+  import testimonialRouter from './routes/testimonialsRouter.js'
 
 
   // Load environment variables
@@ -39,6 +40,7 @@
   app.use('/api', projectRouter);
   app.use('/api', technologiesRouter);
   app.use('/api', experienceRouter);
+  app.use('/api', testimonialRouter);
 
 
 
