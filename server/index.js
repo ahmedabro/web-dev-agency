@@ -9,6 +9,7 @@
   import technologiesRouter from './routes/technologiesRouter.js'
   import experienceRouter from './routes/experienceRouter.js'
   import testimonialRouter from './routes/testimonialsRouter.js'
+  import blogRouter from './routes/blogRouter.js'
 
 
   // Load environment variables
@@ -41,7 +42,7 @@
   app.use('/api', technologiesRouter);
   app.use('/api', experienceRouter);
   app.use('/api', testimonialRouter);
-
+  app.use('/api', blogRouter);
 
 
   // Start server

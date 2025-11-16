@@ -5,53 +5,21 @@ import { Link } from 'react-router'
 import { GoArrowUpRight } from "react-icons/go";
 import { MdArrowOutward } from "react-icons/md";
 import { useLocation } from 'react-router';
+import { useGetBlogsQuery } from '../redux/api/blogsApi';
 
-const ALLBlogs = [
-  {
-    id: 1,
-    category: "React",
-    date: "2023-10-01",
-    images: ["https://randomuser.me/api/portraits/men/4.jpg"],                
-    title: "Understanding React",
-    content: "<p>React is a JavaScript library for building user interfaces using components and virtual DOM.</p>"
-  },
-    {
-    id: 2,
-    category: "JavaScript",
-    date: "2023-09-15",
-    images: ["https://randomuser.me/api/portraits/men/5.jpg"],                
-    title: "JavaScript Basics",
-    content: "<p>JavaScript is a versatile programming language.</p>"
-    },
-    {
-    id: 3,
-    category: "CSS",
-    date: "2023-08-20",
-    images: ["https://randomuser.me/api/portraits/men/6.jpg"],
-    title: "CSS Flexbox",
-    content: "<p>CSS Flexbox is a layout model that allows items to be aligned and distributed within a container.</p>"
-  },
-    {
-    id: 4,
-    category: "Node.js",
-    date: "2023-07-30",
-    images: ["https://randomuser.me/api/portraits/men/7.jpg"],
-    title: "Node.js for Beginners",
-    content: "<p>Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine.</p>"
-  },
-    {
-    id: 5,
-    category: "Web Development",
-    date: "2023-06-25",
-    images: ["https://randomuser.me/api/portraits/men/8.jpg"],
-    title: "Web Development Trends",
-    content: "<p>Stay updated with the latest trends in web development.</p>"
-  }
-]
+
 
 const Blogs = () => {
   const location = useLocation();
+
+  const { data, isLoading, isError, error } = useGetBlogsQuery();
+  const ALLBlogs = data?.blogs || [];
+
   const blogs = location.pathname === '/blogs' ? ALLBlogs : ALLBlogs.slice(0, 3);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error: {error.message}</div>;
+
   return (
     <div className='section-container'>
         <div className='section-header'>
@@ -75,7 +43,7 @@ const Blogs = () => {
             </div>
             <h4 className='text-lg lg:text-xl xl:text-2xl font-semibold mb-3'>{blog.title}</h4>
             <div id='blog-content' dangerouslySetInnerHTML={{ __html: blog.content }} />
-            <Link to={`/blogs/${blog.id}`} className='text-dark-primary font-semibold inline-flex gap-2 items-center border-b'>Read More <GoArrowUpRight /></Link>
+            <Link to={`/blogs/${blog._id}`} className='text-dark-primary font-semibold inline-flex gap-2 items-center border-b'>Read More <GoArrowUpRight /></Link>
             </div>
         </div>
       ))}
