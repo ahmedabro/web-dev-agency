@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { contactFormSchema } from '../utilities/ContactSchema';
 import { MdEmail, MdPhoneInTalk } from "react-icons/md";
 import { BsCalendarPlusFill } from "react-icons/bs";
-import { services } from '../utilities/services';
 import { IoIosSend } from "react-icons/io";
 import { Form, Formik, Field } from 'formik'
 import axios from 'axios';
+import { useGetServicesQuery } from '../redux/api/serviceApi';
 
 const ContactForm = () => {
+    const {data, isLoading, isError, error} = useGetServicesQuery();
+    const services = data?.services || [];
 
     const handleSubmit = async (values) => {
         try {
@@ -17,6 +19,9 @@ const ContactForm = () => {
             console.error('Error sending email:', error);
         }
     };
+
+    if(isLoading) return <div>Loading...</div>;
+    if(isError) return <div>Error: {error.message}</div>;
 
   return (
     <div className='contact-section section-container'>

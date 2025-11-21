@@ -29,7 +29,7 @@ const Blogs = () => {
         
       <div className='flex flex-wrap justify-center gap-6 sm:gap-5 lg:gap-5 xl:gap-10'>
         { blogs.map(blog => (
-        <div key={blog.id} className='w-full sm:w-[calc(50%-1.5rem)] lg:w-[calc(33.3%-1.8rem)] border-2 border-gray-700'>
+        <div key={blog._id} className='w-full sm:w-[calc(50%-1.5rem)] lg:w-[calc(33.3%-1.8rem)] border-2 border-gray-700'>
             <div className='w-full h-75 overflow-hidden'>
                 <img src={blog.images[0]} alt="" className='w-full h-full object-cover object-center' />
             </div>

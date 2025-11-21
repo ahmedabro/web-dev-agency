@@ -35,7 +35,7 @@ const experienceSchema = new mongoose.Schema({
             return !this.endDate;
         }
     }
-})
+}, { timestamps: true })
 
 const Experience = mongoose.model("Experience", experienceSchema);
 

@@ -5,11 +5,29 @@ import { LuArrowUpRight } from "react-icons/lu";
 import { Link } from 'react-router';
 import useNavLinks from '../hooks/useNavLinks';
 import { IoIosSend } from "react-icons/io";
+import axios from 'axios';
+import { useState } from 'react';
 
 const Footer = () => {
   const navLinks = useNavLinks();
   const quickLinks = navLinks.filter(link => !link.subLinks);
   const services = navLinks.find(link => link.name === 'Services')?.subLinks || [];
+
+  const [emailInput, setEmailInput] = useState('');
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    // Handle subscription logic here
+    try {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/subscribers/subscribe`, { email: emailInput });
+      console.log(response.data);
+      alert(response.data.message);
+      setEmailInput('');
+    } catch (error) {
+      console.error('Error subscribing:', error);
+    }
+  }
+
   return (
     <section className=''>
       <div className='bg-dark-secondary section-container !mb-0'>
@@ -48,8 +66,8 @@ const Footer = () => {
           <h1 className='text-2xl font-bold mb-4'>Newsletter</h1>
           <p className='text-gray-400 mb-8'>Get occasional tips, project updates, and web dev insights — straight to your inbox.</p>
           <form className='relative flex items-center justify-end'>
-            <input type="email" placeholder='Enter your email' className='py-4 pl-2 pr-12 border-b-2 border-gray-600 w-full' />
-            <button title="Subscribe" aria-label="Subscribe to newsletter" className='absolute right-2 w-10 h-10 flex justify-center items-center bg-dark-primary text-dark-background rounded-full'><IoIosSend /></button>
+            <input value={emailInput} onChange={(e) => setEmailInput(e.target.value)} type="email" placeholder='Enter your email' className='py-4 pl-2 pr-12 border-b-2 border-gray-600 w-full' />
+            <button onClick={handleSubscribe} title="Subscribe" aria-label="Subscribe to newsletter" className='absolute right-2 w-10 h-10 flex justify-center items-center bg-dark-primary text-dark-background rounded-full cursor-pointer'><IoIosSend /></button>
           </form>
         </div>
       </div>

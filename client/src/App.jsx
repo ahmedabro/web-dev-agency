@@ -9,6 +9,7 @@ import Contact from "./pages/Contact";
 import ScrollToTop from "./components/ScrollToTop";
 import ServiceDetail from "./pages/ServiceDetail";
 import BlogDetails from "./pages/BlogDetails";
+import Unsubscribe from "./pages/Unsubscribe";
 
 const App = () => {
 
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="blogs" element={<Blogs />} />
           <Route path="blogs/:id" element={<BlogDetails />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="unsubscribe/:token" element={<Unsubscribe />} />
         </Route>
       </Routes>
       </BrowserRouter>

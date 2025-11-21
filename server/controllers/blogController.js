@@ -33,7 +33,27 @@ export const createBlog = async (req, res) => {
   });
   try {
     const savedBlog = await newBlog.save();
-    res.status(201).json({ message: "Blog created successfully", blog: savedBlog });
+
+    const response = await fetch('http://localhost:5000/api/send-newsletter', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ savedBlog })
+    });
+
+    const newsletterResult = await response.json();
+
+
+    res.status(201).json({
+      message: newsletterResult.success
+        ? `Blog created and ${newsletterResult.message}`
+        : `Blog created but failed to send newsletter: ${newsletterResult.error}`,
+      blog: savedBlog,
+      newsletter: newsletterResult
+    });
+
+    // res.status(201).json({ message: `${newsletterResult.success === true ? "Blog created and " + newsletterResult.message : newsletterResult.error}`, blog: savedBlog });
   } catch (error) {
     res.status(500).json({ message: "Error creating blog", error });
   }
