@@ -11,6 +11,8 @@
   import testimonialRouter from './routes/testimonialsRouter.js'
   import blogRouter from './routes/blogRouter.js'
   import subscriberRouter from './routes/subscriberRouter.js'
+  import http from 'http';  
+  import { Server } from "socket.io";
 
 
   // Load environment variables
@@ -20,6 +22,43 @@
   connectDB();
 
   const app = express();
+
+  const server = http.createServer(app);
+
+  const io = new Server(server, {
+    cors: {
+      origin: process.env.FRONTEND_URL,
+      methods: ["GET", "POST"],
+    },
+  });
+
+  io.on("connection", (socket) => {
+    console.log(`New client connected: ${socket.id}`);
+
+    socket.on("send_message", (data) => {
+      // data expected: { room, sender, text }
+      if (!data || !data.room || !data.sender || !data.text) return;
+      const message = {
+        room: data.room,
+        sender: data.sender,
+        text: data.text,
+        timestamp: new Date().toISOString()
+      }
+      io.to(data.room).emit("receive_message", message);
+    });
+
+    socket.on("join_room", (data) => {
+      // data expected: { email, name, isAdmin }
+      if (!data || !data.email) return;
+      const room = data.email;
+      socket.join(room);
+      console.log(`${data.isAdmin ? "Admin" : "User"} joined room: ${room} (${socket.id})`);
+    });
+
+    socket.on("disconnect", () => {
+      console.log("Client disconnected");
+    });
+  });
 
     // Middleware
     app.use(cors({
@@ -49,7 +88,7 @@
 
   // Start server
   const PORT = process.env.PORT || 5000;
-  app.listen(PORT, () => {
+  server.listen(PORT, () => {
     console.log(`🚀 Server running on http://localhost:${PORT}`);
   });
   

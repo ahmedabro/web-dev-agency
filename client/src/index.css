@@ -220,7 +220,7 @@ button#panel1-header.Mui-expanded {
     transform: rotate(45deg);
 }
 
-.contact-section input, .contact-section textarea {
+.contact-section input, .contact-section textarea, .contact-section select {
   @apply w-full bg-dark-secondary px-4 py-3 text-sm text-gray-300 mt-2 h-fit border-b outline-none focus:outline-none transition duration-300 ease-in-out placeholder:text-gray-500 placeholder:text-sm focus:placeholder:text-dark-primary placeholder:transition placeholder:duration-300 placeholder:ease-in-out;
 }
 

@@ -6,4 +6,5 @@ export const contactFormSchema = Yup.object().shape({
   budget: Yup.number().optional().typeError('Budget must be a number').min(0, 'Budget cannot be negative'),
   message: Yup.string().required('Message is required').min(30, 'Message must be at least 30 characters'),
   interestedIn: Yup.string().optional(),
+  country: Yup.string().required('Country is required'),
 })
