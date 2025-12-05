@@ -1,4 +1,3 @@
-import { use } from 'react';
 import { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 
@@ -10,17 +9,18 @@ const LiveChat = () => {
     const [joined, setJoined] = useState(false);
 
     const [messages, setMessages] = useState([]);
-    const [newMessage, setNewMessage] = useState('');
+    const [text, setText] = useState('');
 
 
     const sendMessage = () => {
-        if (!newMessage.trim()) return;
+        if (!text.trim()) return;
         const messagePayload = {
             room: userEmail,
             sender: userName,
-            text: newMessage
+            text: text
         };
         socket.emit('send_message', messagePayload);
+        setText("");
     }
 
     const joinRoom = () => {
@@ -40,7 +40,7 @@ const LiveChat = () => {
         const handleReceive = (data) => {
             setMessages((prevMessages) => [...prevMessages, data]);
         };
-        
+
         socket.on('receive_message', handleReceive);
 
         return () => {
@@ -60,12 +60,12 @@ const LiveChat = () => {
                 <div className='chat-container'>
                     <div className='messages-container'>
                         {messages.map((msg, index) => (
-                            <div key={index}>
+                            <div key={index} className={`${msg.sender === userName ? 'my-message text-right' : 'other-message text-left'}`}>
                                 <strong>{msg.sender}:</strong> {msg.text}
                             </div>
                         ))}
                     </div>
-                    <input type="text" placeholder='Type your message...' value={newMessage} onChange={(e) => setNewMessage(e.target.value)} />
+                    <input type="text" placeholder='Type your message...' value={text} onChange={(e) => setText(e.target.value)} />
                     <button onClick={sendMessage}>Send</button>
                 </div>
             )}

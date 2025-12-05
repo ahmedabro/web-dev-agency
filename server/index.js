@@ -32,6 +32,8 @@
     },
   });
 
+  const activeUsers = new Map();
+
   io.on("connection", (socket) => {
     console.log(`New client connected: ${socket.id}`);
 
@@ -49,10 +51,18 @@
 
     socket.on("join_room", (data) => {
       // data expected: { email, name, isAdmin }
-      if (!data || !data.email) return;
-      const room = data.email;
+      const {email, name, isAdmin} = data;
+      if (!email) return;
+      const room = email;
       socket.join(room);
-      console.log(`${data.isAdmin ? "Admin" : "User"} joined room: ${room} (${socket.id})`);
+
+      // Track only normal users in inbox
+      if(!isAdmin) {
+        activeUsers.set(email, { name, email });
+        // Send updated inbox list to all admins
+        io.emit("admin_inbox", Array.from(activeUsers.values()));
+      }
+      console.log(`${isAdmin ? "Admin" : "User"} joined room: ${room} (${socket.id})`);
     });
 
     socket.on("disconnect", () => {

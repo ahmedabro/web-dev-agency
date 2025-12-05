@@ -10,6 +10,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import ServiceDetail from "./pages/ServiceDetail";
 import BlogDetails from "./pages/BlogDetails";
 import Unsubscribe from "./pages/Unsubscribe";
+import Inbox from "./pages/Inbox";
 
 const App = () => {
 
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="blogs/:id" element={<BlogDetails />} />
           <Route path="contact" element={<Contact />} />
           <Route path="unsubscribe/:token" element={<Unsubscribe />} />
+          <Route path="admin/inbox" element={<Inbox />} />
         </Route>
       </Routes>
       </BrowserRouter>
