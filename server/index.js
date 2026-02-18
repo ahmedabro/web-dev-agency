@@ -11,8 +11,10 @@
   import testimonialRouter from './routes/testimonialsRouter.js'
   import blogRouter from './routes/blogRouter.js'
   import subscriberRouter from './routes/subscriberRouter.js'
+  import chatRouter from './routes/chatRouter.js'
   import http from 'http';  
   import { Server } from "socket.io";
+  import Message from './models/messageModel.js';
 
 
   // Load environment variables
@@ -37,17 +39,36 @@
   io.on("connection", (socket) => {
     console.log(`New client connected: ${socket.id}`);
 
-    socket.on("send_message", (data) => {
-      // data expected: { room, sender, text }
-      if (!data || !data.room || !data.sender || !data.text) return;
-      const message = {
+    socket.on("send_message", async (data) => {
+    try {
+      if (!data?.room || !data?.sender || !data?.text) return;
+
+      // (optional but helpful) ensure sender is in the room
+      socket.join(data.room);
+
+      const saved = await Message.create({
         room: data.room,
         sender: data.sender,
         text: data.text,
-        timestamp: new Date().toISOString()
-      }
+      });
+
+      const message = {
+        _id: saved._id,
+        room: saved.room,
+        sender: saved.sender,
+        text: saved.text,
+        createdAt: saved.createdAt,
+      };
+
+      // send to that room
       io.to(data.room).emit("receive_message", message);
-    });
+
+      // notify admins so inbox can update in real-time (preview)
+      io.to("admins").emit("admin_receive_message", message);
+    } catch (e) {
+      console.error("send_message error:", e);
+    }
+  });
 
     socket.on("join_room", (data) => {
       // data expected: { email, name, isAdmin }
@@ -94,6 +115,7 @@
   app.use('/api', testimonialRouter);
   app.use('/api', blogRouter);
   app.use('/api', subscriberRouter);
+  app.use('/api', chatRouter);
 
 
   // Start server
