@@ -11,6 +11,9 @@ import ServiceDetail from "./pages/ServiceDetail";
 import BlogDetails from "./pages/BlogDetails";
 import Unsubscribe from "./pages/Unsubscribe";
 import Inbox from "./pages/Inbox";
+import SignIn from "./pages/SignIn";
+import ProtectedRoute from "./components/ProtectedRoute";
+import AdminDashboard from "./pages/AdminDashboard";
 
 const App = () => {
 
@@ -31,7 +34,12 @@ const App = () => {
           <Route path="blogs/:id" element={<BlogDetails />} />
           <Route path="contact" element={<Contact />} />
           <Route path="unsubscribe/:token" element={<Unsubscribe />} />
-          <Route path="admin/inbox" element={<Inbox />} />
+          <Route path="signin" element={<SignIn />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/admin" element={<AdminDashboard />}>
+              <Route path="/admin/inbox" element={<Inbox />} />
+            </Route>
+          </Route>
         </Route>
       </Routes>
       </BrowserRouter>

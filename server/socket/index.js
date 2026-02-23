@@ -6,6 +6,8 @@ export const initSocket = (httpServer) => {
         cors: {
             origin: process.env.FRONTEND_URL,
             methods: ["GET", "POST"],
+            allowedHeaders: ["Content-Type", "Authorization"],
+            credentials: true,
         },
     });
 

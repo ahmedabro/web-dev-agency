@@ -17,7 +17,7 @@ export const registerUser = async (req, res) => {
             if (err) {
                 return res.status(500).json({ message: "Session error", error: err });
             }
-            req.session.user = user._id;
+            req.session.user = { id: user._id, name: user.name, email: user.email, isAdmin: user.isAdmin };
             res.status(201).json({ message: "User registered successfully", user: userWithoutPassword });
         });
 
@@ -40,7 +40,7 @@ export const signInUser = async (req, res) => {
                     if (err) {
                         return res.status(500).json({ message: "Session error", error: err });
                     }
-                    req.session.user = user._id;
+                    req.session.user = { id: user._id, name: user.name, email: user.email, isAdmin: user.isAdmin };
                     res.status(200).json({ message: "User signed in successfully", user: userWithoutPassword });
                 });
             } else {
@@ -55,7 +55,7 @@ export const signInUser = async (req, res) => {
 };
 
 export const getCurrentUser = (req, res) => {
-    res.json({ user: req.session.user });
+    res.status(200).json({ user: req.session.user });
 };
 
 export const logoutUser = (req, res) => {

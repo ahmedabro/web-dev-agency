@@ -6,7 +6,7 @@ import React from 'react'
 const Inbox = () => {
   return (
     <div>
-      <InnerBanner title="Inbox" breadcrumb={[{ title: "Home", url: "/" }, { title: "Inbox" }]} />
+      {/* <InnerBanner title="Inbox" breadcrumb={[{ title: "Home", url: "/" }, { title: "Inbox" }]} /> */}
       <AdminInbox />
     </div>
   )
