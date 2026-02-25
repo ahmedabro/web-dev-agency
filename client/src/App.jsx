@@ -14,6 +14,7 @@ import Inbox from "./pages/Inbox";
 import SignIn from "./pages/SignIn";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminDashboard from "./pages/AdminDashboard";
+import AdminBlogs from './components/AdminBlogs'
 
 const App = () => {
 
@@ -36,8 +37,9 @@ const App = () => {
           <Route path="unsubscribe/:token" element={<Unsubscribe />} />
           <Route path="signin" element={<SignIn />} />
           <Route element={<ProtectedRoute />}>
-            <Route path="/admin" element={<AdminDashboard />}>
-              <Route path="/admin/inbox" element={<Inbox />} />
+            <Route path="admin" element={<AdminDashboard />}>
+              <Route path="inbox" element={<Inbox />} />
+              <Route path="blogs" element={<AdminBlogs />} />
             </Route>
           </Route>
         </Route>

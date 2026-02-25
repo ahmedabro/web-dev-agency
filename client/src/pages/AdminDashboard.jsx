@@ -34,6 +34,7 @@ const AdminDashboard = () => {
                 <nav className='w-1/4'>
                     <ul>
                         <li><Link to="/admin/inbox">Inbox</Link></li>
+                        <li><Link to="/admin/blogs">Blogs</Link></li>
                         <li><button onClick={handleLogout}>Logout</button></li>
                     </ul>
                 </nav>

@@ -11,7 +11,7 @@ import Stats from '../components/Stats'
 const About = () => {
   return (
     <div>
-      <InnerBanner title="About Me" breadcrumb={[{ title: "Home", url: "/" }, { title: "About" }]} />
+      <InnerBanner title="About Me" />
       <AboutMe>
         <p>
         With a strong foundation in both front-end and back-end technologies, I bring a holistic approach to web development. From crafting intuitive user interfaces to building robust server-side applications, I am dedicated to delivering solutions that exceed expectations.

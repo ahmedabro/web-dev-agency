@@ -6,7 +6,7 @@ import CTASection from '../components/CTASection'
 const Blogs = () => {
   return (
     <div>
-      <InnerBanner title="Blogs" breadcrumb={[{ title: "Home", url: "/" }, { title: "Blogs" }]} />
+      <InnerBanner title="Blogs" />
       <BlogsComponent />
       <CTASection />
     </div>

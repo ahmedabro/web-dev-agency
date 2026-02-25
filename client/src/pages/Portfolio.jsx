@@ -9,7 +9,7 @@ import FAQs from '../components/FAQs'
 const Portfolio = () => {
   return (
     <div>
-      <InnerBanner title="My Portfolio" breadcrumb={[{ title: "Home", url: "/" }, { title: "Portfolio" }]} />
+      <InnerBanner title="My Portfolio" />
       <PortfolioComponent />
       <Skills />
       <Testimonials />

@@ -5,7 +5,7 @@ import ContactComponent from '../components/Contact'
 const Contact = () => {
   return (
     <div>
-      <InnerBanner title="Contact Us" breadcrumb={[{ title: "Home", url: "/" }, { title: "Contact" }]} />
+      <InnerBanner title="Contact Us" />
       <ContactComponent />
     </div>
   )

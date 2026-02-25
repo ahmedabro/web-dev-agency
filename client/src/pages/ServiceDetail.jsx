@@ -21,12 +21,7 @@ const ServiceDetail = () => {
 
   return (
     <div>
-        <InnerBanner title={data?.service?.title || ""} breadcrumb={
-            [
-                { title: "Home", url: "/" }, 
-                { title: data?.service?.title || "" },
-            ]
-            } 
+        <InnerBanner title={data?.service?.title || ""} 
         />
         <Solutions solutions={data?.service?.solutions || []} />
         <Process processes={data?.service?.howItWorks || []} />
