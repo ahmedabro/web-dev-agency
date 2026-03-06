@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { createBlog, getBlogById } from "../../../../server/controllers/blogController";
 
 export const blogsApi = createApi({
     reducerPath: 'blogsApi',
