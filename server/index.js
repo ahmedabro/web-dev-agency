@@ -41,6 +41,8 @@ app.use(cors({
 }));
 app.use(express.json()); // Parses JSON bodies
 
+app.set("trust proxy", 1);
+
 app.use(session({
   name: "sessionId",
   secret: process.env.SESSION_SECRET,
