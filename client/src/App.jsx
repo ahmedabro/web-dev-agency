@@ -15,6 +15,7 @@ import SignIn from "./pages/SignIn";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminBlogs from './components/AdminBlogs'
+import AdminCreateNewBlog from './components/AdminCreateNewBlog'
 
 const App = () => {
 
@@ -40,6 +41,8 @@ const App = () => {
             <Route path="admin" element={<AdminDashboard />}>
               <Route path="inbox" element={<Inbox />} />
               <Route path="blogs" element={<AdminBlogs />} />
+              <Route path="blogs/create" element={<AdminCreateNewBlog />} />  
+              <Route path="blogs/:id/edit" element={<AdminCreateNewBlog />} />
             </Route>
           </Route>
         </Route>

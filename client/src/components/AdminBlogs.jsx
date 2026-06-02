@@ -15,7 +15,7 @@ const AdminBlogs = () => {
 
     return (
         <div>
-            <Link to="/admin/blogs/new">Create New Blog</Link>
+            <Link to="/admin/blogs/create">Create New Blog</Link>
             <div>
                 {blogs.map(blog => (
                     <div key={blog._id} className='w-full sm:w-[calc(50%-1.5rem)] lg:w-[calc(33.3%-1.8rem)] border-2 border-gray-700'>
