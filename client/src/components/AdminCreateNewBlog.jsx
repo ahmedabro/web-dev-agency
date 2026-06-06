@@ -38,18 +38,24 @@ const AdminCreateNewBlog = () => {
         initialValues={{ category: '', date: '', title: '', content: '', images: [] }}
         validationSchema={blogsFormSchema}
         onSubmit={(values, helpers) => {
+          console.log("Formik Submit Triggered")
           handleSubmit(values, helpers)
         }}
       >
         {({ setFieldValue, values, errors, touched }) => (
           <Form>
             <Field name="category" placeholder="Category" />
+            {touched.category && errors.category && (<p>{errors.category}</p>)}
             <Field name="date" type="date" />
+            {touched.date && errors.date && (<p>{errors.date}</p>)}
             <Field name="title" placeholder="Title" />
+            {touched.title && errors.title && (<p>{errors.title}</p>)}
             <Field as="textarea" name="content" placeholder="Content" />
+            {touched.content && errors.content && (<p>{errors.content}</p>)}
 
             {/* IMAGE INPUT */}
             <input
+              name="images"
               type="file"
               multiple
               accept="image/*"
@@ -58,6 +64,7 @@ const AdminCreateNewBlog = () => {
                 setFieldValue("images", files);
               }}
             />
+            {touched.images && errors.images && (<p>{errors.images}</p>)}
 
             <button type="submit" disabled={isLoading}>
               {isLoading ? "Creating..." : "Create Blog"}

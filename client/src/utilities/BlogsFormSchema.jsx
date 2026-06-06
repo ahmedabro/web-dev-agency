@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 
-const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
+const allowedTypes = ["image/jpeg", "image/png", "image/webp", "image/avif"];
 
 export const blogsFormSchema = Yup.object().shape({
   category: Yup.string()
