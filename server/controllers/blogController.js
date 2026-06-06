@@ -1,4 +1,5 @@
 import Blog from "../models/blogsModel.js";
+import { uploadToCloudinary } from "../utils/cloudinaryUpload.js";
 
 export const getAllBlogs = async (req, res) => {
   try {
@@ -23,16 +24,25 @@ export const getBlogById = async (req, res) => {
 };
 
 export const createBlog = async (req, res) => {
-  const { category, date, title, content } = req.body;
-  const images = req.files.map(file => file.path)
-  const newBlog = new Blog({
-    category,
-    date,
-    images,
-    title,
-    content
-  });
   try {
+    const { category, date, title, content } = req.body;
+
+    const imageUrls = await Promise.all(
+      req.files.map(async (file) => {
+        const result = await uploadToCloudinary(file.buffer, "web-dev-agency/blogs")
+
+        return result.secure_url
+      })
+    )
+
+    const newBlog = new Blog({
+      category,
+      date,
+      images: imageUrls,
+      title,
+      content
+    });
+
     const savedBlog = await newBlog.save();
 
     // const response = await fetch('http://localhost:5000/api/send-newsletter', {
@@ -54,8 +64,6 @@ export const createBlog = async (req, res) => {
       blog: savedBlog,
       // newsletter: newsletterResult
     });
-
-    // res.status(201).json({ message: `${newsletterResult.success === true ? "Blog created and " + newsletterResult.message : newsletterResult.error}`, blog: savedBlog });
   } catch (error) {
     res.status(500).json({ message: "Error creating blog", error: error.message, stack: error.stack });
   }

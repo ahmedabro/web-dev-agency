@@ -157,7 +157,7 @@ background: linear-gradient(180deg,rgba(42, 123, 155, 0) 50%, rgba(25, 24, 24, 1
 }
 
 
-#blog-content p {
+#blog-content {
   @apply mb-4 text-gray-400;
   line-height: 1.6;
   font-size: 1rem;
