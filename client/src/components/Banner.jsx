@@ -7,62 +7,70 @@ import { MdArrowOutward } from "react-icons/md";
 
 const Banner = () => {
   return (
-    <div className='section-container relative overflow-hidden xl:h-screen flex flex-col sm:flex-row items-center bg-dark-secondary isolate'>
-        <div className='sm:w-1/2 h-full self-start flex flex-col justify-between pt-32'>
+    <div className='section-container text-center lg:text-start relative overflow-hidden h-screen flex flex-col lg:flex-row items-center justify-end bg-dark-secondary isolate'>
+        <div className='lg:w-1/2 flex flex-col justify-between mb-15 lg:mb-0'>
             <div className='flex flex-col gap-4'>
-              <motion.h3 
-                className='font-bold text-xl lg:text-2xl'
+              <motion.p 
+                className='font-semibold tracking-[0.25em] text-sm sm:text-base lg:text-lg'
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, type: 'spring', stiffness: 100, damping: 10 }}
               >
-                Hey, I'm a Full Stack Developer
-              </motion.h3>
+                FULL STACK WEB DEVELOPER
+              </motion.p>
               <motion.h1 
-                className='space-grotesk-bold text-dark-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold sm:w-[800px] lg:w-[900px]'
+                className='space-grotesk-bold text-dark-primary text-3xl sm:text-4xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold leading-tight tracking-tight text-balance w-full'
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3, type: 'spring', stiffness: 100, damping: 10 }}
               >
-                AHMED FAROOQ
+                Building <span className='text-transparent [-webkit-text-stroke:1px_#FFF]'>Web Applications</span> That Make an <span className='text-transparent [-webkit-text-stroke:1px_#37e062]'>Impact</span>
                 </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6, type: 'spring', stiffness: 100, damping: 10 }}
+                className='text-base
+sm:text-lg
+md:text-xl
+lg:text-xl
+xl:text-2xl
+leading-6
+text-gray-300
+font-light
+'
               >
-              I craft fast, scalable, and user-friendly web applications with modern JavaScript frameworks — combining React on the frontend with robust server-side solutions using Node.js.
+                Helping startups and businesses build modern web applications with clean code, intuitive user experiences, and reliable backend systems.
               </motion.p>
-              <div className='flex gap-3 mt-4'>
+              <div className='flex justify-center lg:justify-start gap-5 lg:mt-10'>
                 <motion.div 
-                  className='w-50'
+                  // className='w-50'
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.9, type: 'spring', stiffness: 200, damping: 5 }}
                 >
-                  <NavLink to="/contact" className={`group theme-button`}>Hire Me <MdArrowOutward className='text-base xl:text-xl group-hover:rotate-45 transition-rotate duration-300 ease-in-out' /></NavLink>
+                  <NavLink to="/contact" className='theme-button-green !w-auto !h-auto px-10 py-4 md:px-12 md:py-4'>Start Your Project </NavLink>
                 </motion.div>
-                {/* <motion.div 
-                  className='w-50'
+                <motion.div 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 1.2, type: 'spring', stiffness: 200, damping: 5 }}
                 >
-                  <NavLink to="contact" className='bg-dark-secondary text-dark-primary border rounded-full hover:bg-dark-textColor transition duration-500 ease-in-out w-full block font-bold text-center py-3'>Download Resume</NavLink>
-                </motion.div> */}
+                  <NavLink to="contact" className='theme-button !w-auto !h-auto px-10 py-4 md:px-12 md:py-4'>View My Work</NavLink>
+                </motion.div>
               </div>
             </div>
-            <div className='flex items-center gap-2 lg:gap-3 xl:gap-4 pb-8 mt-10'>
+            {/* <div className='flex items-center gap-2 lg:gap-3 xl:gap-4 pb-8 mt-10'>
               <a href={import.meta.env.VITE_FACEBOOK_URL} target='_blank' className='flex justify-center items-center w-8 h-8 md:w-10 md:h-10 text-sm md:text-lg border-1 border-gray-500 bg-dark-surface rounded-full hover:bg-dark-primary hover:text-dark-background hover:scale-125'><FaFacebookF /></a>
               <a href={import.meta.env.VITE_INSTAGRAM_URL} target='_blank' className='flex justify-center items-center w-8 h-8 md:w-10 md:h-10 text-sm md:text-lg border-1 border-gray-500 bg-dark-surface rounded-full hover:bg-dark-primary hover:text-dark-background hover:scale-125'><FaInstagram /></a>
               <a href={import.meta.env.VITE_LINKEDIN_URL} target='_blank' className='flex justify-center items-center w-8 h-8 md:w-10 md:h-10 text-sm md:text-lg border-1 border-gray-500 bg-dark-surface rounded-full hover:bg-dark-primary hover:text-dark-background hover:scale-125'><FaLinkedinIn /></a>
               <a href={import.meta.env.VITE_GITHUB_URL} target='_blank' className='flex justify-center items-center w-8 h-8 md:w-10 md:h-10 text-sm md:text-lg border-1 border-gray-500 bg-dark-surface rounded-full hover:bg-dark-primary hover:text-dark-background hover:scale-125'><FaGithub /></a>
-            </div>
+            </div> */}
         </div>
-        <div className='sm:w-1/2 self-end'>
-            <img src={"https://res.cloudinary.com/dvmmkvu4o/image/upload/f_auto,q_auto/v1762855127/banner2-cropped_jnvi74.gif"} loading='lazy' alt="Web Development" className='w-full' />
+        <div className='lg:w-1/2 self-end'>
+            <img src={"https://res.cloudinary.com/dvmmkvu4o/image/upload/f_auto,q_auto/v1762855127/banner2-cropped_jnvi74.gif"} loading='lazy' alt="Web Development" className='w-full max-w-150' />
         </div>
-        <div className='absolute left-0 right-0 bottom-0 m-auto w-[500px] rounded-full -z-10 box-shaddow overflow-visible'></div>
+        <div className='absolute left-0 right-0 bottom-0 m-auto max-w-100 rounded-full -z-10 box-shaddow overflow-visible'></div>
     </div>
   )
 }

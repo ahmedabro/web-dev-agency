@@ -118,7 +118,7 @@ body {
 
 .box-shaddow {
   /* background: radial-gradient(circle, rgba(46, 255, 126, 1) 0%, rgba(46, 255, 126, 0) 70%);  */
-  box-shadow: 0px 0px 400px 100px rgb(100 243 155 / 61%); /* Green glowing effect around the div */
+  box-shadow: 0px 0px 800px 100px rgb(100 243 155 / 40%); /* Green glowing effect around the div */
 }
 
 .section-container {
@@ -149,6 +149,10 @@ body {
 
 .theme-button {
   @apply relative isolate overflow-hidden flex items-center justify-center gap-2 w-28 h-28 text-xs xl:w-36 xl:h-36 xl:text-base border border-gray-500 rounded-full font-bold transition-all duration-300 ease-in-out after:transition-all after:duration-700 after:ease-in-out after:absolute after:-left-2 after:-bottom-2 after:bg-dark-primary after:w-10 after:h-10 xl:after:w-12 xl:after:h-12 after:rounded-full after:-z-10 hover:after:w-[120%] hover:after:h-[120%] hover:text-dark-secondary hover:border-0 hover:scale-110;
+}
+
+.theme-button-green {
+  @apply relative isolate overflow-hidden flex items-center justify-center gap-2 w-28 h-28 text-xs xl:w-36 xl:h-36 xl:text-base bg-dark-primary text-black border border-none rounded-full font-bold transition-all duration-300 ease-in-out after:transition-all after:duration-700 after:ease-in-out after:absolute after:-left-2 after:-bottom-2 after:bg-dark-secondary after:w-10 after:h-10 xl:after:w-12 xl:after:h-12 after:rounded-full after:-z-10 hover:after:w-[120%] hover:after:h-[120%] hover:text-white hover:border-0 hover:scale-110;
 }
 
 .secondary-gradient {

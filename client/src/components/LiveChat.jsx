@@ -76,7 +76,7 @@ const LiveChat = () => {
 
     return (
         <div className='fixed right-5 bottom-5 z-99'>
-            <div className="chat-icon absolute bottom-0 right-0 z-99 w-44 h-15 rounded-full bg-dark-primary flex justify-center items-center gap-3 cursor-pointer" onClick={() => setChatOpened(!chatOpened)}>
+            <div className="chat-icon absolute bottom-0 right-0 z-99 w-44 h-15 rounded-full text-black bg-dark-primary flex justify-center items-center gap-3 cursor-pointer" onClick={() => setChatOpened(!chatOpened)}>
                 <GrChat className='text-black text-xl' /> <span>Chat with me</span>
             </div>
             {chatOpened && (
