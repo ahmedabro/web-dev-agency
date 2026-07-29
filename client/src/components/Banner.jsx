@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router'
 import { FaFacebookF } from "react-icons/fa";
-import { FaXTwitter, FaLinkedinIn, FaGithub } from "react-icons/fa6";
+import { FaXTwitter, FaLinkedinIn, FaGithub, FaInstagram } from "react-icons/fa6";
 import { motion } from 'framer-motion'
 import { MdArrowOutward } from "react-icons/md";
 
@@ -54,7 +54,7 @@ const Banner = () => {
             </div>
             <div className='flex items-center gap-2 lg:gap-3 xl:gap-4 pb-8 mt-10'>
               <a href={import.meta.env.VITE_FACEBOOK_URL} target='_blank' className='flex justify-center items-center w-8 h-8 md:w-10 md:h-10 text-sm md:text-lg border-1 border-gray-500 bg-dark-surface rounded-full hover:bg-dark-primary hover:text-dark-background hover:scale-125'><FaFacebookF /></a>
-              <a href={import.meta.env.VITE_TWITTER_URL} target='_blank' className='flex justify-center items-center w-8 h-8 md:w-10 md:h-10 text-sm md:text-lg border-1 border-gray-500 bg-dark-surface rounded-full hover:bg-dark-primary hover:text-dark-background hover:scale-125'><FaXTwitter /></a>
+              <a href={import.meta.env.VITE_INSTAGRAM_URL} target='_blank' className='flex justify-center items-center w-8 h-8 md:w-10 md:h-10 text-sm md:text-lg border-1 border-gray-500 bg-dark-surface rounded-full hover:bg-dark-primary hover:text-dark-background hover:scale-125'><FaInstagram /></a>
               <a href={import.meta.env.VITE_LINKEDIN_URL} target='_blank' className='flex justify-center items-center w-8 h-8 md:w-10 md:h-10 text-sm md:text-lg border-1 border-gray-500 bg-dark-surface rounded-full hover:bg-dark-primary hover:text-dark-background hover:scale-125'><FaLinkedinIn /></a>
               <a href={import.meta.env.VITE_GITHUB_URL} target='_blank' className='flex justify-center items-center w-8 h-8 md:w-10 md:h-10 text-sm md:text-lg border-1 border-gray-500 bg-dark-surface rounded-full hover:bg-dark-primary hover:text-dark-background hover:scale-125'><FaGithub /></a>
             </div>

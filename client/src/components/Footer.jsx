@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaFacebookF } from "react-icons/fa";
-import { FaXTwitter, FaLinkedinIn, FaGithub } from "react-icons/fa6";
+import { FaXTwitter, FaLinkedinIn, FaGithub, FaInstagram } from "react-icons/fa6";
 import { LuArrowUpRight } from "react-icons/lu";
 import { Link } from 'react-router';
 import useNavLinks from '../hooks/useNavLinks';
@@ -37,7 +37,7 @@ const Footer = () => {
         <p className='text-gray-400 mb-10 xl:pr-8'>With a passion for creating stunning and functional websites, I am a dedicated web developer.</p>
         <div className='flex items-center gap-4 pb-8'>
                       <a href={import.meta.env.VITE_FACEBOOK_URL} target='_blank' className='flex justify-center items-center w-8 h-8 bg-dark-surface rounded-full hover:bg-dark-primary hover:text-dark-background hover:scale-125'><FaFacebookF /></a>
-                      <a href={import.meta.env.VITE_TWITTER_URL} target='_blank' className='flex justify-center items-center w-8 h-8 bg-dark-surface rounded-full hover:bg-dark-primary hover:text-dark-background hover:scale-125'><FaXTwitter /></a>
+                      <a href={import.meta.env.VITE_INSTAGRAM_URL} target='_blank' className='flex justify-center items-center w-8 h-8 bg-dark-surface rounded-full hover:bg-dark-primary hover:text-dark-background hover:scale-125'><FaInstagram /></a>
                       <a href={import.meta.env.VITE_LINKEDIN_URL} target='_blank' className='flex justify-center items-center w-8 h-8 bg-dark-surface rounded-full hover:bg-dark-primary hover:text-dark-background hover:scale-125'><FaLinkedinIn /></a>
                       <a href={import.meta.env.VITE_GITHUB_URL} target='_blank' className='flex justify-center items-center w-8 h-8 bg-dark-surface rounded-full hover:bg-dark-primary hover:text-dark-background hover:scale-125'><FaGithub /></a>
                     </div>
