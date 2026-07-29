@@ -5,4 +5,5 @@ dotenv.config();
 
 sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
 
+
 export default sgMail;

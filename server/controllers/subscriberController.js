@@ -97,6 +97,6 @@ export const sendNewsletterService = async (req, res) => {
         await sgMail.sendMultiple(emailMessage);
         res.status(200).json({ success: true, message: "Newsletter sent successfully" });
     } catch (error) {
-        res.status(500).json({ success: false, error: error.message });
+        res.status(500).json({ success: false, message: error.message, stack: error.stack });
     }
 }
