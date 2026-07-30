@@ -7,7 +7,7 @@ import { MdArrowOutward } from "react-icons/md";
 
 const Banner = () => {
   return (
-    <div className='section-container text-center lg:text-start relative overflow-hidden h-screen flex flex-col lg:flex-row items-center justify-end bg-dark-secondary isolate'>
+    <div className='section-container mb-0! text-center lg:text-start relative overflow-hidden h-screen flex flex-col lg:flex-row items-center justify-end bg-dark-secondary isolate'>
         <div className='lg:w-1/2 flex flex-col justify-between mb-15 lg:mb-0'>
             <div className='flex flex-col gap-4'>
               <motion.p 
