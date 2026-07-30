@@ -19,7 +19,7 @@ const Banner = () => {
                 FULL STACK WEB DEVELOPER
               </motion.p>
               <motion.h1 
-                className='space-grotesk-bold text-dark-primary text-3xl sm:text-4xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold leading-tight tracking-tight text-balance w-full'
+                className='space-grotesk-bold text-dark-primary text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-8xl font-bold leading-tight tracking-tight text-balance w-full'
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3, type: 'spring', stiffness: 100, damping: 10 }}
@@ -42,21 +42,21 @@ font-light
               >
                 Helping startups and businesses build modern web applications with clean code, intuitive user experiences, and reliable backend systems.
               </motion.p>
-              <div className='flex justify-center lg:justify-start gap-5 lg:mt-10'>
+              <div className='flex justify-center gap-3 lg:justify-start lg:gap-5 lg:mt-10'>
                 <motion.div 
                   // className='w-50'
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.9, type: 'spring', stiffness: 200, damping: 5 }}
                 >
-                  <NavLink to="/contact" className='theme-button-green !w-auto !h-auto px-10 py-4 md:px-12 md:py-4'>Start Your Project </NavLink>
+                  <NavLink to="/contact" className='theme-button-green !w-auto !h-auto px-8 py-4 sm:px-10 md:px-12'>Start Your Project </NavLink>
                 </motion.div>
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 1.2, type: 'spring', stiffness: 200, damping: 5 }}
                 >
-                  <NavLink to="contact" className='theme-button !w-auto !h-auto px-10 py-4 md:px-12 md:py-4'>View My Work</NavLink>
+                  <NavLink to="contact" className='theme-button !w-auto !h-auto px-8 py-4 sm:px-10 md:px-12'>View My Work</NavLink>
                 </motion.div>
               </div>
             </div>
@@ -68,7 +68,7 @@ font-light
             </div> */}
         </div>
         <div className='lg:w-1/2 self-end'>
-            <img src={"https://res.cloudinary.com/dvmmkvu4o/image/upload/f_auto,q_auto/v1762855127/banner2-cropped_jnvi74.gif"} loading='lazy' alt="Web Development" className='w-full max-w-150' />
+            <img src={"https://res.cloudinary.com/dvmmkvu4o/image/upload/f_auto,q_auto/v1762855127/banner2-cropped_jnvi74.gif"} loading='lazy' alt="Web Development" className='w-full max-w-125 lg:max-w-180' />
         </div>
         <div className='absolute left-0 right-0 bottom-0 m-auto max-w-100 rounded-full -z-10 box-shaddow overflow-visible'></div>
     </div>
