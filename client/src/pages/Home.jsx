@@ -9,11 +9,13 @@ import Testimonials from '../components/Testimonials'
 import CTASection from '../components/CTASection'
 import Blogs from '../components/Blogs'
 import Stats from '../components/Stats'
+import Strip from '../components/Marquee'
 
 const Home = () => {
   return (
     <div>
       <Banner />
+      <Strip />
       <AboutMe />
       <Stats />
       <ServiceComponent />

@@ -81,7 +81,7 @@ html, body {
 
    /* Dark Theme */
 
-   --color-dark-primary: #37e062;       /* #7af298 Same for brand consistency */
+   --color-dark-primary: #37e062;       
    --color-dark-secondary: #1a1a1a;
    --color-dark-accent: #F2994A;
  
@@ -94,8 +94,8 @@ html, body {
    --color-dark-textColor: #ffffff;
    --color-dark-muted: #BDBDBD;
  
-   --color-dark-header: #1A1A1A;
-   --color-dark-footer: #1A1A1A;
+   --color-dark-header: #202020;
+   --color-dark-footer: #202020;
 
 
 
@@ -160,6 +160,19 @@ body {
 background: linear-gradient(180deg,rgba(42, 123, 155, 0) 50%, rgba(25, 24, 24, 1) 100%);
 }
 
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 15s linear infinite;
+}
 
 #blog-content {
   @apply mb-4 text-gray-400;
