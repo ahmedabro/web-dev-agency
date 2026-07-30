@@ -1,4 +1,9 @@
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router";
+import Lenis from "lenis";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 import Layout from "./layouts/Layout";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -14,42 +19,85 @@ import Inbox from "./pages/Inbox";
 import SignIn from "./pages/SignIn";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminDashboard from "./pages/AdminDashboard";
-import AdminBlogs from './components/AdminBlogs'
-import AdminCreateNewBlog from './components/AdminCreateNewBlog'
+import AdminBlogs from "./components/AdminBlogs";
+import AdminCreateNewBlog from "./components/AdminCreateNewBlog";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const App = () => {
 
+  useEffect(() => {
+
+    const lenis = new Lenis({
+      duration: 1.5,
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 1,
+      infinite: false,
+    });
+
+    // Keep ScrollTrigger updated
+    lenis.on("scroll", ScrollTrigger.update);
+
+    // Sync GSAP with Lenis
+    const update = (time) => {
+      lenis.raf(time * 1000);
+    };
+
+    gsap.ticker.add(update);
+    gsap.ticker.lagSmoothing(0);
+
+    return () => {
+      gsap.ticker.remove(update);
+      lenis.destroy();
+    };
+
+  }, []);
+
   return (
-    <>
-      <BrowserRouter>
+    <BrowserRouter>
       <ScrollToTop />
+
       <Routes>
         <Route path="/" element={<Layout />}>
-          {/* Nested inside Layout */}
           <Route index element={<Home />} />
+
           <Route path="about" element={<About />} />
+
           <Route path="portfolio" element={<Portfolio />} />
           <Route path="portfolio/:id" element={<Portfolio />} />
+
           <Route path="services" element={<Services />} />
           <Route path="services/:id" element={<ServiceDetail />} />
+
           <Route path="blogs" element={<Blogs />} />
           <Route path="blogs/:id" element={<BlogDetails />} />
+
           <Route path="contact" element={<Contact />} />
+
           <Route path="unsubscribe/:token" element={<Unsubscribe />} />
+
           <Route path="signin" element={<SignIn />} />
+
           <Route element={<ProtectedRoute />}>
             <Route path="admin" element={<AdminDashboard />}>
               <Route path="inbox" element={<Inbox />} />
               <Route path="blogs" element={<AdminBlogs />} />
-              <Route path="blogs/create" element={<AdminCreateNewBlog />} />  
-              <Route path="blogs/:id/edit" element={<AdminCreateNewBlog />} />
+              <Route
+                path="blogs/create"
+                element={<AdminCreateNewBlog />}
+              />
+              <Route
+                path="blogs/:id/edit"
+                element={<AdminCreateNewBlog />}
+              />
             </Route>
           </Route>
+
         </Route>
       </Routes>
-      </BrowserRouter>
-    </>
-  )
-}
+    </BrowserRouter>
+  );
+};
 
-export default App
+export default App;
