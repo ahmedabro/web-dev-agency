@@ -21,8 +21,8 @@ const Portfolio = () => {
     <div className="section-container overflow-visible">
       <div className="section-header md:flex items-center border-b-2 border-gray-600 pb-[15px]">
         <div className="w-full mb-5 md:mb-0 md:w-1/2">
-          <h3 className="section-subheading">My Recent Work</h3>
-          <h2 className="section-mainheading">Portfolio</h2>
+          <h3 className="section-subheading">Portfolio</h3>
+          <h2 className="section-mainheading w-full!">Selected Work & Projects</h2>
         </div>
         <div className="w-full md:w-1/2">
           <p className='text-gray-400 m-auto'>Whether you’re exploring an upcoming project or have something to say today, Tome templates get you off on the right foot.</p>

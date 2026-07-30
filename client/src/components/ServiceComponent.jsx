@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { NavLink } from 'react-router';
 import { MdArrowOutward } from "react-icons/md";
+import { IoMdAdd } from "react-icons/io"
 import { useGetServicesQuery } from '../redux/api/serviceApi';
 
 
@@ -26,9 +27,12 @@ const ServiceComponent = () => {
 
   return (
     <div className='section-container secondary-gradient pb-30'>
-      <div className='section-header'>
-        <h3 className='section-subheading'>Services</h3>
-        <h2 className='section-mainheading'>End-to-End Web Development Services</h2>
+      <div className='section-header w-full'>
+        <h3 className='section-subheading justify-center m-auto'>Services</h3>
+        <h2 className='section-mainheading !text-center !sm:w-[50%] mx-auto mb-8'>Web Solutions Built for Your Goals</h2>
+        <p className='text-center text-gray-400 max-w-2xl m-auto md:mb-16'>
+          Whether you need a polished frontend, a powerful backend, or a complete web application, I deliver solutions designed to meet your goals and grow with your business.
+        </p>
       </div>
 
       <div className='w-full flex items-start md:gap-10 lg:gap-20 xl:gap-25'>
@@ -37,7 +41,7 @@ const ServiceComponent = () => {
             <div
               key={service.id}
               onClick={() => setActiveService(service.id)}
-              className="relative cursor-pointer px-2 py-6 border-b-2 border-gray-500"
+              className="relative cursor-pointer px-2 py-6 border-b border-gray-700"
             >
               {activeService === service.id && (
                 <motion.div
@@ -52,7 +56,7 @@ const ServiceComponent = () => {
                 <h3 className={`font-bold text-lg md:text-xl text-white`}>
                   {service.title}
                 </h3>
-                <h4 className='text-gray-400 font-medium text-sm md:text-lg'>({index + 1})</h4>
+                  <IoMdAdd className={`text-gray-400 font-medium text-xl md:text-2xl transition-all duration-300 ${activeService === service.id && '-rotate-45'}`}  />
                 </div>
 
                 <AnimatePresence>
@@ -63,7 +67,7 @@ const ServiceComponent = () => {
                       animate={{ opacity: 1, height: 'auto' }}
                       exit={{ opacity: 0, height: 0 }}
                       transition={{ duration: 0.4 }}
-                      className="text-white mb-0 md:pr-8 xl:pr-12 text-sm leading-7"
+                      className="mb-0 md:pr-8 xl:pr-12 leading-7"
                     >
                     <p
                       
@@ -71,7 +75,7 @@ const ServiceComponent = () => {
                       {service.description}
                     </p>
                     
-                      <NavLink to={`/services/${service.id}`} className={`text-dark-primary text-sm font-bold border-b mt-4 inline-flex items-center gap-2`}>Hire Me <MdArrowOutward className='text-base xl:text-xl group-hover:rotate-45' /></NavLink>
+                      <NavLink to={`/services/${service.id}`} className={`text-dark-primary font-light border-b mt-4 inline-flex items-center gap-2`}>Learn More <MdArrowOutward className='text-base xl:text-xl group-hover:rotate-45' /></NavLink>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -89,10 +93,10 @@ const ServiceComponent = () => {
           src={services.find(s => s.id === activeService)?.image}
           loading='lazy'
           alt="Service Preview"
-          initial={{ opacity: 0, x: 100 }}
+          initial={{ opacity: 0, x: 500 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 0 }}
-          transition={{ type: 'spring', stiffness: 700, damping: 50 }}
+          transition={{ type: 'spring', stiffness: 150, damping: 70 }}
           className="max-w-full max-h-[500px] rounded-lg shadow-lg"
         />
         </motion.div>

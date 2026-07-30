@@ -49,8 +49,10 @@ const Stats = () => {
 
         {
           stats.map((stat, index) => (
-            <div key={stat._id} className={`relative md:w-1/3 flex flex-col p-10 justify-center items-center rounded-lg group hover:bg-dark-primary transition-all duration-500 ease-in-out ${index !== stats.length - 1 &&
-              'sm:before:absolute sm:before:top-1/2 sm:before:right-0 sm:before:h-20 sm:before:border-r-2 sm:before:border-gray-500 sm:before:-translate-y-1/2'}`}>
+            <div key={stat._id} className={`relative md:w-1/3 flex flex-col p-10 justify-center items-center rounded-lg group hover:bg-dark-primary transition-all duration-750 ease-in-out 
+              ${index !== stats.length - 1 &&
+              'sm:before:absolute sm:before:top-1/2 sm:before:right-0 sm:before:h-30 sm:before:border-r sm:before:border-gray-700 sm:before:-translate-y-1/2'}`
+              }>
               <img src={stat.icon} loading='lazy' className='w-12 h-12 sm:w-10 sm:h-10 md:w-15 md:h-15 mb-6 sm:mb-5 lg:mb-8 brightness-0 invert group-hover:brightness-100 group-hover:invert-0 transition-all duration-500 ease-in-out' alt="" />
               <h5 className="font-bold text-dark-primary text-4xl sm:text-3xl md:text-4xl lg:text-5xl mb-2 group-hover:text-dark-surface transition-all duration-500 ease-in-out">
                 <span

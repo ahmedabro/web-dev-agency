@@ -29,7 +29,7 @@ const Navbar = () => {
         scrolled ? 'bg-dark-background' : 'bg-transparent'
       }`}
     >
-      <Link to="/" className="!text-2xl !md:text-3xl font-bold">
+      <Link to="/" className="!text-2xl !md:text-3xl font-bold text-white">
         <span className="text-dark-primary text-2xl">&lt;</span>
         A.F Dev
         <span className="text-dark-primary text-2xl">/&gt;</span>
@@ -44,7 +44,7 @@ const Navbar = () => {
             : { height: "3rem", borderRadius: "2rem", top: "50%", translateY: "-50%" }
         }
         transition={{ duration: 0.4, ease: "easeInOut" }}
-        className="absolute right-4 sm:right-6 lg:right-16 xl:right-32 z-10 w-37 sm:w-45 lg:w-50 xl:w-55 overflow-hidden bg-dark-textColor"
+        className="absolute right-4 sm:right-6 lg:right-16 xl:right-32 z-10 w-37 sm:w-45 lg:w-50 xl:w-55 overflow-hidden bg-white"
       >
         {/* Toggle button */}
         <button

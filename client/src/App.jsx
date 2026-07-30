@@ -29,7 +29,7 @@ const App = () => {
   useEffect(() => {
 
     const lenis = new Lenis({
-      duration: 1.5,
+      lerp: 0.04,
       smoothWheel: true,
       wheelMultiplier: 1,
       touchMultiplier: 1,

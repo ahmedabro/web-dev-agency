@@ -2,7 +2,7 @@ import Service from "../models/serviceModel.js";
 
 export const getAllServices = async (req, res) => {
     try {
-        const services = await Service.find();
+        const services = await Service.find().sort({ order: 1 });
         res.status(200).json({ services });
     } catch (error) {
         res.status(500).json({ message: "Error fetching services", error });
@@ -10,10 +10,10 @@ export const getAllServices = async (req, res) => {
 };
 
 export const addService = async (req, res) => {
-    const { id, title, description } = req.body;
+    const { id, title, description, order } = req.body;
 
-    if (!id || !title || !description) {
-        return res.status(400).json({ message: "ID, title, and description are required." });
+    if (!id || !title || !description || !order) {
+        return res.status(400).json({ message: "ID, title, order, and description are required." });
     }
 
     try {

@@ -48,7 +48,7 @@ const AboutMe = ({children}) => {
             <ul>
               {
                 items.map((item, index) => (
-                <li key={index} className='flex items-center gap-3 mb-2'><GiCheckMark className='text-dark-primary text-lg' /> {item}</li>                
+                <li key={index} className='flex items-center gap-3 mb-2 text-sm md:text-base xl:text-lg'><GiCheckMark className='text-dark-primary text-lg' /> {item}</li>                
                 ))
               }
             </ul>

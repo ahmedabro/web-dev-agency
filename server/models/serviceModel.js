@@ -14,7 +14,8 @@ const serviceSchema = new mongoose.Schema({
   solutions: [itemSchema], 
   benefits: [itemSchema], 
   howItWorks: [itemSchema], 
-  techStack: [String] 
+  techStack: [String],
+  order: { type: Number, required: true }
 }, { timestamps: true });
 
 const Service = mongoose.model("Service", serviceSchema);
