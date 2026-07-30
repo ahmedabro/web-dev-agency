@@ -5,10 +5,14 @@ const statsSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  valueNumber: {
+  value: {
     type: Number,
     default: 0,
     required: true,
+  },
+  sign: {
+    type: String,
+    default: ""
   },
   icon: {
     type: String,

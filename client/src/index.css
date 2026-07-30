@@ -91,7 +91,7 @@ html, body {
  
    --color-dark-background: #111111;
    --color-dark-surface: #212121;
-   --color-dark-textColor: #ffffff;
+   --color-dark-textColor: #B3B3B3;
    --color-dark-muted: #BDBDBD;
  
    --color-dark-header: #202020;
@@ -136,7 +136,7 @@ body {
 }
 
 .section-subheading {
-  @apply relative w-fit flex items-center text-lg md:text-xl font-bold text-dark-primary mb-3 sm:after:absolute sm:after:w-20 sm:after:h-[1.5px] sm:after:bg-dark-primary sm:after:-right-22;
+  @apply relative w-fit flex items-center text-sm md:text-base tracking-widest font-bold text-dark-primary mb-5 border border-gray-700 rounded-full py-2 px-8 bg-dark-secondary;
 }
 
 .section-mainheading {

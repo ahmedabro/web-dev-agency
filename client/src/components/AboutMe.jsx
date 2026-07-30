@@ -1,8 +1,17 @@
 import React, { useRef } from 'react'
 import { NavLink, useLocation } from 'react-router'
 import { MdArrowOutward } from "react-icons/md";
+import { GiCheckMark } from "react-icons/gi"
 import { motion, useInView } from 'framer-motion'
 import Stats from './Stats';
+
+const items = [
+  "Responsive & User-Centric Interfaces",
+  "Scalable & Secure Architecture",
+  "Clean, Maintainable Code",
+  "End-to-End Web Solutions",
+  "Long-Term Technical Support",
+]
 
 const AboutMe = ({children}) => {
   const ref = useRef(null);
@@ -14,7 +23,7 @@ const AboutMe = ({children}) => {
     <div className='section-container'>
       <div className='section-header'>
         <h3 className='section-subheading'>About Me</h3>
-        <h2 className='section-mainheading'>Passion for Full Stack Development</h2>
+        <h2 className='section-mainheading'>Driven by Quality. Focused on Results.</h2>
       </div>
       <div className='w-full flex flex-col sm:flex-row items-center sm:gap-8 lg:gap-20'>
         <motion.div 
@@ -28,17 +37,26 @@ const AboutMe = ({children}) => {
         </motion.div>
         <div className='sm:w-[65%] mt-10 sm:mt-0 flex flex-col gap-8'>
             <p>
-            My journey began with a simple yet powerful idea: to revolutionise the digital landscape through innovative solutions and exceptional creativity. 
+              I combine technical expertise with a problem-solving mindset to build modern web applications that are efficient, scalable, and designed to support long-term business success. Every project is developed with a focus on clean architecture, intuitive user experiences, and maintainable code that can grow alongside your business.
             </p>
-            <p>
-            Driven by a passion for design and technology, I set out to create unique digital experiences that make an impact in online.
-            </p>
+
+            
+             
             {children}
+
+            <h3 className='text-white text-xl font-semibold mt-3'>Here’s what I bring to every project:</h3>
+            <ul>
+              {
+                items.map((item, index) => (
+                <li key={index} className='flex items-center gap-3 mb-2'><GiCheckMark className='text-dark-primary text-lg' /> {item}</li>                
+                ))
+              }
+            </ul>
             {/* {
             location.pathname === "/" && <Stats />
             } */}
             {location.pathname === "/" && (
-              <NavLink to="about" className={`group theme-button`}>ABOUT ME <MdArrowOutward className='text-base xl:text-xl group-hover:rotate-45 transition-rotate duration-300 ease-in-out' /></NavLink>
+              <NavLink to="about" className={`group theme-button`}>Learn More <MdArrowOutward className='text-base xl:text-xl group-hover:rotate-45 transition-rotate duration-300 ease-in-out' /></NavLink>
             )}
         </div>
       </div>

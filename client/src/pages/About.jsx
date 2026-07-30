@@ -14,8 +14,8 @@ const About = () => {
       <InnerBanner title="About Me" />
       <AboutMe>
         <p>
-        With a strong foundation in both front-end and back-end technologies, I bring a holistic approach to web development. From crafting intuitive user interfaces to building robust server-side applications, I am dedicated to delivering solutions that exceed expectations.
-        </p>
+              From responsive frontend interfaces to robust backend systems, I deliver end-to-end solutions that prioritize performance, security, and reliability. Whether you’re launching a new product or improving an existing one, my goal is to build software that creates real value and stands the test of time.
+            </p>
         <ul className='flex flex-col gap-8 mt-8'>
           <li className='flex items-center gap-4'>
             <span className='bg-dark-primary w-12 h-12 flex items-center justify-center rounded-full'><MdEmail className='text-dark-surface text-2xl' /></span>

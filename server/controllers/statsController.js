@@ -1,14 +1,14 @@
 import Stats from "../models/statsModel.js"
 
 export const addStat = async (req, res) => {
-    const { label, valueNumber, icon } = req.body;
+    const { label, value, sign, icon } = req.body;
 
-    if(!label || valueNumber === undefined) {
-        return res.status(400).json({ message: 'Label and valueNumber are required fields.' });
+    if(!label || value === undefined) {
+        return res.status(400).json({ message: 'Label and value are required fields.' });
     }
 
     try {
-        const newStat = new Stats({ label, valueNumber, icon });
+        const newStat = new Stats({ label, value, sign, icon });
         await newStat.save();
         res.status(201).json({ message: 'Stat added successfully.', stat: newStat });
     } catch (error) {
@@ -31,14 +31,14 @@ export const getStats = async (req, res) => {
 
 export const updateStat = async (req, res) => {
     const { id } = req.params;
-    const { label, valueNumber, icon } = req.body;
+    const { label, value, sign, icon } = req.body;
 
-    if (!label || valueNumber === undefined) {
-        return res.status(400).json({ message: 'Label and valueNumber are required fields.' });
+    if (!label || value === undefined) {
+        return res.status(400).json({ message: 'Label and value are required fields.' });
     }
 
     try {
-        const updatedStat = await Stats.findByIdAndUpdate(id, { label, valueNumber, icon }, { new: true });
+        const updatedStat = await Stats.findByIdAndUpdate(id, { label, value, sign, icon }, { new: true });
         if (!updatedStat) {
             return res.status(404).json({ message: 'Stat not found.' });
         }

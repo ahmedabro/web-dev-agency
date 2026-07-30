@@ -1,10 +1,12 @@
 import Marquee from 'react-fast-marquee'
 
 const items = [
-  "Responsive",
-  "Scalable",
-  "Secure",
-  "High Performance",
+  "Web Applications",
+  "Mobile Applications",
+  "Custom Software",
+  "Landing Pages",
+  "Dasboards",
+  "Ecommerce",
 ];
 
 const Strip = () => {
