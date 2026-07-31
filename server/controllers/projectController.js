@@ -24,23 +24,14 @@ export const getProjectById = async (req, res) => {
 };
 
 export const addProject = async (req, res) => {
-  const { title, category, image, description, tags, timeStarted, timeEnded, status } = req.body;
+  const { title, category, image, description, tags, timeStarted, timeEnded, status, link, domain } = req.body;
 
   if (!title || !category || !description) {
       return res.status(400).json({ message: "Title, category and description are required." });
     }
 
   try {
-    const newProject = new Project({
-      title,
-      category,
-      image,
-      description,
-      tags,
-      timeStarted,
-      timeEnded,
-      status,
-    });
+    const newProject = new Project(req.body);
     await newProject.save();
     res.status(201).json({ message: "Project added successfully", project: newProject });
   } catch (error) {

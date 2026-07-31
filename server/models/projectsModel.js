@@ -6,6 +6,8 @@ const projectSchema = new mongoose.Schema({
   image: { type: String },
   description: { type: String, required: true },
   tags: [{ type: String }],
+  link: { type: String, default: "" },
+  domain: { type: String, default: "" },
   timeStarted: { type: Date, default: Date.now },
   timeEnded: { type: Date, default: Date.now },
   status: { type: String, enum: ["ongoing", "completed"], default: "ongoing" },
