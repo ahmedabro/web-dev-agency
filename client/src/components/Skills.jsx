@@ -21,18 +21,27 @@ const Skills = ({ serviceType }) => {
 
     const STACK_OFFSET = 50;
 
+    const ACTIVE_BG = "#17251c";
+    const INACTIVE_BG = "#212121";
+
+    const ACTIVE_BORDER = "#37e062";
+    const INACTIVE_BORDER = "rgba(255, 255, 255, 0.1)";
+
     const getScale = (index) => {
       return 0.90 + index * 0.05;
     };
 
     gsap.set(cards, {
-      y: 900,
+      y: 700,
       scale: 0.96,
     });
 
     gsap.set(cards[0], {
       y: 0,
       scale: 1,
+      borderColor: ACTIVE_BORDER,
+      boxShadow: "0 0 35px rgba(55, 224, 98, 0.18)",
+      backgroundColor: ACTIVE_BG,
     });
 
     const tl = gsap.timeline({
@@ -40,9 +49,9 @@ const Skills = ({ serviceType }) => {
         trigger: sectionRef.current,
         start: "top 10%",
         end: `+=${cards.length * 700}`,
-        scrub: 1,
+        scrub: 0.4,
         pin: true,
-        anticipatePin: 1,
+        anticipatePin: 0.5,
         invalidateOnRefresh: true,
       },
     });
@@ -55,6 +64,9 @@ const Skills = ({ serviceType }) => {
         cards[index - 1],
         {
           scale: getScale(index -1),
+          borderColor: INACTIVE_BORDER,
+          boxShadow: "0 0 0px rgba(255, 255, 255, 0)",
+          backgroundColor: INACTIVE_BG,
           duration: 1,
           ease: "none",
         },
@@ -66,6 +78,9 @@ const Skills = ({ serviceType }) => {
         {
           y: index * STACK_OFFSET,
           scale: getScale(index),
+          borderColor: ACTIVE_BORDER,
+          boxShadow: "0 0 35px rgba(55, 224, 98, 0.18)",
+          backgroundColor: ACTIVE_BG,
           duration: 1,
           ease: "none",
         },
@@ -86,8 +101,8 @@ const Skills = ({ serviceType }) => {
   if (isError) return <div>Error: {error.message}</div>;
 
   return (
-    <section className="skills-section h-screen" ref={sectionRef}>
-      <div className="section-container">
+    <section className="skills-section min-h-screen" ref={sectionRef}>
+      <div className="section-container min-h-screen">
 
         <div className="grid lg:grid-cols-2 gap-16">
 
@@ -123,8 +138,9 @@ const Skills = ({ serviceType }) => {
                   border
                   border-white/10
                   bg-dark-surface
-                  p-8
-                  md:p-10`}>
+                  p-5
+                  md:p-5
+                  `}>
                 <img loading='lazy' src={card.icon} alt="" className='brightness-0 invert w-12 md:w-15 m-auto mb-5' />
                 <h4 className='text-center font-bold text-xl md:text-3xl mb-6'>{card.category}</h4>
                 <div className='flex flex-wrap justify-center gap-4'>
