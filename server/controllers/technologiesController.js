@@ -2,7 +2,7 @@ import Technology from "../models/technologiesModel.js";
 
 export const getTechnologies = async (req, res) => {
     try {
-        const technologies = await Technology.find();
+        const technologies = await Technology.find().sort({ order: 1 });
         res.status(200).json({ technologies });
     } catch (error) {
         res.status(500).json({ message: "Error fetching technologies" });
@@ -10,18 +10,14 @@ export const getTechnologies = async (req, res) => {
 };
 
 export const addTechnology = async (req, res) => {
-    const { category, icon, items } = req.body;
+    const { category, icon, items, order } = req.body;
 
-    if (!category || !icon) {
+    if (!category || !icon || !order) {
         return res.status(400).json({ message: "All fields are required" });
     }
     
     try {
-        const newTechnology = new Technology({
-            category,
-            icon,
-            items
-        });
+        const newTechnology = new Technology(req.body);
         await newTechnology.save();
         res.status(201).json({ message: "Technology added successfully", technology: newTechnology });
     } catch (error) {
