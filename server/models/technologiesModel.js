@@ -10,11 +10,15 @@ const technologySchema = new mongoose.Schema({
         required: true
     },
     items: [
-    {
-        name: { type: String },
-        icon: { type: String }
+        {
+            name: { type: String },
+            icon: { type: String }
+        },
+    ],
+    order: {
+        type: Number,
+        required: true,
     }
-]
 })
 
 const Technology = mongoose.model("Technology", technologySchema);
