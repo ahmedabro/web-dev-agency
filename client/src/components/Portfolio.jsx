@@ -62,7 +62,7 @@ const handleMouseLeave = (index) => {
 
   return (
     <div className="section-container overflow-visible">
-      <div className="section-header md:flex items-end border-b-2 border-gray-600 pb-[15px]">
+      <div className="section-header md:flex items-end border-b border-gray-600 pb-[15px]">
         <div className="w-full mb-5 md:mb-0 md:w-1/2">
           <h3 className="section-subheading">Portfolio</h3>
           <h2 className="section-mainheading w-full!">Selected Work & Projects</h2>
