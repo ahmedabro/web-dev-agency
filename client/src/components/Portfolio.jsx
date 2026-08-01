@@ -98,7 +98,7 @@ const handleMouseLeave = (index) => {
               {portfolioItems
                 .filter((item) => activeTab === 'All Works' || item.category === activeTab)
                 .map((item, index) => (
-                  <ProjectCard item={item} index={index} />
+                  <ProjectCard key={index} item={item} index={index} />
                 ))}
             </div>
           </div>
@@ -109,7 +109,7 @@ const handleMouseLeave = (index) => {
               {portfolioItems
                 .filter((item, index) => index < 5) // Show only first 6 items
                 .map((item, index) => (
-                  <ProjectCard item={item} index={index} />
+                  <ProjectCard key={index} item={item} index={index} />
                 ))}
             </div>
           </div>)
