@@ -19,7 +19,7 @@ const Skills = ({ serviceType }) => {
 
     const cards = cardsRef.current;
 
-    const STACK_OFFSET = 50;
+    const STACK_OFFSET = 30;
 
     const ACTIVE_BG = "#17251c";
     const INACTIVE_BG = "#212121";
@@ -57,9 +57,9 @@ const Skills = ({ serviceType }) => {
         trigger: sectionRef.current,
         start: "top 10%",
         end: `+=${cards.length * 700}`,
-        scrub: 0.4,
+        scrub: 1,
         pin: true,
-        anticipatePin: 0.5,
+        anticipatePin: 1,
         invalidateOnRefresh: true,
       },
     });
@@ -176,23 +176,22 @@ const Skills = ({ serviceType }) => {
                   {card.category}
                 </div> */}
 
-                <div className="relative z-10 h-full flex flex-col">
+                <div className="relative z-10 h-full flex flex-col justify-between">
 
                   {/* HEADER */}
-                  <div className="flex items-start justify-between mb-8">
+                  <div className="flex items-start justify-between mb-3">
 
                     <div>
                       <span className="text-[#37e062] text-xs md:text-sm font-bold tracking-[0.3em] uppercase">
                         {String(index + 1).padStart(2, "0")} / Technology
                       </span>
 
-                      <h4 className="text-3xl md:text-5xl font-black uppercase tracking-tight mt-2">
+                      <h4 className="text-3xl md:text-4xl font-black uppercase tracking-tight mt-2">
                         {card.category}
                       </h4>
 
                       <p className="text-white/40 text-sm mt-2 max-w-md">
-                        Technologies and tools I use to build modern,
-                        scalable digital experiences.
+                        {card.description}
                       </p>
                     </div>
 
@@ -222,7 +221,7 @@ const Skills = ({ serviceType }) => {
 
 
                   {/* DIVIDER */}
-                  <div className="w-full h-px bg-white/10 mb-6" />
+                  <div className="w-full h-px bg-white/10 mb-3" />
 
 
                   {/* SKILLS */}

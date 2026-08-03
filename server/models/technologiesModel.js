@@ -9,6 +9,10 @@ const technologySchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    description: {
+        type: String,
+        default: ""
+    },
     items: [
         {
             name: { type: String },

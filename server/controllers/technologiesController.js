@@ -10,7 +10,7 @@ export const getTechnologies = async (req, res) => {
 };
 
 export const addTechnology = async (req, res) => {
-    const { category, icon, items, order } = req.body;
+    const { category, icon, description, items, order } = req.body;
 
     if (!category || !icon || !order) {
         return res.status(400).json({ message: "All fields are required" });
