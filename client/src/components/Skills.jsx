@@ -39,8 +39,8 @@ const Skills = ({ serviceType }) => {
       if (index === 0) return;
 
       gsap.set(card, {
-        y: 500 + (index * STACK_OFFSET),
-        scale: 0.9,
+        y: 450 + (index * STACK_OFFSET),
+        scale: 0.8,
       });
     });
 
@@ -55,7 +55,7 @@ const Skills = ({ serviceType }) => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
-        start: "top 15%",
+        start: "top 10%",
         end: `+=${cards.length * 700}`,
         scrub: 0.4,
         pin: true,
@@ -135,35 +135,186 @@ const Skills = ({ serviceType }) => {
           <div className="skills-cards relative min-h-[500px]">
 
             {skills.map((card, index) => (
-              <div ref={(el) => { cardsRef.current[index] = el }} key={card.category} className={`skill-card
-                  absolute
-                  top-0
-                  left-0
-                  w-full
-                  h-full
-                  min-h-[500px]
-                  rounded-2xl
-                  border
-                  border-white/10
-                  bg-dark-surface
-                  flex
-                  items-center
-                  p-5
-                  md:p-5
-                  `}>
-                <div className='w-full'>
-                  <img loading='lazy' src={card.icon} alt="" className='brightness-0 invert w-12 md:w-15 m-auto mb-5' />
-                  <h4 className='font-bold text-white/10 text-3xl uppercase tracking-widest mb-6 absolute top-3 left-3'>{card.category}</h4>
-                  <div className='flex flex-wrap justify-center gap-4'>
-                    {card.items.map((skill) => (
-                      <div key={skill.name} className='skill-item mt-5 flex flex-col items-center justify-center'>
-                        <div className='group relative border-2 border-gray-600 rounded-full w-15 h-15 overflow-hidden flex flex-col justify-center items-center p-8 hover:scale-125 hover:border-dark-primary transition-all duration-400'>
-                          <div dangerouslySetInnerHTML={{ __html: skill.icon }} className='w-7'></div>
-                          <div className='skill-name !text-[12px] font-bold absolute -bottom-100 bg-dark-secondary w-full h-full flex justify-center items-center group-hover:bottom-0 transition-all duration-500'><span className='!text-[12px]'>{skill.name}</span></div>
-                        </div>
-                      </div>
-                    ))}
+              <div
+                ref={(el) => {
+                  cardsRef.current[index] = el;
+                }}
+                key={card.category}
+                className="
+    skill-card
+    absolute
+    top-0
+    left-0
+    w-full
+    h-full
+    rounded-2xl
+    border
+    border-white/10
+    bg-[#212121]
+    overflow-hidden
+    p-6
+    md:p-10
+  "
+              >
+                {/* Huge background category */}
+                {/* <div
+                  className="
+      absolute
+      -top-8
+      -right-6
+      text-[100px]
+      md:text-[150px]
+      font-black
+      uppercase
+      tracking-tighter
+      text-white/[0.025]
+      leading-none
+      pointer-events-none
+      select-none
+    "
+                >
+                  {card.category}
+                </div> */}
+
+                <div className="relative z-10 h-full flex flex-col">
+
+                  {/* HEADER */}
+                  <div className="flex items-start justify-between mb-8">
+
+                    <div>
+                      <span className="text-[#37e062] text-xs md:text-sm font-bold tracking-[0.3em] uppercase">
+                        {String(index + 1).padStart(2, "0")} / Technology
+                      </span>
+
+                      <h4 className="text-3xl md:text-5xl font-black uppercase tracking-tight mt-2">
+                        {card.category}
+                      </h4>
+
+                      <p className="text-white/40 text-sm mt-2 max-w-md">
+                        Technologies and tools I use to build modern,
+                        scalable digital experiences.
+                      </p>
+                    </div>
+
+                    {/* Category Icon */}
+                    <div
+                      className="
+          hidden sm:flex
+          w-14
+          h-14
+          rounded-xl
+          border
+          border-white/10
+          bg-[#111111]
+          items-center
+          justify-center
+        "
+                    >
+                      <img
+                        loading="lazy"
+                        src={card.icon}
+                        alt=""
+                        className="brightness-0 invert w-7"
+                      />
+                    </div>
+
                   </div>
+
+
+                  {/* DIVIDER */}
+                  <div className="w-full h-px bg-white/10 mb-6" />
+
+
+                  {/* SKILLS */}
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+
+                    {card.items.map((skill, skillIndex) => (
+
+                      <div
+                      key={skillIndex}
+
+                        className="
+
+    group
+
+    relative
+
+    rounded-lg
+
+    border
+
+    border-white/10
+
+    bg-[#111111]
+
+    px-3
+
+    py-3
+
+    flex
+
+    items-center
+
+    gap-3
+
+    transition-all
+
+    duration-300
+
+    hover:border-[#37e062]/50
+
+    hover:bg-[#37e062]/10
+
+  "
+
+                      >
+
+                        <div
+
+                          dangerouslySetInnerHTML={{ __html: skill.icon }}
+
+                          className="w-6 h-6 shrink-0"
+
+                        />
+
+                        <span className="
+
+    text-xs
+
+    md:text-sm
+
+    text-white/60
+
+    group-hover:text-[#37e062]
+
+    transition-colors
+
+  ">
+
+                          {skill.name}
+
+                        </span>
+
+                      </div>
+
+                    ))}
+
+                  </div>
+
+
+                  {/* FOOTER */}
+                  <div className="flex items-center justify-between mt-6 pt-4 border-t border-white/10">
+
+                    <span className="text-xs text-white/30 uppercase tracking-widest">
+                      {card.items.length} Technologies
+                    </span>
+
+                    <span className="text-xs text-[#37e062] font-semibold">
+                      0{index + 1}
+                    </span>
+
+                  </div>
+
                 </div>
               </div>
             ))}
