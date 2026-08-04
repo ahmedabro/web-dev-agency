@@ -230,15 +230,14 @@ const Experience = () => {
 
                   {/* DATE */}
                   <div className="flex items-center gap-3 mb-6">
-
                     <span className="text-dark-primary text-sm font-bold">
-                      {experience.startDate}
+                      {new Date(experience.startDate).toLocaleDateString("en-US", { year: "numeric", month: "short" })}
                     </span>
 
                     <span className="w-8 h-px bg-white/20" />
 
                     <span className="text-gray-500 text-sm">
-                      {experience.endDate || "Present"}
+                      {experience.isCurrent === false ? new Date(experience.endDate).toLocaleDateString("en-US", { year: "numeric", month: "short" }) : "Present"}
                     </span>
 
                   </div>
