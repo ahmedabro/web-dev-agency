@@ -12,7 +12,7 @@ const Portfolio = () => {
       <InnerBanner title="My Portfolio" />
       <PortfolioComponent />
       <Skills />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <FAQs />
       <CTASection />
     </div>

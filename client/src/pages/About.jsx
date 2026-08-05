@@ -36,7 +36,7 @@ const About = () => {
       <Stats />
       <Skills />
       <Experience />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <CTASection />
     </div>
   )

@@ -70,8 +70,8 @@ const App = () => {
           <Route path="services" element={<Services />} />
           <Route path="services/:id" element={<ServiceDetail />} />
 
-          <Route path="blogs" element={<Blogs />} />
-          <Route path="blogs/:id" element={<BlogDetails />} />
+          {/* <Route path="blogs" element={<Blogs />} /> */}
+          {/* <Route path="blogs/:id" element={<BlogDetails />} /> */}
 
           <Route path="contact" element={<Contact />} />
 
@@ -82,15 +82,15 @@ const App = () => {
           <Route element={<ProtectedRoute />}>
             <Route path="admin" element={<AdminDashboard />}>
               <Route path="inbox" element={<Inbox />} />
-              <Route path="blogs" element={<AdminBlogs />} />
-              <Route
+              {/* <Route path="blogs" element={<AdminBlogs />} /> */}
+              {/* <Route
                 path="blogs/create"
                 element={<AdminCreateNewBlog />}
               />
               <Route
                 path="blogs/:id/edit"
                 element={<AdminCreateNewBlog />}
-              />
+              /> */}
             </Route>
           </Route>
 

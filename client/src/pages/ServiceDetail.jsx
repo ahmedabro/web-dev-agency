@@ -26,7 +26,7 @@ const ServiceDetail = () => {
         <Solutions solutions={data?.service?.solutions || []} />
         <Process processes={data?.service?.howItWorks || []} />
         <Skills serviceType={data?.service?.title || ""} />
-        <Testimonials />
+        {/* <Testimonials /> */}
         <FAQs />
         <CTASection />
     </div>

@@ -17,7 +17,7 @@ const useNavLinks = () => {
       }))
     },
     { name: 'Portfolio', path: 'portfolio' },
-    { name: 'Blogs', path: 'blogs' },
+    // { name: 'Blogs', path: 'blogs' },
     { name: 'Contact', path: 'contact' },
   ];
 

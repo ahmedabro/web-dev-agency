@@ -19,11 +19,11 @@ const Home = () => {
       <AboutMe />
       <Stats />
       <ServiceComponent />
-      <Portfolio />
       <Skills />
       <Experience />
-      <Testimonials />
-      <Blogs />
+      <Portfolio />
+      {/* <Testimonials /> */}
+      {/* <Blogs /> */}
       <CTASection />
     </div>
   )
