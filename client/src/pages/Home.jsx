@@ -25,6 +25,7 @@ const Home = () => {
       {/* <Testimonials /> */}
       {/* <Blogs /> */}
       <CTASection />
+      <Strip />
     </div>
   )
 }

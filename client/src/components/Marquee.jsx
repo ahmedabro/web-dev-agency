@@ -12,7 +12,7 @@ const items = [
 const Strip = () => {
 
   return (
-    <section className="section-container px-0! overflow-hidden border-y-[0.5px] border-dark-primary py-7">
+    <section className="px-0! overflow-hidden border-y-[0.5px] border-dark-primary py-7">
       <Marquee speed={40} gradient={false} autoFill={true}>
         {items.map((item, index) => (
           <div

@@ -68,7 +68,7 @@ const Experience = () => {
         scrollTrigger: {
           trigger: section,
 
-          start: "top -25%",
+          start: "top 10%",
 
           end: () => `+=${getScrollAmount()}`,
 
@@ -211,7 +211,7 @@ const Experience = () => {
             <>
               {/* HEADER */}
 
-              <div className="section-container mb-12">
+              <div className="section-container mb-12!">
 
                 <span className="section-subheading">
                   Experience
@@ -377,7 +377,7 @@ const Experience = () => {
 
                           <h3 className="
                             text-2xl
-                            md:text-4xl
+                            md:text-3xl
                             font-bold
                             text-white
                             mb-2

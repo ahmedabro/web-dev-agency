@@ -20,7 +20,7 @@ const AboutMe = ({children}) => {
   const location = useLocation();
   console.log(location.pathname);
   return (
-    <div className='section-container'>
+    <div className={`section-container ${location.pathname === "/" && 'mt-16 sm:mt-20 lg:mt-24 xl:mt-32'}`}>
       <div className='section-header'>
         <h3 className='section-subheading'>About Me</h3>
         <h2 className='section-mainheading'>Driven by Quality. Focused on Results.</h2>
