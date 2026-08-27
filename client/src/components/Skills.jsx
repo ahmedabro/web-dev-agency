@@ -17,6 +17,7 @@ const Skills = ({ serviceType }) => {
 
   useGSAP(
     () => {
+
       // Don't create ScrollTrigger until the data AND cards exist
       if (!skills.length) return;
 
@@ -25,118 +26,150 @@ const Skills = ({ serviceType }) => {
       // Make sure React has mounted every card
       if (cards.length !== skills.length) return;
 
-      const STACK_OFFSET = 30;
+      const mm = gsap.matchMedia()
 
-      const ACTIVE_BG = "#17251c";
-      const INACTIVE_BG = "#212121";
+      mm.add("(min-width: 1024px)", () => {
+        const STACK_OFFSET = 30;
 
-      const ACTIVE_BORDER = "#37e062";
-      const INACTIVE_BORDER = "rgba(255, 255, 255, 0.1)";
+        const ACTIVE_BG = "#17251c";
+        const INACTIVE_BG = "#212121";
 
-      const ACTIVE_SHADOW = "0 0 35px rgba(55, 224, 98, 0.18)";
-      const INACTIVE_SHADOW = "0 0 0px rgba(255, 255, 255, 0)";
+        const ACTIVE_BORDER = "#37e062";
+        const INACTIVE_BORDER = "rgba(255, 255, 255, 0.1)";
 
-      const getScale = (index) => {
-        return 0.90 + index * 0.05;
-      };
+        const ACTIVE_SHADOW = "0 0 35px rgba(55, 224, 98, 0.18)";
+        const INACTIVE_SHADOW = "0 0 0px rgba(255, 255, 255, 0)";
 
-      // --------------------------------------------------
-      // INITIAL CARD POSITIONS
-      // --------------------------------------------------
+        const getScale = (index) => {
+          return 0.90 + index * 0.05;
+        };
 
-      cards.forEach((card, index) => {
-        if (index === 0) return;
+        // --------------------------------------------------
+        // INITIAL CARD POSITIONS
+        // --------------------------------------------------
 
-        gsap.set(card, {
-          y: 450 + index * STACK_OFFSET,
-          scale: 0.8,
+        cards.forEach((card, index) => {
+          if (index === 0) return;
+
+          gsap.set(card, {
+            y: 450 + index * STACK_OFFSET,
+            scale: 0.8,
+          });
         });
-      });
 
-      // First card
-      gsap.set(cards[0], {
-        y: 0,
-        scale: 1,
-        borderColor: ACTIVE_BORDER,
-        boxShadow: ACTIVE_SHADOW,
-        backgroundColor: ACTIVE_BG,
-      });
+        // First card
+        gsap.set(cards[0], {
+          y: 0,
+          scale: 1,
+          borderColor: ACTIVE_BORDER,
+          boxShadow: ACTIVE_SHADOW,
+          backgroundColor: ACTIVE_BG,
+        });
 
-      // --------------------------------------------------
-      // TIMELINE
-      // --------------------------------------------------
+        // --------------------------------------------------
+        // TIMELINE
+        // --------------------------------------------------
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
 
-          start: "top 10%",
+            start: "top 10%",
 
-          end: `+=${cards.length * 700}`,
+            end: `+=${cards.length * 700}`,
 
-          scrub: 1,
+            scrub: 1,
 
-          pin: true,
+            pin: true,
 
-          anticipatePin: 1,
+            anticipatePin: 1,
 
-          invalidateOnRefresh: true,
+            invalidateOnRefresh: true,
 
-          refreshPriority: 10,
-        },
-      });
-
-      // --------------------------------------------------
-      // CARD ANIMATION
-      // --------------------------------------------------
-
-      cards.forEach((card, index) => {
-        if (index === 0) return;
-
-        // Previous card becomes inactive
-        tl.to(
-          cards[index - 1],
-          {
-            scale: getScale(index - 1),
-
-            borderColor: INACTIVE_BORDER,
-
-            boxShadow: INACTIVE_SHADOW,
-
-            backgroundColor: INACTIVE_BG,
-
-            duration: 1,
-
-            ease: "none",
+            refreshPriority: 10,
           },
-          "+=0.15"
-        );
+        });
 
-        // Current card comes into the stack
-        tl.to(
-          card,
-          {
-            y: index * STACK_OFFSET,
+        // --------------------------------------------------
+        // CARD ANIMATION
+        // --------------------------------------------------
 
-            scale: getScale(index),
+        cards.forEach((card, index) => {
+          if (index === 0) return;
 
-            borderColor: ACTIVE_BORDER,
+          // Previous card becomes inactive
+          tl.to(
+            cards[index - 1],
+            {
+              scale: getScale(index - 1),
 
-            boxShadow: ACTIVE_SHADOW,
+              borderColor: INACTIVE_BORDER,
 
-            backgroundColor: ACTIVE_BG,
+              boxShadow: INACTIVE_SHADOW,
 
-            duration: 1,
+              backgroundColor: INACTIVE_BG,
 
-            ease: "none",
-          },
-          "<"
-        );
-      });
+              duration: 1,
 
-      // IMPORTANT:
-      // useGSAP automatically handles cleanup/revert.
-      // Don't manually kill the timeline here.
+              ease: "none",
+            },
+            "+=0.15"
+          );
+
+          // Current card comes into the stack
+          tl.to(
+            card,
+            {
+              y: index * STACK_OFFSET,
+
+              scale: getScale(index),
+
+              borderColor: ACTIVE_BORDER,
+
+              boxShadow: ACTIVE_SHADOW,
+
+              backgroundColor: ACTIVE_BG,
+
+              duration: 1,
+
+              ease: "none",
+            },
+            "<"
+          );
+        });
+
+        // IMPORTANT:
+        // useGSAP automatically handles cleanup/revert.
+        // Don't manually kill the timeline here.
+
+      })
+
+      mm.add("(max-width: 1023px)", () => {
+
+        cards.forEach(card => {
+          gsap.fromTo(card,
+            {
+              opacity: 0,
+              y: 100,
+            },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.7,
+              // stagger: 0.15,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: card,
+                start: "top 80%",
+                 
+                once: true,
+              }
+            }
+          )
+        })
+
+      })
+
 
     },
     {
@@ -151,9 +184,9 @@ const Skills = ({ serviceType }) => {
   return (
     <section
       ref={sectionRef}
-      className="skills-section min-h-screen"
+      className="skills-section min-h-screen h-auto"
     >
-      <div className="section-container min-h-screen">
+      <div className="section-container min-h-screen h-auto">
 
         {/* LOADING */}
         {isLoading && (
@@ -196,7 +229,7 @@ const Skills = ({ serviceType }) => {
             </div>
 
             {/* RIGHT */}
-            <div className="skills-cards relative min-h-[500px]">
+            <div className="skills-cards relative lg:min-h-[500px] flex flex-col gap-5 lg:block">
 
               {skills.map((card, index) => (
                 <SkillCard

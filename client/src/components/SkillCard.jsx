@@ -9,11 +9,12 @@ const SkillCard = ({cardsRef, card, cardIndex}) => {
                 key={card.category}
                 className="
     skill-card
-    absolute
-    top-0
-    left-0
+    relative
+    lg:absolute
+    lg:top-0
+    lg:left-0
     w-full
-    h-full
+    lg:h-full
     rounded-2xl
     border
     border-white/10
@@ -92,7 +93,7 @@ const SkillCard = ({cardsRef, card, cardIndex}) => {
 
 
                   {/* SKILLS */}
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
 
                     {card.items.map((skill, skillIndex) => (
 

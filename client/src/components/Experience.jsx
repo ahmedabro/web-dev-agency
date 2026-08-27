@@ -72,7 +72,7 @@ const Experience = () => {
 
           end: () => `+=${getScrollAmount()}`,
 
-          scrub: 1,
+          scrub: 2,
 
           pin: true,
 
