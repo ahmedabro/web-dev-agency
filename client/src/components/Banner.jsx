@@ -7,11 +7,11 @@ import { MdArrowOutward } from "react-icons/md";
 
 const Banner = () => {
   return (
-    <div className='section-container mb-0! text-center lg:text-start relative overflow-hidden h-screen flex flex-col lg:flex-row items-center justify-end bg-dark-secondary isolate'>
-        <div className='lg:w-1/2 flex flex-col justify-between mb-15 lg:mb-0'>
+    <div className='section-container mb-0! text-center lg:text-start relative overflow-hidden h-screen flex flex-col md:flex-row items-center justify-end bg-dark-secondary isolate'>
+        <div className='md:w-1/2 flex flex-col justify-between mb-10 lg:mb-0'>
             <div className='flex flex-col gap-4'>
               <motion.p 
-                className='font-semibold tracking-[0.25em] text-sm sm:text-base lg:text-lg'
+                className='font-semibold tracking-[0.25em] text-sm md:text-base lg:text-lg'
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, type: 'spring', stiffness: 100, damping: 10 }}
@@ -19,7 +19,7 @@ const Banner = () => {
                 FULL STACK WEB DEVELOPER
               </motion.p>
               <motion.h1 
-                className='space-grotesk-bold text-dark-primary text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-8xl font-bold leading-tight tracking-tight text-balance w-full'
+                className='space-grotesk-bold text-dark-primary text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-8xl font-bold leading-tight tracking-tight text-balance w-full'
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3, type: 'spring', stiffness: 100, damping: 10 }}
@@ -67,8 +67,8 @@ font-light
               <a href={import.meta.env.VITE_GITHUB_URL} target='_blank' className='flex justify-center items-center w-8 h-8 md:w-10 md:h-10 text-sm md:text-lg border-1 border-gray-500 bg-dark-surface rounded-full hover:bg-dark-primary hover:text-dark-background hover:scale-125'><FaGithub /></a>
             </div> */}
         </div>
-        <div className='lg:w-1/2 self-end'>
-            <img src={"https://res.cloudinary.com/dvmmkvu4o/image/upload/f_auto,q_auto/v1762855127/banner2-cropped_jnvi74.gif"} loading='lazy' alt="Web Development" className='w-full max-w-125 lg:max-w-180' />
+        <div className='md:w-1/2 self-end'>
+            <img src={"https://res.cloudinary.com/dvmmkvu4o/image/upload/f_auto,q_auto/v1762855127/banner2-cropped_jnvi74.gif"} loading='lazy' alt="Web Development" className='w-full max-w-100 lg:max-w-180' />
         </div>
         <div className='absolute left-0 right-0 bottom-0 m-auto max-w-100 rounded-full -z-10 box-shaddow overflow-visible'></div>
     </div>

@@ -230,7 +230,7 @@ const Skills = ({ serviceType }) => {
 
             {/* RIGHT */}
             <div className="skills-cards relative lg:min-h-[500px] flex flex-col gap-5 lg:block">
-
+          
               {skills.map((card, index) => (
                 <SkillCard
                   key={card.category}

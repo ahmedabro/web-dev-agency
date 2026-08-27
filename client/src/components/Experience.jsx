@@ -26,7 +26,11 @@ const Experience = () => {
       const progress = progressRef.current;
       const points = pointsRef.current.filter(Boolean);
 
-      if (!section || !track || !progress) return;
+      const mm = gsap.matchMedia()
+
+      mm.add("(min-width: 1024px)", () => {
+
+        if (!section || !track || !progress) return;
 
       // -----------------------------------------
       // Calculate horizontal scroll distance
@@ -68,7 +72,7 @@ const Experience = () => {
         scrollTrigger: {
           trigger: section,
 
-          start: "top 10%",
+          start: "top -20%",
 
           end: () => `+=${getScrollAmount()}`,
 
@@ -159,6 +163,9 @@ const Experience = () => {
           },
         });
       });
+      })
+
+      
 
     },
     {
@@ -211,7 +218,7 @@ const Experience = () => {
             <>
               {/* HEADER */}
 
-              <div className="section-container mb-12!">
+              <div className="section-container lg:mb-40!">
 
                 <span className="section-subheading">
                   Experience
@@ -235,17 +242,17 @@ const Experience = () => {
 
                 {/* LINE */}
 
-                <div className="absolute left-0 right-0 top-0 h-[2px] bg-white/10">
+                <div className="lg:absolute left-0 right-0 top-0 h-[2px] bg-white/10 hidden lg:block">
 
                   <div
                     ref={progressRef}
                     className="
-                      absolute
-                      left-0
-                      top-0
-                      h-full
-                      w-full
-                      origin-left
+                      lg:absolute
+                      lg:left-0
+                      lg:top-0
+                      lg:h-full
+                      lg:w-full
+                      lg:origin-left
                       bg-dark-primary
                     "
                     style={{
@@ -261,10 +268,17 @@ const Experience = () => {
                   ref={trackRef}
                   className="
                     flex
-                    gap-16
-                    pl-[10vw]
-                    pr-[10vw]
-                    w-max
+                    flex-wrap
+                    flex-col
+                    gap-5
+                    lg:flex-nowrap
+                    lg:flex-row
+                    lg:gap-16
+                    lg:pl-[10vw]
+                    lg:pr-[10vw]
+                    section-container
+                    lg:w-max!
+                    lg:mb-0!
                   "
                 >
 
@@ -276,12 +290,12 @@ const Experience = () => {
                         className="
                           experience-card
                           relative
-                          w-[80vw]
-                          md:w-[650px]
+                          w-full
+                          md:w-full
                           lg:w-[700px]
                           xl:w-[900px]
                           2xl:w-[900px]
-                          pt-12
+                          lg:pt-12
                         "
                       >
 
@@ -302,6 +316,8 @@ const Experience = () => {
                             border-white/20
                             bg-[#212121]
                             z-10
+                            hidden
+                            lg:block
                           "
                         />
 
@@ -477,9 +493,10 @@ const Experience = () => {
               <div className="
                 section-container
                 mt-10
-                flex
+                lg:flex
                 justify-between
                 items-center
+                hidden
               ">
 
                 <span className="
