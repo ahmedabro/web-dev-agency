@@ -45,7 +45,7 @@ const ContactForm = () => {
                 }
 
                 return (
-                    <Form className='flex flex-wrap justify-between gap-5 py-10 px-10'>
+                    <Form className='flex flex-wrap justify-between gap-5 p-7 md:p-10'>
                         <div className='w-full'>
                             <label className='' htmlFor="">I'm interested in...</label>
                             <div className='flex flex-wrap gap-3 mt-3'>

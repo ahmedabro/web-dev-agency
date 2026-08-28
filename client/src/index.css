@@ -255,3 +255,13 @@ p, a, li, input, textarea {
   min-width: 0;
   padding: 60px 30px;
 }
+
+.navbar button#panel1-header {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiAccordion-root.MuiAccordion-rounded.MuiAccordion-gutters.css-1pug5wj {
+    box-shadow: none;
+}

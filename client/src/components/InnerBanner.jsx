@@ -18,10 +18,10 @@ const InnerBanner = (props) => {
 
   return (
     <div className='section-container w-full h-[550px] relative flex items-center bg-dark-secondary overflow-hidden isolate mb-20'>
-      <div className='w-3/5'>
+      <div className='w-full'>
 
         <motion.h1
-          className='space-grotesk-bold text-dark-primary text-7xl font-bold uppercase'
+          className='space-grotesk-bold text-dark-primary text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-8xl font-bold uppercase'
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, type: 'spring', stiffness: 100, damping: 10 }}
@@ -56,12 +56,13 @@ const InnerBanner = (props) => {
 
 
       </div>
-      <div className='w-2/5 self-end'>
-        <img loading='lazy' src={"https://res.cloudinary.com/dvmmkvu4o/image/upload/f_auto,q_auto/v1762855127/banner2-cropped_jnvi74.gif"} alt="" className='w-full' />
-      </div>
+      {/* <div className='w-2/5 self-end'>
+                    <img src={"https://res.cloudinary.com/dvmmkvu4o/image/upload/f_auto,q_auto/v1762855127/banner2-cropped_jnvi74.gif"} loading='lazy' alt="Web Development" className='w-full max-w-100 lg:max-w-180' />
+      </div> */}
 
 
-      <div className='absolute left-0 right-0 bottom-0 m-auto w-[500px] rounded-full -z-10 box-shaddow overflow-visible'></div>
+        <div className='absolute left-0 right-0 bottom-0 m-auto max-w-100 rounded-full -z-10 box-shaddow overflow-visible'></div>
+
 
 
     </div>
