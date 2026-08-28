@@ -18,6 +18,7 @@ const Experience = () => {
   const pointsRef = useRef([]);
   const cardsRef = useRef([]);
 
+
   useGSAP(
     () => {
       if (!experiences.length) return;
@@ -27,6 +28,7 @@ const Experience = () => {
       const progress = progressRef.current;
       const points = pointsRef.current.filter(Boolean);
       const cards = cardsRef.current.filter(Boolean);
+
 
       const mm = gsap.matchMedia()
 
@@ -49,10 +51,10 @@ const Experience = () => {
       // Initial card states
       // -----------------------------------------
 
-      const cards = gsap.utils.toArray(
-        ".experience-card",
-        section
-      );
+      // const cards = gsap.utils.toArray(
+      //   ".experience-card",
+      //   section
+      // );
 
       gsap.set(cards, {
         opacity: 0,
@@ -168,27 +170,37 @@ const Experience = () => {
       })
 
       mm.add("(max-width: 1023px)", () => {
+        console.log("🔥 EXPERIENCE MOBILE GSAP RUNNING");
+        console.log("cards:", cards);
+        console.log("scrollY:", window.scrollY);
       
-              cards.forEach(card => {
-                gsap.fromTo(card,
+              cards.forEach((card, index) => {
+
+                console.log(
+                  `Card ${index}`,
+                  card.getBoundingClientRect().top,
+                  card.getBoundingClientRect().bottom
+                );
+
+                gsap.set(card,
                   {
                     opacity: 0,
                     y: 100,
-                  },
-                  {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.7,
-                    // stagger: 0.15,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                      trigger: card,
-                      start: "top 80%",
-                       
-                      once: true,
-                    }
+                  })
+
+                gsap.to(card, {
+                  opacity: 1,
+                  y: 0,
+                  duration: 0.7,
+                  // stagger: 0.15,
+                  ease: "power2.out",
+                  scrollTrigger: {
+                    trigger: card,
+                    start: "top 80%",
+                    once: true,
                   }
-                )
+                }
+              )
               })
       
             })
@@ -211,7 +223,7 @@ const Experience = () => {
       ref={sectionRef}
       className="experience-section overflow-hidden bg-dark-background"
     >
-      <div className="h-full flex flex-col justify-center">
+      <div className="flex flex-col justify-center">
 
         {/* -------------------------------- */}
         {/* LOADING */}

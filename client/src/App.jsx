@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { BrowserRouter, Routes, Route } from "react-router";
 import Lenis from "lenis";
 import gsap from "gsap";
@@ -25,8 +25,10 @@ import AdminCreateNewBlog from "./components/AdminCreateNewBlog";
 gsap.registerPlugin(ScrollTrigger);
 
 const App = () => {
-
+  const lenisRef = useRef(null);
+  
   useEffect(() => {
+    
 
     const lenis = new Lenis({
       lerp: 0.04,
@@ -35,6 +37,8 @@ const App = () => {
       touchMultiplier: 1,
       infinite: false,
     });
+
+    lenisRef.current = lenis
 
     // Keep ScrollTrigger updated
     lenis.on("scroll", ScrollTrigger.update);
@@ -50,13 +54,15 @@ const App = () => {
     return () => {
       gsap.ticker.remove(update);
       lenis.destroy();
+      lenisRef.current = null
     };
+
 
   }, []);
 
   return (
     <BrowserRouter>
-      <ScrollToTop />
+      <ScrollToTop lenisRef={lenisRef} />
 
       <Routes>
         <Route path="/" element={<Layout />}>
