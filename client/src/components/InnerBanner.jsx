@@ -17,7 +17,7 @@ const InnerBanner = (props) => {
   console.log('pages', breadcrumbWithoutHomePage);
 
   return (
-    <div className='section-container w-full h-[550px] relative flex items-center bg-dark-secondary overflow-hidden isolate mb-20'>
+    <div className='section-container inner-banner w-full h-[550px] relative flex items-center bg-dark-secondary overflow-hidden isolate mb-20'>
       <div className='w-full'>
 
         <motion.h1
@@ -61,7 +61,7 @@ const InnerBanner = (props) => {
       </div> */}
 
 
-        <div className='absolute left-0 right-0 bottom-0 m-auto max-w-100 rounded-full -z-10 box-shaddow overflow-visible'></div>
+        <div className='absolute left-0 right-0 top-0 m-auto max-w-100 rounded-full -z-10 box-shaddow overflow-visible'></div>
 
 
 

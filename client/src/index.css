@@ -121,6 +121,10 @@ body {
   box-shadow: 0px 0px 800px 100px rgb(100 243 155 / 40%); /* Green glowing effect around the div */
 }
 
+.inner-banner .box-shaddow {
+  box-shadow:  0 0 800px 125px rgb(100 243 155 / 13%);
+}
+
 .section-container {
   @apply w-full px-4 mb-16 sm:px-6 sm:mb-20 lg:px-16 lg:mb-24 xl:px-32 xl:mb-32;
 }

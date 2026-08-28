@@ -7,214 +7,110 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(ScrollTrigger);
 
 const Experience = () => {
-  const { data, isLoading, isError, error } =
-    useGetExperiencesQuery();
-
+  const { data, isLoading, isError, error } = useGetExperiencesQuery();
   const experiences = data?.experiences || [];
 
   const sectionRef = useRef(null);
   const trackRef = useRef(null);
   const progressRef = useRef(null);
+  
+  // Reset refs on every render
   const pointsRef = useRef([]);
   const cardsRef = useRef([]);
-
+  pointsRef.current = [];
+  cardsRef.current = [];
 
   useGSAP(
     () => {
       if (!experiences.length) return;
 
-      const section = sectionRef.current;
-      const track = trackRef.current;
-      const progress = progressRef.current;
       const points = pointsRef.current.filter(Boolean);
       const cards = cardsRef.current.filter(Boolean);
 
-
-      const mm = gsap.matchMedia()
+      const mm = gsap.matchMedia();
 
       mm.add("(min-width: 1024px)", () => {
+        if (!sectionRef.current || !trackRef.current || !progressRef.current) return;
 
-        if (!section || !track || !progress) return;
+        const getScrollAmount = () => 
+          Math.max(trackRef.current.scrollWidth - window.innerWidth, 0);
 
-      // -----------------------------------------
-      // Calculate horizontal scroll distance
-      // -----------------------------------------
+        gsap.set(cards, { opacity: 0, x: 280 });
+        if (cards[0]) gsap.set(cards[0], { opacity: 1, x: 0 });
 
-      const getScrollAmount = () => {
-        return Math.max(
-          track.scrollWidth - window.innerWidth,
-          0
-        );
-      };
-
-      // -----------------------------------------
-      // Initial card states
-      // -----------------------------------------
-
-      // const cards = gsap.utils.toArray(
-      //   ".experience-card",
-      //   section
-      // );
-
-      gsap.set(cards, {
-        opacity: 0,
-        x: 280,
-      });
-
-      if (cards[0]) {
-        gsap.set(cards[0], {
-          opacity: 1,
-          x: 0,
-        });
-      }
-
-      // -----------------------------------------
-      // Main horizontal timeline
-      // -----------------------------------------
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-
-          start: "top -20%",
-
-          end: () => `+=${getScrollAmount()}`,
-
-          scrub: 2,
-
-          pin: true,
-
-          anticipatePin: 1,
-
-          invalidateOnRefresh: true,
-
-          refreshPriority: 0,
-
-          onUpdate: (self) => {
-            const progressValue = self.progress;
-
-            // -----------------------------------
-            // Progress line
-            // -----------------------------------
-
-            gsap.set(progress, {
-              scaleX: progressValue,
-            });
-
-            // -----------------------------------
-            // Active points
-            // -----------------------------------
-
-            points.forEach((point, index) => {
-              const pointProgress =
-                index / points.length;
-
-              const isActive =
-                progressValue > pointProgress;
-
-              gsap.to(point, {
-                scale: isActive ? 1.3 : 1,
-
-                backgroundColor: isActive
-                  ? "#37e062"
-                  : "#212121",
-
-                borderColor: isActive
-                  ? "#37e062"
-                  : "rgba(255,255,255,0.2)",
-
-                duration: 0.2,
-
-                overwrite: true,
-              });
-            });
-          },
-        },
-      });
-
-      // -----------------------------------------
-      // Horizontal movement
-      // -----------------------------------------
-
-      tl.to(track, {
-        x: () => -getScrollAmount(),
-        ease: "none",
-      });
-
-      // -----------------------------------------
-      // Card entrance animations
-      // -----------------------------------------
-
-      cards.forEach((card, index) => {
-        if (index === 0) return;
-
-        gsap.to(card, {
-          opacity: 1,
-          x: 0,
-
+        const tl = gsap.timeline({
           scrollTrigger: {
-            trigger: card,
-
-            containerAnimation: tl,
-
-            start: "left 80%",
-
-            end: "left 40%",
-
-            scrub: true,
-
+            trigger: sectionRef.current,
+            start: "top -20%",
+            end: () => `+=${getScrollAmount()}`,
+            scrub: 2,
+            pin: true,
+            anticipatePin: 1,
             invalidateOnRefresh: true,
+            onUpdate: (self) => {
+              if (progressRef.current) {
+                gsap.set(progressRef.current, { scaleX: self.progress });
+              }
+              points.forEach((point, index) => {
+                if (!point) return;
+                const isActive = self.progress > index / points.length;
+                gsap.to(point, {
+                  scale: isActive ? 1.3 : 1,
+                  backgroundColor: isActive ? "#37e062" : "#212121",
+                  borderColor: isActive ? "#37e062" : "rgba(255,255,255,0.2)",
+                  duration: 0.2,
+                  overwrite: true,
+                });
+              });
+            },
           },
         });
+
+        tl.to(trackRef.current, {
+          x: () => -getScrollAmount(),
+          ease: "none",
+        });
+
+        cards.forEach((card, index) => {
+          if (index === 0) return;
+          gsap.to(card, {
+            opacity: 1,
+            x: 0,
+            scrollTrigger: {
+              trigger: card,
+              containerAnimation: tl,
+              start: "left 80%",
+              end: "left 40%",
+              scrub: true,
+              invalidateOnRefresh: true,
+            },
+          });
+        });
       });
-      })
 
       mm.add("(max-width: 1023px)", () => {
-        console.log("🔥 EXPERIENCE MOBILE GSAP RUNNING");
-        console.log("cards:", cards);
-        console.log("scrollY:", window.scrollY);
-      
-              cards.forEach((card, index) => {
+        cards.forEach((card) => {
+          if (!card) return;
+          gsap.set(card, { opacity: 0, y: 100 });
+          gsap.to(card, {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 80%",
+              once: true,
+            },
+          });
+        });
+      });
 
-                console.log(
-                  `Card ${index}`,
-                  card.getBoundingClientRect().top,
-                  card.getBoundingClientRect().bottom
-                );
-
-                gsap.set(card,
-                  {
-                    opacity: 0,
-                    y: 100,
-                  })
-
-                gsap.to(card, {
-                  opacity: 1,
-                  y: 0,
-                  duration: 0.7,
-                  // stagger: 0.15,
-                  ease: "power2.out",
-                  scrollTrigger: {
-                    trigger: card,
-                    start: "top 80%",
-                    once: true,
-                  }
-                }
-              )
-              })
-      
-            })
-      
-
-      
-
+      return () => mm.revert();
     },
     {
       scope: sectionRef,
-
-      dependencies: [experiences.length],
-
-      revertOnUpdate: true,
+      dependencies: [experiences],
     }
   );
 
@@ -329,8 +225,8 @@ const Experience = () => {
                       <article
                         key={`${experience.company}-${index}`}
                         ref={(el) => {
-                  cardsRef.current[index] = el;
-                }}
+                          cardsRef.current[index] = el;
+                        }}
                         className="
                           experience-card
                           relative
@@ -420,14 +316,14 @@ const Experience = () => {
                             <span className="text-gray-500 text-sm">
                               {experience.isCurrent === false
                                 ? new Date(
-                                    experience.endDate
-                                  ).toLocaleDateString(
-                                    "en-US",
-                                    {
-                                      year: "numeric",
-                                      month: "short",
-                                    }
-                                  )
+                                  experience.endDate
+                                ).toLocaleDateString(
+                                  "en-US",
+                                  {
+                                    year: "numeric",
+                                    month: "short",
+                                  }
+                                )
                                 : "Present"}
                             </span>
 

@@ -9,175 +9,109 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Skills = ({ serviceType }) => {
   const { data, isLoading, isError, error } = useGetSkillsQuery();
-
   const skills = data?.technologies || [];
 
   const sectionRef = useRef(null);
   const cardsRef = useRef([]);
+  
+  // Reset refs before render
+  cardsRef.current = [];
 
   useGSAP(
     () => {
-
-      // Don't create ScrollTrigger until the data AND cards exist
       if (!skills.length) return;
-
       const cards = cardsRef.current.filter(Boolean);
-
-      // Make sure React has mounted every card
       if (cards.length !== skills.length) return;
 
-      const mm = gsap.matchMedia()
+      const mm = gsap.matchMedia();
 
       mm.add("(min-width: 1024px)", () => {
         const STACK_OFFSET = 30;
-
         const ACTIVE_BG = "#17251c";
         const INACTIVE_BG = "#212121";
-
         const ACTIVE_BORDER = "#37e062";
         const INACTIVE_BORDER = "rgba(255, 255, 255, 0.1)";
-
         const ACTIVE_SHADOW = "0 0 35px rgba(55, 224, 98, 0.18)";
         const INACTIVE_SHADOW = "0 0 0px rgba(255, 255, 255, 0)";
 
-        const getScale = (index) => {
-          return 0.90 + index * 0.05;
-        };
-
-        // --------------------------------------------------
-        // INITIAL CARD POSITIONS
-        // --------------------------------------------------
+        const getScale = (index) => 0.90 + index * 0.05;
 
         cards.forEach((card, index) => {
           if (index === 0) return;
+          gsap.set(card, { y: 450 + index * STACK_OFFSET, scale: 0.8 });
+        });
 
-          gsap.set(card, {
-            y: 450 + index * STACK_OFFSET,
-            scale: 0.8,
+        if (cards[0]) {
+          gsap.set(cards[0], {
+            y: 0,
+            scale: 1,
+            borderColor: ACTIVE_BORDER,
+            boxShadow: ACTIVE_SHADOW,
+            backgroundColor: ACTIVE_BG,
           });
-        });
-
-        // First card
-        gsap.set(cards[0], {
-          y: 0,
-          scale: 1,
-          borderColor: ACTIVE_BORDER,
-          boxShadow: ACTIVE_SHADOW,
-          backgroundColor: ACTIVE_BG,
-        });
-
-        // --------------------------------------------------
-        // TIMELINE
-        // --------------------------------------------------
+        }
 
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
-
             start: "top 10%",
-
             end: `+=${cards.length * 700}`,
-
             scrub: 1,
-
             pin: true,
-
             anticipatePin: 1,
-
             invalidateOnRefresh: true,
-
             refreshPriority: 10,
           },
         });
 
-        // --------------------------------------------------
-        // CARD ANIMATION
-        // --------------------------------------------------
-
         cards.forEach((card, index) => {
           if (index === 0) return;
+          tl.to(cards[index - 1], {
+            scale: getScale(index - 1),
+            borderColor: INACTIVE_BORDER,
+            boxShadow: INACTIVE_SHADOW,
+            backgroundColor: INACTIVE_BG,
+            duration: 1,
+            ease: "none",
+          }, "+=0.15");
 
-          // Previous card becomes inactive
-          tl.to(
-            cards[index - 1],
-            {
-              scale: getScale(index - 1),
-
-              borderColor: INACTIVE_BORDER,
-
-              boxShadow: INACTIVE_SHADOW,
-
-              backgroundColor: INACTIVE_BG,
-
-              duration: 1,
-
-              ease: "none",
-            },
-            "+=0.15"
-          );
-
-          // Current card comes into the stack
-          tl.to(
-            card,
-            {
-              y: index * STACK_OFFSET,
-
-              scale: getScale(index),
-
-              borderColor: ACTIVE_BORDER,
-
-              boxShadow: ACTIVE_SHADOW,
-
-              backgroundColor: ACTIVE_BG,
-
-              duration: 1,
-
-              ease: "none",
-            },
-            "<"
-          );
+          tl.to(card, {
+            y: index * STACK_OFFSET,
+            scale: getScale(index),
+            borderColor: ACTIVE_BORDER,
+            boxShadow: ACTIVE_SHADOW,
+            backgroundColor: ACTIVE_BG,
+            duration: 1,
+            ease: "none",
+          }, "<");
         });
-
-        // IMPORTANT:
-        // useGSAP automatically handles cleanup/revert.
-        // Don't manually kill the timeline here.
-
-      })
+      });
 
       mm.add("(max-width: 1023px)", () => {
-
-        cards.forEach(card => {
+        cards.forEach((card) => {
+          if (!card) return;
           gsap.fromTo(card,
-            {
-              opacity: 0,
-              y: 100,
-            },
+            { opacity: 0, y: 100 },
             {
               opacity: 1,
               y: 0,
               duration: 0.7,
-              // stagger: 0.15,
               ease: "power2.out",
               scrollTrigger: {
                 trigger: card,
                 start: "top 80%",
-                 
                 once: true,
-              }
+              },
             }
-          )
-        })
+          );
+        });
+      });
 
-      })
-
-
+      return () => mm.revert();
     },
     {
       scope: sectionRef,
-
-      dependencies: [skills.length],
-
-      revertOnUpdate: true,
+      dependencies: [skills],
     }
   );
 

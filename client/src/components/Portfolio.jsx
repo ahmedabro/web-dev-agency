@@ -76,7 +76,7 @@ const handleMouseLeave = (index) => {
         {
           location.pathname === '/portfolio' && (
             <div className="md:w-1/4 md:sticky md:top-[140px]">
-              <ul className="rounded-lg flex flex-wrap gap-4 md:block">
+              <ul className="rounded-lg flex flex-wrap gap-4 md:block mb-8 md:mb-0">
                 {tabs.map((tab) => (
                   <li
                     key={tab}
@@ -94,7 +94,7 @@ const handleMouseLeave = (index) => {
 
         {location.pathname === '/portfolio' ? (
           <div className="md:w-3/4">
-            <div className="grid sm:grid-cols-2 md:gap-8">
+            <div className="grid sm:grid-cols-2 gap-6 md:gap-8">
               {portfolioItems
                 .filter((item) => activeTab === 'All Works' || item.category === activeTab)
                 .map((item, index) => (

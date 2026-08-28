@@ -21,8 +21,9 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminBlogs from "./components/AdminBlogs";
 import AdminCreateNewBlog from "./components/AdminCreateNewBlog";
+import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const App = () => {
   const lenisRef = useRef(null);
