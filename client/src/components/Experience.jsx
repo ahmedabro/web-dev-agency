@@ -14,7 +14,7 @@ const Experience = () => {
   const trackRef = useRef(null);
   const progressRef = useRef(null);
   
-  // Reset refs on every render
+  // Clear array refs on every render to prevent stale DOM nodes
   const pointsRef = useRef([]);
   const cardsRef = useRef([]);
   pointsRef.current = [];
@@ -32,7 +32,7 @@ const Experience = () => {
       mm.add("(min-width: 1024px)", () => {
         if (!sectionRef.current || !trackRef.current || !progressRef.current) return;
 
-        const getScrollAmount = () => 
+        const getScrollAmount = () =>
           Math.max(trackRef.current.scrollWidth - window.innerWidth, 0);
 
         gsap.set(cards, { opacity: 0, x: 280 });
@@ -47,13 +47,17 @@ const Experience = () => {
             pin: true,
             anticipatePin: 1,
             invalidateOnRefresh: true,
+            refreshPriority: 0,
             onUpdate: (self) => {
               if (progressRef.current) {
                 gsap.set(progressRef.current, { scaleX: self.progress });
               }
+
               points.forEach((point, index) => {
                 if (!point) return;
-                const isActive = self.progress > index / points.length;
+                const pointProgress = index / points.length;
+                const isActive = self.progress > pointProgress;
+
                 gsap.to(point, {
                   scale: isActive ? 1.3 : 1,
                   backgroundColor: isActive ? "#37e062" : "#212121",
@@ -110,357 +114,147 @@ const Experience = () => {
     },
     {
       scope: sectionRef,
-      dependencies: [experiences],
+      dependencies: [experiences.length],
+      revertOnUpdate: true,
     }
   );
 
   return (
-    <section
-      ref={sectionRef}
-      className="experience-section overflow-hidden bg-dark-background"
-    >
-      <div className="flex flex-col justify-center">
+    /* STABLE OUTER WRAPPER: Protects React from GSAP's .pin-spacer insertion */
+    <div className="experience-outer-wrapper w-full">
+      <section
+        ref={sectionRef}
+        className="experience-section overflow-hidden bg-dark-background"
+      >
+        <div className="flex flex-col justify-center">
+          {isLoading && (
+            <div className="min-h-screen flex items-center justify-center">
+              <p className="text-gray-400">Loading experiences...</p>
+            </div>
+          )}
 
-        {/* -------------------------------- */}
-        {/* LOADING */}
-        {/* -------------------------------- */}
+          {isError && (
+            <div className="min-h-screen flex items-center justify-center">
+              <p className="text-red-400">
+                {error?.message || "Error fetching experiences"}
+              </p>
+            </div>
+          )}
 
-        {isLoading && (
-          <div className="min-h-screen flex items-center justify-center">
-            <p className="text-gray-400">
-              Loading experiences...
-            </p>
-          </div>
-        )}
-
-        {/* -------------------------------- */}
-        {/* ERROR */}
-        {/* -------------------------------- */}
-
-        {isError && (
-          <div className="min-h-screen flex items-center justify-center">
-            <p className="text-red-400">
-              {error?.message || "Error fetching experiences"}
-            </p>
-          </div>
-        )}
-
-        {/* -------------------------------- */}
-        {/* CONTENT */}
-        {/* -------------------------------- */}
-
-        {!isLoading &&
-          !isError &&
-          experiences.length > 0 && (
+          {!isLoading && !isError && experiences.length > 0 && (
             <>
-              {/* HEADER */}
-
               <div className="section-container lg:mb-40!">
-
-                <span className="section-subheading">
-                  Experience
-                </span>
-
-                <h2 className="section-mainheading">
-                  Where I've Worked
-                </h2>
-
+                <span className="section-subheading">Experience</span>
+                <h2 className="section-mainheading">Where I've Worked</h2>
                 <p className="text-gray-400 max-w-xl">
-                  A timeline of my professional journey,
-                  responsibilities, and the experiences that
-                  shaped how I build digital products.
+                  A timeline of my professional journey, responsibilities, and
+                  the experiences that shaped how I build digital products.
                 </p>
-
               </div>
 
-              {/* TIMELINE */}
-
               <div className="relative w-full">
-
-                {/* LINE */}
-
                 <div className="lg:absolute left-0 right-0 top-0 h-[2px] bg-white/10 hidden lg:block">
-
                   <div
                     ref={progressRef}
-                    className="
-                      lg:absolute
-                      lg:left-0
-                      lg:top-0
-                      lg:h-full
-                      lg:w-full
-                      lg:origin-left
-                      bg-dark-primary
-                    "
-                    style={{
-                      transform: "scaleX(0)",
-                    }}
+                    className="lg:absolute lg:left-0 lg:top-0 lg:h-full lg:w-full lg:origin-left bg-dark-primary"
+                    style={{ transform: "scaleX(0)" }}
                   />
-
                 </div>
-
-                {/* HORIZONTAL TRACK */}
 
                 <div
                   ref={trackRef}
-                  className="
-                    flex
-                    flex-wrap
-                    flex-col
-                    gap-5
-                    lg:flex-nowrap
-                    lg:flex-row
-                    lg:gap-16
-                    lg:pl-[10vw]
-                    lg:pr-[10vw]
-                    section-container
-                    lg:w-max!
-                    lg:mb-0!
-                  "
+                  className="flex flex-wrap flex-col gap-5 lg:flex-nowrap lg:flex-row lg:gap-16 lg:pl-[10vw] lg:pr-[10vw] section-container lg:w-max! lg:mb-0!"
                 >
-
-                  {experiences.map(
-                    (experience, index) => (
-
-                      <article
-                        key={`${experience.company}-${index}`}
+                  {experiences.map((experience, index) => (
+                    <article
+                      key={`${experience.company}-${index}`}
+                      ref={(el) => {
+                        if (el) cardsRef.current[index] = el;
+                      }}
+                      className="experience-card relative w-full md:w-full lg:w-[700px] xl:w-[900px] 2xl:w-[900px] lg:pt-12"
+                    >
+                      <div
                         ref={(el) => {
-                          cardsRef.current[index] = el;
+                          if (el) pointsRef.current[index] = el;
                         }}
-                        className="
-                          experience-card
-                          relative
-                          w-full
-                          md:w-full
-                          lg:w-[700px]
-                          xl:w-[900px]
-                          2xl:w-[900px]
-                          lg:pt-12
-                        "
-                      >
+                        className="absolute top-[-7px] left-0 w-4 h-4 rounded-full border-2 border-white/20 bg-[#212121] z-10 hidden lg:block"
+                      />
 
-                        {/* POINT */}
+                      <div className="rounded-3xl border border-white/10 bg-[#212121] p-7 md:p-9 min-h-[360px] relative overflow-hidden">
+                        <span className="absolute right-5 top-0 text-[100px] md:text-[140px] font-black text-white/[0.025] leading-none pointer-events-none">
+                          0{index + 1}
+                        </span>
 
-                        <div
-                          ref={(el) => {
-                            pointsRef.current[index] = el;
-                          }}
-                          className="
-                            absolute
-                            top-[-7px]
-                            left-0
-                            w-4
-                            h-4
-                            rounded-full
-                            border-2
-                            border-white/20
-                            bg-[#212121]
-                            z-10
-                            hidden
-                            lg:block
-                          "
-                        />
-
-                        {/* CARD */}
-
-                        <div
-                          className="
-                            rounded-3xl
-                            border
-                            border-white/10
-                            bg-[#212121]
-                            p-7
-                            md:p-9
-                            min-h-[360px]
-                            relative
-                            overflow-hidden
-                          "
-                        >
-
-                          {/* Background number */}
-
-                          <span
-                            className="
-                              absolute
-                              right-5
-                              top-0
-                              text-[100px]
-                              md:text-[140px]
-                              font-black
-                              text-white/[0.025]
-                              leading-none
-                              pointer-events-none
-                            "
-                          >
-                            0{index + 1}
+                        <div className="flex items-center gap-3 mb-6">
+                          <span className="text-dark-primary text-sm font-bold">
+                            {new Date(experience.startDate).toLocaleDateString(
+                              "en-US",
+                              { year: "numeric", month: "short" }
+                            )}
                           </span>
-
-                          {/* DATE */}
-
-                          <div className="flex items-center gap-3 mb-6">
-
-                            <span className="text-dark-primary text-sm font-bold">
-                              {new Date(
-                                experience.startDate
-                              ).toLocaleDateString(
-                                "en-US",
-                                {
+                          <span className="w-8 h-px bg-white/20" />
+                          <span className="text-gray-500 text-sm">
+                            {experience.isCurrent === false
+                              ? new Date(
+                                  experience.endDate
+                                ).toLocaleDateString("en-US", {
                                   year: "numeric",
                                   month: "short",
-                                }
-                              )}
-                            </span>
-
-                            <span className="w-8 h-px bg-white/20" />
-
-                            <span className="text-gray-500 text-sm">
-                              {experience.isCurrent === false
-                                ? new Date(
-                                  experience.endDate
-                                ).toLocaleDateString(
-                                  "en-US",
-                                  {
-                                    year: "numeric",
-                                    month: "short",
-                                  }
-                                )
-                                : "Present"}
-                            </span>
-
-                          </div>
-
-                          {/* ROLE */}
-
-                          <h3 className="
-                            text-2xl
-                            md:text-3xl
-                            font-bold
-                            text-white
-                            mb-2
-                          ">
-                            {experience.role}
-                          </h3>
-
-                          {/* COMPANY */}
-
-                          <div className="
-                            flex
-                            flex-wrap
-                            items-center
-                            gap-3
-                            mb-8
-                          ">
-
-                            <span className="text-dark-primary font-semibold">
-                              {experience.company}
-                            </span>
-
-                            <span className="
-                              w-1
-                              h-1
-                              rounded-full
-                              bg-gray-500
-                            " />
-
-                            <span className="text-gray-400 text-sm">
-                              {experience.type}
-                            </span>
-
-                            <span className="
-                              w-1
-                              h-1
-                              rounded-full
-                              bg-gray-500
-                            " />
-
-                            <span className="text-gray-400 text-sm">
-                              {experience.location}
-                            </span>
-
-                          </div>
-
-                          {/* RESPONSIBILITIES */}
-
-                          <ul className="space-y-3">
-
-                            {experience.responsibilities?.map(
-                              (
-                                responsibility,
-                                responsibilityIndex
-                              ) => (
-
-                                <li
-                                  key={responsibilityIndex}
-                                  className="
-                                    flex
-                                    gap-3
-                                    text-gray-400
-                                    leading-relaxed
-                                    text-base!
-                                  "
-                                >
-
-                                  <span className="
-                                    text-dark-primary
-                                  ">
-                                    →
-                                  </span>
-
-                                  <span>
-                                    {responsibility}
-                                  </span>
-
-                                </li>
-
-                              )
-                            )}
-
-                          </ul>
-
+                                })
+                              : "Present"}
+                          </span>
                         </div>
 
-                      </article>
+                        <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                          {experience.role}
+                        </h3>
 
-                    )
-                  )}
+                        <div className="flex flex-wrap items-center gap-3 mb-8">
+                          <span className="text-dark-primary font-semibold">
+                            {experience.company}
+                          </span>
+                          <span className="w-1 h-1 rounded-full bg-gray-500" />
+                          <span className="text-gray-400 text-sm">
+                            {experience.type}
+                          </span>
+                          <span className="w-1 h-1 rounded-full bg-gray-500" />
+                          <span className="text-gray-400 text-sm">
+                            {experience.location}
+                          </span>
+                        </div>
 
+                        <ul className="space-y-3">
+                          {experience.responsibilities?.map(
+                            (responsibility, responsibilityIndex) => (
+                              <li
+                                key={responsibilityIndex}
+                                className="flex gap-3 text-gray-400 leading-relaxed text-base!"
+                              >
+                                <span className="text-dark-primary">→</span>
+                                <span>{responsibility}</span>
+                              </li>
+                            )
+                          )}
+                        </ul>
+                      </div>
+                    </article>
+                  ))}
                 </div>
-
               </div>
 
-              {/* SCROLL HINT */}
-
-              <div className="
-                section-container
-                mt-10
-                lg:flex
-                justify-between
-                items-center
-                hidden
-              ">
-
-                <span className="
-                  text-xs
-                  uppercase
-                  tracking-[0.3em]
-                  text-gray-500
-                ">
+              <div className="section-container mt-10 lg:flex justify-between items-center hidden">
+                <span className="text-xs uppercase tracking-[0.3em] text-gray-500">
                   Scroll to explore
                 </span>
-
-                <span className="
-                  text-dark-primary
-                  text-sm
-                ">
+                <span className="text-dark-primary text-sm">
                   {experiences.length} Experiences
                 </span>
-
               </div>
             </>
           )}
-
-      </div>
-    </section>
+        </div>
+      </section>
+    </div>
   );
 };
 

@@ -12,14 +12,14 @@ const Skills = ({ serviceType }) => {
   const skills = data?.technologies || [];
 
   const sectionRef = useRef(null);
-  const cardsRef = useRef([]);
   
-  // Reset refs before render
+  const cardsRef = useRef([]);
   cardsRef.current = [];
 
   useGSAP(
     () => {
       if (!skills.length) return;
+
       const cards = cardsRef.current.filter(Boolean);
       if (cards.length !== skills.length) return;
 
@@ -38,7 +38,10 @@ const Skills = ({ serviceType }) => {
 
         cards.forEach((card, index) => {
           if (index === 0) return;
-          gsap.set(card, { y: 450 + index * STACK_OFFSET, scale: 0.8 });
+          gsap.set(card, {
+            y: 450 + index * STACK_OFFSET,
+            scale: 0.8,
+          });
         });
 
         if (cards[0]) {
@@ -66,31 +69,41 @@ const Skills = ({ serviceType }) => {
 
         cards.forEach((card, index) => {
           if (index === 0) return;
-          tl.to(cards[index - 1], {
-            scale: getScale(index - 1),
-            borderColor: INACTIVE_BORDER,
-            boxShadow: INACTIVE_SHADOW,
-            backgroundColor: INACTIVE_BG,
-            duration: 1,
-            ease: "none",
-          }, "+=0.15");
 
-          tl.to(card, {
-            y: index * STACK_OFFSET,
-            scale: getScale(index),
-            borderColor: ACTIVE_BORDER,
-            boxShadow: ACTIVE_SHADOW,
-            backgroundColor: ACTIVE_BG,
-            duration: 1,
-            ease: "none",
-          }, "<");
+          tl.to(
+            cards[index - 1],
+            {
+              scale: getScale(index - 1),
+              borderColor: INACTIVE_BORDER,
+              boxShadow: INACTIVE_SHADOW,
+              backgroundColor: INACTIVE_BG,
+              duration: 1,
+              ease: "none",
+            },
+            "+=0.15"
+          );
+
+          tl.to(
+            card,
+            {
+              y: index * STACK_OFFSET,
+              scale: getScale(index),
+              borderColor: ACTIVE_BORDER,
+              boxShadow: ACTIVE_SHADOW,
+              backgroundColor: ACTIVE_BG,
+              duration: 1,
+              ease: "none",
+            },
+            "<"
+          );
         });
       });
 
       mm.add("(max-width: 1023px)", () => {
         cards.forEach((card) => {
           if (!card) return;
-          gsap.fromTo(card,
+          gsap.fromTo(
+            card,
             { opacity: 0, y: 100 },
             {
               opacity: 1,
@@ -111,76 +124,59 @@ const Skills = ({ serviceType }) => {
     },
     {
       scope: sectionRef,
-      dependencies: [skills],
+      dependencies: [skills.length],
+      revertOnUpdate: true,
     }
   );
 
   return (
-    <section
-      ref={sectionRef}
-      className="skills-section min-h-screen h-auto"
-    >
-      <div className="section-container min-h-screen h-auto">
+    /* STABLE OUTER WRAPPER */
+    <div className="skills-outer-wrapper w-full">
+      <section
+        ref={sectionRef}
+        className="skills-section min-h-screen h-auto"
+      >
+        <div className="section-container min-h-screen h-auto">
+          {isLoading && (
+            <div className="min-h-screen flex items-center justify-center">
+              <p className="text-gray-400">Loading skills...</p>
+            </div>
+          )}
 
-        {/* LOADING */}
-        {isLoading && (
-          <div className="min-h-screen flex items-center justify-center">
-            <p className="text-gray-400">
-              Loading skills...
-            </p>
-          </div>
-        )}
-
-        {/* ERROR */}
-        {isError && (
-          <div className="min-h-screen flex items-center justify-center">
-            <p className="text-red-400">
-              Error: {error?.message || "Failed to load skills"}
-            </p>
-          </div>
-        )}
-
-        {/* CONTENT */}
-        {!isLoading && !isError && skills.length > 0 && (
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-
-            {/* LEFT */}
-            <div className="h-fit">
-
-              <span className="section-subheading">
-                Tech Stack
-              </span>
-
-              <h2 className="section-mainheading">
-                Tools Behind the Build
-              </h2>
-
-              <p className="text-gray-400 max-w-lg">
-                I use modern technologies and proven tools to build
-                fast, scalable, and maintainable web applications.
+          {isError && (
+            <div className="min-h-screen flex items-center justify-center">
+              <p className="text-red-400">
+                Error: {error?.message || "Failed to load skills"}
               </p>
-
             </div>
+          )}
 
-            {/* RIGHT */}
-            <div className="skills-cards relative lg:min-h-[500px] flex flex-col gap-5 lg:block">
-          
-              {skills.map((card, index) => (
-                <SkillCard
-                  key={card.category}
-                  cardsRef={cardsRef}
-                  card={card}
-                  cardIndex={index}
-                />
-              ))}
+          {!isLoading && !isError && skills.length > 0 && (
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              <div className="h-fit">
+                <span className="section-subheading">Tech Stack</span>
+                <h2 className="section-mainheading">Tools Behind the Build</h2>
+                <p className="text-gray-400 max-w-lg">
+                  I use modern technologies and proven tools to build fast,
+                  scalable, and maintainable web applications.
+                </p>
+              </div>
 
+              <div className="skills-cards relative lg:min-h-[500px] flex flex-col gap-5 lg:block">
+                {skills.map((card, index) => (
+                  <SkillCard
+                    key={card.category}
+                    cardsRef={cardsRef}
+                    card={card}
+                    cardIndex={index}
+                  />
+                ))}
+              </div>
             </div>
-
-          </div>
-        )}
-
-      </div>
-    </section>
+          )}
+        </div>
+      </section>
+    </div>
   );
 };
 
