@@ -5,25 +5,25 @@ const items = [
   "Mobile Applications",
   "Custom Software",
   "Landing Pages",
-  "Dasboards",
+  "Dashboards",
   "Ecommerce",
 ];
 
 const Strip = () => {
 
   return (
-    <section className="px-0! overflow-hidden border-y-[0.5px] border-dark-primary py-7">
+    <section className="px-0! overflow-hidden border-y border-white/20 py-7">
       <Marquee speed={40} gradient={false} autoFill={true}>
         {items.map((item, index) => (
           <div
             key={index}
-            className="flex items-center gap-10"
+            className="flex items-center gap-15"
           >
-            <span className="text-sm font-bold tracking-widest text-gray-400 uppercase">
+            <span className="text-base font-bold tracking-widest text-gray-400 uppercase">
               {item}
             </span>
 
-            <span className="text-dark-primary text-lg mr-10">✦</span>
+            <span className="text-dark-primary text-2xl mr-15">✦</span>
           </div>
         ))}
       </Marquee>

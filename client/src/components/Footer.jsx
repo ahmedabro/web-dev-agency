@@ -1,82 +1,246 @@
-import React from 'react'
+import React from "react";
+import { motion } from "framer-motion";
 import { FaFacebookF } from "react-icons/fa";
 import { FaXTwitter, FaLinkedinIn, FaGithub, FaInstagram } from "react-icons/fa6";
+import { MdEmail, MdPhoneInTalk } from "react-icons/md";
 import { LuArrowUpRight } from "react-icons/lu";
-import { Link } from 'react-router';
-import useNavLinks from '../hooks/useNavLinks';
-import { IoIosSend } from "react-icons/io";
-import axios from 'axios';
-import { useState } from 'react';
+import useNavLinks from "../hooks/useNavLinks";
+import { Link } from "react-router";
 
 const Footer = () => {
-  const navLinks = useNavLinks();
-  const quickLinks = navLinks.filter(link => !link.subLinks);
-  const services = navLinks.find(link => link.name === 'Services')?.subLinks || [];
+  const navLinks = useNavLinks()
 
-  const [emailInput, setEmailInput] = useState('');
-
-  const handleSubscribe = async (e) => {
-    e.preventDefault();
-    // Handle subscription logic here
-    try {
-      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/subscribers/subscribe`, { email: emailInput });
-      console.log(response.data);
-      alert(response.data.message);
-      setEmailInput('');
-    } catch (error) {
-      console.error('Error subscribing:', error);
-    }
-  }
+  const socialLinks = [
+    {
+      name: "GitHub",
+      href: `${import.meta.env.VITE_GITHUB_URL}`,
+      icon: FaGithub,
+    },
+    {
+      name: "LinkedIn",
+      href: `${import.meta.env.VITE_LINKEDIN_URL}`,
+      icon: FaLinkedinIn,
+    },
+    {
+      name: "Email",
+      href: `mailto:${import.meta.env.VITE_EMAIL_ADDRESS}`,
+      icon: MdEmail,
+    },
+    {
+        name: "Phone",
+        href: `tel:${import.meta.env.VITE_PHONE_NUMBER}`,
+        icon: MdPhoneInTalk,
+    },
+  ];
 
   return (
-    <section className=''>
-      <div className='bg-dark-secondary section-container !mb-0'>
-      <div className='flex flex-col sm:flex-row sm:flex-wrap lg:flex-nowrap justify-center gap-10 py-15'>
-        <div className='sm:w-[calc(50%-2.5rem)] lg:w-[32%]'>
-        <h1 className='text-2xl font-bold mb-4'>About Me</h1>
-        <p className='text-gray-400 mb-10 xl:pr-8'>With a passion for creating stunning and functional websites, I am a dedicated web developer.</p>
-        <div className='flex items-center gap-4 pb-8'>
-                      <a href={import.meta.env.VITE_FACEBOOK_URL} target='_blank' className='flex justify-center items-center w-8 h-8 bg-dark-surface rounded-full hover:bg-dark-primary hover:text-dark-background hover:scale-125'><FaFacebookF /></a>
-                      <a href={import.meta.env.VITE_INSTAGRAM_URL} target='_blank' className='flex justify-center items-center w-8 h-8 bg-dark-surface rounded-full hover:bg-dark-primary hover:text-dark-background hover:scale-125'><FaInstagram /></a>
-                      <a href={import.meta.env.VITE_LINKEDIN_URL} target='_blank' className='flex justify-center items-center w-8 h-8 bg-dark-surface rounded-full hover:bg-dark-primary hover:text-dark-background hover:scale-125'><FaLinkedinIn /></a>
-                      <a href={import.meta.env.VITE_GITHUB_URL} target='_blank' className='flex justify-center items-center w-8 h-8 bg-dark-surface rounded-full hover:bg-dark-primary hover:text-dark-background hover:scale-125'><FaGithub /></a>
-                    </div>
+    <footer className="relative overflow-hidden bg-[#111111] text-white">
+      {/* Background glow */}
+      <div className="pointer-events-none absolute left-1/2 top-0 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-[#37e062]/5 blur-[120px]" />
+
+      <div className="section-container relative">
+        {/* ================= CTA ================= */}
+        <section className="relative flex min-h-[650px] flex-col items-center justify-center overflow-hidden border-b border-white/10 py-32 text-center">
+          {/* Giant background A.F */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none"
+          >
+            <span className="whitespace-nowrap text-[180px] font-black leading-none tracking-[-0.08em] text-white/[0.025] sm:text-[260px] md:text-[360px] lg:text-[460px]">
+              A.F
+            </span>
+          </motion.div>
+
+          {/* Small label */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative mb-6 text-sm font-medium uppercase tracking-[0.3em] text-[#37e062]"
+          >
+            Have an idea?
+          </motion.p>
+
+          {/* Main heading */}
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="relative max-w-5xl text-5xl font-bold leading-[0.95] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl"
+          >
+            Let&apos;s build
+            <br />
+            <span className="text-[#37e062]">something great.</span>
+          </motion.h2>
+
+          {/* Description */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.25 }}
+            className="relative mt-8 max-w-xl text-base leading-7 text-white/55 md:text-lg"
+          >
+            Have a project, an idea, or a problem that needs solving?
+            Let&apos;s turn it into a fast, scalable web experience.
+          </motion.p>
+
+          {/* CTA */}
+          <motion.a
+            href="#contact"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.35 }}
+            whileHover="hover"
+            whileTap={{ scale: 0.97 }}
+            className="group relative mt-10 inline-flex items-center gap-3 overflow-hidden rounded-full bg-[#37e062] px-7 py-4 font-semibold text-[#111111]"
+          >
+            <span className="relative z-10">Start a Project</span>
+
+            <motion.span
+              variants={{
+                hover: {
+                  x: 4,
+                  y: -4,
+                },
+              }}
+              transition={{ type: "spring", stiffness: 400, damping: 20 }}
+              className="relative z-10"
+            >
+              <LuArrowUpRight size={20} />
+            </motion.span>
+
+            {/* Hover fill */}
+            <motion.span
+              variants={{
+                hover: {
+                  scale: 1,
+                },
+              }}
+              initial={{ scale: 0 }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              className="absolute inset-0 origin-bottom-left rounded-full bg-white"
+            />
+          </motion.a>
+        </section>
+
+        {/* ================= MAIN FOOTER ================= */}
+        <div className="grid gap-16 py-20 md:grid-cols-[1.5fr_1fr_1fr] lg:py-24">
+          {/* Brand */}
+          <div>
+            <motion.div
+              whileHover={{ x: 3 }}
+              transition={{ type: "spring", stiffness: 400, damping: 25 }}
+              className="inline-block"
+            >
+              <Link to="/"><img src="/images/logo.png" alt="A.F Dev" className="w-40" /></Link>
+            </motion.div>
+
+            <p className="mt-5 max-w-xs text-sm leading-6 text-white/45">
+              From frontend to full-stack, I build high-quality digital experiences designed for performance, usability, and growth.
+            </p>
+          </div>
+
+          {/* Navigation */}
+          <div>
+            <p className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-white/35">
+              Navigation
+            </p>
+
+            <nav className="flex flex-col items-start gap-3">
+              {navLinks.map((link) => (
+                <motion.div
+                  key={link.name}
+                  whileHover={{ x: 6 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 25,
+                  }}
+                  
+                >
+                  <Link to={link.path} className="group flex items-center gap-2 text-sm text-white/65 transition-colors hover:text-white">
+                  <span>{link.name}</span>
+
+                  <LuArrowUpRight
+                    size={14}
+                    className="opacity-0 transition-opacity group-hover:opacity-100"
+                  />
+                  </Link>
+                </motion.div>
+              ))}
+            </nav>
+          </div>
+
+          {/* Social */}
+          <div>
+            <p className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-white/35">
+              Connect
+            </p>
+
+            <div className="flex flex-col gap-3">
+              {socialLinks.map((social) => {
+                const Icon = social.icon;
+
+                return (
+                  <motion.a
+                    key={social.name}
+                    href={social.href}
+                    target={
+                      social.name === "Email" ? undefined : "_blank"
+                    }
+                    rel={
+                      social.name === "Email"
+                        ? undefined
+                        : "noopener noreferrer"
+                    }
+                    whileHover={{ x: 6 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 400,
+                      damping: 25,
+                    }}
+                    className="group flex items-center gap-3 text-sm text-white/65 transition-colors hover:text-white"
+                  >
+                    <Icon
+                      size={17}
+                      className="transition-colors group-hover:text-[#37e062]"
+                    />
+
+                    <span>{social.name}</span>
+                  </motion.a>
+                );
+              })}
+            </div>
+          </div>
         </div>
-        <div className='sm:w-[calc(50%-2.5rem)] lg:w-[18%]'>
-          <h1 className='text-2xl font-bold mb-4'>Quick Links</h1>
-          <ul className='text-gray-400 flex flex-col gap-3'>
-            {
-              quickLinks.map(link => (
-                <li key={link.name}><Link className='hover:text-dark-primary transition duration-300 ease-in-out cursor-pointer' to={link.path}>{link.name}</Link></li>
-              ))
-            }
-          </ul>
-        </div>
-        <div className='sm:w-[calc(50%-2.5rem)] lg:w-[18%]'>
-          <h1 className='text-2xl font-bold mb-4'>Services</h1>
-          <ul className='text-gray-400 flex flex-col gap-3'>
-            {
-              services.map(link => (
-                <li key={link.name}><Link className='hover:text-dark-primary transition duration-300 ease-in-out cursor-pointer' to={`services/${link.path}`}>{link.name}</Link></li>
-              ))
-            }
-          </ul>
-        </div>
-        <div className='sm:w-[calc(50%-2.5rem)] lg:w-[32%] xl:pl-8'>
-          <h1 className='text-2xl font-bold mb-4'>Newsletter</h1>
-          <p className='text-gray-400 mb-8'>Get occasional tips, project updates, and web dev insights — straight to your inbox.</p>
-          <form className='relative flex items-center justify-end'>
-            <input value={emailInput} onChange={(e) => setEmailInput(e.target.value)} type="email" placeholder='Enter your email' className='py-4 pl-2 pr-12 border-b-2 border-gray-600 w-full' />
-            <button onClick={handleSubscribe} title="Subscribe" aria-label="Subscribe to newsletter" className='absolute right-2 w-10 h-10 flex justify-center items-center bg-dark-primary text-dark-background rounded-full cursor-pointer'><IoIosSend /></button>
-          </form>
+
+        {/* ================= BOTTOM BAR ================= */}
+        <div className="flex flex-col gap-5 border-t border-white/10 py-7 text-xs text-white/35 sm:flex-row sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} A.F Dev. All rights reserved.</p>
+
+          <div className="flex items-center gap-6">
+            {/* <span>Built with React</span> */}
+
+            <motion.a
+              href="#home"
+              whileHover={{ y: -3 }}
+              className="flex items-center gap-2 transition-colors hover:text-[#37e062]"
+            >
+              Back to top
+              <LuArrowUpRight size={14} />
+            </motion.a>
+          </div>
         </div>
       </div>
-    </div>
-    <div className='section-container !mb-0 bg-dark-surface text-gray-400 text-center py-4'>
-      <p>© 2025 Ahmed Farooq. All rights reserved.</p>
-    </div>
-      </section>
-  )
-}
+    </footer>
+  );
+};
 
-export default Footer
+export default Footer;

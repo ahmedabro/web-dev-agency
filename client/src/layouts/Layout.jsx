@@ -14,7 +14,9 @@ const Layout = () => {
             {/* The main content will be rendered here */}
             <Outlet />
         </main>
-        <LiveChat />
+        <div className='hidden lg:block'>
+          <LiveChat />
+        </div>
         <Footer />
     </div>
   )

@@ -18,10 +18,10 @@ const InnerBanner = (props) => {
 
   return (
     <div className='section-container inner-banner w-full h-[550px] relative flex items-center bg-dark-secondary overflow-hidden isolate mb-20'>
-      <div className='w-full'>
+      <div className='w-full lg:w-1/2'>
 
         <motion.h1
-          className='space-grotesk-bold text-dark-primary text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-8xl font-bold uppercase'
+          className='space-grotesk-bold text-dark-primary text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-8xl font-bold uppercase'
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, type: 'spring', stiffness: 100, damping: 10 }}

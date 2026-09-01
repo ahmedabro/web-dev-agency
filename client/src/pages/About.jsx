@@ -1,7 +1,6 @@
 import React from 'react'
 import InnerBanner from '../components/InnerBanner'
 import AboutMe from '../components/AboutMe'
-import CTASection from '../components/CTASection'
 import Skills from '../components/Skills'
 import Experience from '../components/Experience'
 import Testimonials from '../components/Testimonials'
@@ -37,7 +36,6 @@ const About = () => {
       <Skills />
       <Experience />
       {/* <Testimonials /> */}
-      <CTASection />
     </div>
   )
 }

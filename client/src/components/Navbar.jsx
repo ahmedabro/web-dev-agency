@@ -28,17 +28,21 @@ const Navbar = () => {
 
 
   return (
-    <div
-      className={`navbar fixed z-50 h-20 flex items-center justify-between section-container ${scrolled ? 'bg-dark-background/60 backdrop-blur-2xl' : 'bg-transparent'
+    <nav
+      className={`navbar absolute z-50 h-20 flex items-center justify-between section-container transition-all duration-500 ease-in-out ${scrolled ? 'fixed bg-dark-background/60 backdrop-blur-2xl scale-90 rounded-full' : 'bg-transparent'
         }`}
     >
-      <Link to="/" className="!text-2xl !md:text-3xl font-bold text-white md:w-1/4">
+      {/* <Link to="/" className="!text-2xl !md:text-3xl font-bold text-white md:w-1/4">
         <span className="text-dark-primary text-2xl">&lt;</span>
         A.F Dev
         <span className="text-dark-primary text-2xl">/&gt;</span>
+      </Link> */}
+
+      <Link to="/" className='lg:w-1/4'>
+        <img src="/images/logo.png" alt="A.F Dev" className='w-35' />
       </Link>
 
-      <motion.div className='h-auto! hidden md:block md:w-2/4'>
+      <motion.div className='h-auto! hidden lg:block lg:w-2/4'>
         <ul className="flex items-center justify-center gap-10">
 
           {navLinks.slice(0, navLinks.length - 1).map((link) => {
@@ -233,7 +237,7 @@ const Navbar = () => {
         </ul>
       </motion.div>
 
-      <motion.div className="hidden md:flex justify-end md:w-1/4">
+      <motion.div className="hidden lg:flex justify-end lg:w-1/4">
         <NavLink to="/contact" className='theme-button-green !w-auto !h-auto px-8 py-3 sm:px-10 md:px-12'>Contact</NavLink>
       </motion.div>
 
@@ -246,7 +250,7 @@ const Navbar = () => {
             : { height: "3rem", borderRadius: "2rem", top: "50%", translateY: "-50%" }
         }
         transition={{ duration: 0.4, ease: "easeInOut" }}
-        className="absolute right-4 sm:right-6 lg:right-16 xl:right-32 z-10 w-37 sm:w-45 lg:w-50 xl:w-55 overflow-hidden bg-white block md:hidden"
+        className="absolute right-4 sm:right-6 lg:right-16 xl:right-32 z-10 w-37 sm:w-45 lg:w-50 xl:w-55 overflow-hidden bg-white block lg:hidden"
       >
         {/* Toggle button */}
         <button
@@ -290,7 +294,7 @@ const Navbar = () => {
                           id="panel1-header"
                           className='!text-xs !xl:text-base font-medium'
                         >
-                          {link.name}
+                          <Link to={link.path}>{link.name}</Link>
                         </AccordionSummary>
                         <ul className="bg-gray-200 px-2 lg:py-2">
                           {link.subLinks.map((subLink) => (
@@ -316,7 +320,7 @@ const Navbar = () => {
           )}
         </AnimatePresence>
       </motion.div>
-    </div>
+    </nav>
   );
 };
 

@@ -6,7 +6,6 @@ import Portfolio from '../components/Portfolio'
 import Skills from '../components/Skills'
 import Experience from '../components/Experience'
 import Testimonials from '../components/Testimonials'
-import CTASection from '../components/CTASection'
 import Blogs from '../components/Blogs'
 import Stats from '../components/Stats'
 import Strip from '../components/Marquee'
@@ -24,7 +23,7 @@ const Home = () => {
       <Portfolio />
       {/* <Testimonials /> */}
       {/* <Blogs /> */}
-      <CTASection />
+      {/* <CTASection /> */}
       <Strip />
     </div>
   )

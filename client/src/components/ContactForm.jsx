@@ -51,36 +51,36 @@ const ContactForm = () => {
                             <div className='flex flex-wrap gap-3 mt-3'>
                                 {
                                     services && services.map((service, index) => (
-                                        <span key={service.id} onClick={() => handleServiceClick(service.title)} className={`cursor-pointer text-sm px-6 py-3 rounded-md inline-block border ${values.interestedIn === service.title ? 'bg-dark-primary text-dark-surface font-bold' : 'bg-dark-secondary text-gray-500'} transition duration-300 ease-in-out`}>{service.title}</span>
+                                        <span key={service.id} onClick={() => handleServiceClick(service.title)} className={`cursor-pointer text-sm px-6 py-3 rounded-md inline-block border border-white/20 ${values.interestedIn === service.title ? 'bg-dark-primary text-dark-surface font-bold' : 'bg-dark-secondary text-gray-500'} transition duration-300 ease-in-out`}>{service.title}</span>
                                     ))
                                 }
-                                <span onClick={() => handleServiceClick("other")} className={`cursor-pointer text-sm px-6 py-3 rounded-md inline-block border ${values.interestedIn === "other" ? 'bg-dark-primary text-dark-surface font-bold' : 'bg-dark-secondary text-gray-500'} transition duration-300 ease-in-out`}>Other</span>
+                                <span onClick={() => handleServiceClick("other")} className={`cursor-pointer text-sm px-6 py-3 rounded-md inline-block border border-white/20 ${values.interestedIn === "other" ? 'bg-dark-primary text-dark-surface font-bold' : 'bg-dark-secondary text-gray-500'} transition duration-300 ease-in-out`}>Other</span>
                             </div>
                         </div>
                         <div className='w-[calc(50%-10px)]'>
                             <label className='' htmlFor="name">Name <span className='text-dark-primary'>*</span></label>
-                            <Field name='name' id='name' type="text" placeholder='Your full name...' className={`${errors.name && touched.name ? 'border-gray-500 focus:border-red-500' : 'border-gray-500 focus:border-dark-primary'}`} />
+                            <Field name='name' id='name' type="text" placeholder='Your full name...' className={`${errors.name && touched.name ? 'border-white/20 focus:border-red-500' : 'border-white/20 focus:border-dark-primary'}`} />
                             {errors.name && touched.name ? (<div className='text-red-500 text-sm mt-1'>{errors.name}</div>) : null}
                         </div>
                         <div className='w-[calc(50%-10px)]'>
                             <label className='' htmlFor="email">Email <span className='text-dark-primary'>*</span></label>
-                            <Field name='email' id='email' type="email" placeholder='Your email address...' className={`${errors.email && touched.email ? 'border-gray-500 focus:border-red-500' : 'border-gray-500 focus:border-dark-primary'}`} />
+                            <Field name='email' id='email' type="email" placeholder='Your email address...' className={`${errors.email && touched.email ? 'border-white/20 focus:border-red-500' : 'border-white/20 focus:border-dark-primary'}`} />
                             {errors.email && touched.email ? (<div className='text-red-500 text-sm mt-1'>{errors.email}</div>) : null}
                         </div>
                         <div className='w-[calc(50%-10px)]'>
                             <label className='' htmlFor="company">Company</label>
-                            <Field name='company' id='company' type="text" placeholder='Your company name...' className={`${errors.company && touched.company ? 'border-gray-500 focus:border-red-500' : 'border-gray-500 focus:border-dark-primary'}`} />
+                            <Field name='company' id='company' type="text" placeholder='Your company name...' className={`${errors.company && touched.company ? 'border-white/20 focus:border-red-500' : 'border-white/20 focus:border-dark-primary'}`} />
                             {errors.company && touched.company ? (<div className='text-red-500 text-sm mt-1'>{errors.company}</div>) : null}
                         </div>
                         <div className='w-[calc(50%-10px)]'>
                             <label className='' htmlFor="budget">Budget</label>
-                            <Field name='budget' id='budget' type="number" inputMode='numeric' min={0} step={5} placeholder='Your budget in USD...' className={`${errors.budget && touched.budget ? 'border-gray-500 focus:border-red-500' : 'border-gray-500 focus:border-dark-primary'}`} />
+                            <Field name='budget' id='budget' type="number" inputMode='numeric' min={0} step={5} placeholder='Your budget in USD...' className={`${errors.budget && touched.budget ? 'border-white/20 focus:border-red-500' : 'border-white/20 focus:border-dark-primary'}`} />
                             {errors.budget && touched.budget ? (<div className='text-red-500 text-sm mt-1'>{errors.budget}</div>) : null}
                         </div>
 
                         <div className='w-full flex flex-col'>
                             <label className='' htmlFor="country">Country <span className='text-dark-primary'>*</span></label>
-                            <Field as='select' name='country' id='country' className={`${errors.country && touched.country ? 'border-gray-500 focus:border-red-500' : 'border-gray-500 focus:border-dark-primary'}`}>
+                            <Field as='select' name='country' id='country' className={`${errors.country && touched.country ? 'border-white/20 focus:border-red-500' : 'border-white/20 focus:border-dark-primary'}`}>
                                 <option value="" label="Select your country" />
                                 {options.map((country) => (
                                     <option key={country.value} value={country.value} label={country.label} />
@@ -91,7 +91,7 @@ const ContactForm = () => {
 
                         <div className='w-full'>
                             <label className='' htmlFor="message">Your Message <span className='text-dark-primary'>*</span></label>
-                            <Field as='textarea' name='message' id='message' placeholder='Enter your message here...' rows="5" className={`${errors.message && touched.message ? 'border-gray-500 focus:border-red-500' : 'border-gray-500 focus:border-dark-primary'}`} />
+                            <Field as='textarea' name='message' id='message' placeholder='Enter your message here...' rows="5" className={`${errors.message && touched.message ? 'border-white/20 focus:border-red-500' : 'border-white/20 focus:border-dark-primary'}`} />
                             {errors.message && touched.message ? (<div className='text-red-500 text-sm mt-1'>{errors.message}</div>) : null}
                         </div>
                         <button type='submit' className='group mt-4 theme-button !h-fit !w-fit py-4 px-10'>Send Message <IoIosSend className='text-2xl group-hover:rotate-45 transition-rotate duration-300 ease-in-out' /></button>

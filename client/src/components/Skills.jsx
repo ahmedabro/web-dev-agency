@@ -37,22 +37,22 @@ const Skills = ({ serviceType }) => {
         const getScale = (index) => 0.90 + index * 0.05;
 
         cards.forEach((card, index) => {
-          if (index === 0) return;
+          // if (index === 0) return;
           gsap.set(card, {
             y: 450 + index * STACK_OFFSET,
             scale: 0.8,
           });
         });
 
-        if (cards[0]) {
-          gsap.set(cards[0], {
-            y: 0,
-            scale: 1,
-            borderColor: ACTIVE_BORDER,
-            boxShadow: ACTIVE_SHADOW,
-            backgroundColor: ACTIVE_BG,
-          });
-        }
+        // if (cards[0]) {
+        //   gsap.set(cards[0], {
+        //     y: 0,
+        //     scale: 1,
+        //     borderColor: ACTIVE_BORDER,
+        //     boxShadow: ACTIVE_SHADOW,
+        //     backgroundColor: ACTIVE_BG,
+        //   });
+        // }
 
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -68,7 +68,7 @@ const Skills = ({ serviceType }) => {
         });
 
         cards.forEach((card, index) => {
-          if (index === 0) return;
+          // if (index === 0) return;
 
           tl.to(
             cards[index - 1],
