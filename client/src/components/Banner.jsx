@@ -56,7 +56,7 @@ font-light
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 1.2, type: 'spring', stiffness: 200, damping: 5 }}
                 >
-                  <NavLink to="contact" className='theme-button !w-auto !h-auto px-8 py-4 sm:px-10 md:px-12'>View My Work</NavLink>
+                  <NavLink to="/portfolio" className='theme-button !w-auto !h-auto px-8 py-4 sm:px-10 md:px-12'>View My Work</NavLink>
                 </motion.div>
               </div>
             </div>

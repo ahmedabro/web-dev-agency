@@ -139,7 +139,7 @@ const Footer = () => {
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
               className="inline-block"
             >
-              <Link to="/"><img src="/images/logo.png" alt="A.F Dev" className="w-40" /></Link>
+              <Link to="/"><img src="/images/logo.png" alt="A.F Dev" className="w-30 lg:w-35" /></Link>
             </motion.div>
 
             <p className="mt-5 max-w-xs text-sm leading-6 text-white/45">

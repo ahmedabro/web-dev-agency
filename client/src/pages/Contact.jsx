@@ -5,7 +5,7 @@ import ContactComponent from '../components/Contact'
 const Contact = () => {
   return (
     <div>
-      <InnerBanner title="Contact Us" />
+      <InnerBanner title="Contact Me" />
       <ContactComponent />
     </div>
   )

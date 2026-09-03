@@ -4,15 +4,17 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import SkillCard from "./SkillCard";
+import Loader from "./Loader";
+import ErrorState from "./ErrorState";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Skills = ({ serviceType }) => {
-  const { data, isLoading, isError, error } = useGetSkillsQuery();
+  const { data, isLoading, isError, error, refetch } = useGetSkillsQuery();
   const skills = data?.technologies || [];
 
   const sectionRef = useRef(null);
-  
+
   const cardsRef = useRef([]);
   cardsRef.current = [];
 
@@ -137,43 +139,38 @@ const Skills = ({ serviceType }) => {
         className="skills-section min-h-screen h-auto"
       >
         <div className="section-container min-h-screen h-auto">
-          {isLoading && (
-            <div className="min-h-screen flex items-center justify-center">
-              <p className="text-gray-400">Loading skills...</p>
-            </div>
-          )}
-
-          {isError && (
-            <div className="min-h-screen flex items-center justify-center">
-              <p className="text-red-400">
-                Error: {error?.message || "Failed to load skills"}
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="h-fit">
+              <span className="section-subheading">Tech Stack</span>
+              <h2 className="section-mainheading w-full! mb-4">Tools Behind the Build</h2>
+              <p className="text-gray-400 max-w-lg">
+                I use modern technologies and proven tools to build fast,
+                scalable, and maintainable web applications.
               </p>
             </div>
-          )}
 
-          {!isLoading && !isError && skills.length > 0 && (
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div className="h-fit">
-                <span className="section-subheading">Tech Stack</span>
-                <h2 className="section-mainheading">Tools Behind the Build</h2>
-                <p className="text-gray-400 max-w-lg">
-                  I use modern technologies and proven tools to build fast,
-                  scalable, and maintainable web applications.
-                </p>
-              </div>
-
-              <div className="skills-cards relative lg:min-h-[500px] flex flex-col gap-5 lg:block">
-                {skills.map((card, index) => (
-                  <SkillCard
-                    key={card.category}
-                    cardsRef={cardsRef}
-                    card={card}
-                    cardIndex={index}
+            <div className="skills-cards relative lg:min-h-[500px] flex flex-col gap-5 lg:block">
+              {
+                isLoading ? (
+                  <Loader />
+                ) : isError ? (
+                  <ErrorState
+                    message={error?.message || "Failed to load Skills."}
+                    onRetry={refetch}
                   />
-                ))}
-              </div>
+                ) : (
+                  skills.map((card, index) => (
+                    <SkillCard
+                      key={card.category}
+                      cardsRef={cardsRef}
+                      card={card}
+                      cardIndex={index}
+                    />
+                  ))
+                )
+              }
             </div>
-          )}
+          </div>
         </div>
       </section>
     </div>

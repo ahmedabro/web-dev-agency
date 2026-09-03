@@ -2,26 +2,24 @@ import React from 'react'
 import { useGetServicesQuery } from '../redux/api/serviceApi'
 import { GiCheckMark } from "react-icons/gi"
 import { Link } from 'react-router'
+import Loader from './Loader'
+import ErrorState from './ErrorState'
 
 const Services = () => {
-    const { data, isLoading, isError, error } = useGetServicesQuery()
+    const { data, isLoading, isError, error, refetch } = useGetServicesQuery()
     const services = data?.services || []
 
-    console.log(services)
     return (
         <section className='section-container'>
             {
-                isLoading && (
-                    <p>Loading...</p>
-                )
-            }
-            {
-                isError && (
-                    <p>Error {error}</p>
-                )
-            }
-            {
-                (!isLoading && !isError && services.length > 0) && (
+                isLoading ? (
+                    <Loader />
+                ) : isError ? (
+                    <ErrorState 
+                        message={error?.message || "Failed to load Services."}
+                        onRetry={refetch}
+                    />
+                ) : (
                     services.map((service, index) => (
                         <div key={service.id}>
                             <div className='lg:grid lg:grid-cols-2 gap-15'>
@@ -62,7 +60,7 @@ const Services = () => {
                                         <ul className='flex flex-wrap gap-3'>
                                             {
                                                 service.deliverables.map((item, index) => (
-                                                    <li key={index} className="bg-dark-background text-dark-textColor border-[0.5px] border-gray-600 px-5 py-1 rounded-full text-xs! font-light">                       
+                                                    <li key={index} className="bg-dark-background text-dark-textColor border-[0.5px] border-gray-600 px-5 py-1 rounded-full text-xs! font-light">
                                                         {item}
                                                     </li>
                                                 ))
@@ -72,15 +70,16 @@ const Services = () => {
                                     <Link to={"/contact"} className='theme-button'>Start a project</Link>
                                 </div>
                             </div>
-                            { index !== services.length - 1
+                            {index !== services.length - 1
                                 && (
-                                <div className='seperator border-b border-white/15 my-15 md:my-20'></div>
-                            )
+                                    <div className='seperator border-b border-white/15 my-15 md:my-20'></div>
+                                )
                             }
                         </div>
                     ))
                 )
             }
+
         </section>
     )
 }

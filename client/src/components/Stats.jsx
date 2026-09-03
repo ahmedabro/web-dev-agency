@@ -3,17 +3,21 @@ import { useGetStatsQuery } from '../redux/api/statsApi';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import Loader from './Loader';
+import ErrorState from './ErrorState';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Stats = () => {
-  const { data, isLoading, isError, error } = useGetStatsQuery();
+  const { data, isLoading, isError, error, refetch } = useGetStatsQuery();
   const stats = data?.stats || [];
 
   const sectionRef = useRef(null);
   
   const numberRefs = useRef([]);
   numberRefs.current = [];
+
+
 
   useGSAP(
     () => {
@@ -48,9 +52,12 @@ const Stats = () => {
   return (
     <div className="stats-outer-wrapper w-full">
       {isLoading ? (
-        <p>Loading...</p>
+        <Loader />
       ) : isError ? (
-        <p>Error: {error?.data?.message || 'Something went wrong'}</p>
+        <ErrorState
+          message={error?.message || "Unable to load stats."}
+          onRetry={refetch}
+        />
       ) : (
         <div
           ref={sectionRef}

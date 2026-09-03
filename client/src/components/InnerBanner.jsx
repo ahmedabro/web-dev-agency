@@ -18,7 +18,7 @@ const InnerBanner = (props) => {
 
   return (
     <div className='section-container inner-banner w-full h-[550px] relative flex items-center bg-dark-secondary overflow-hidden isolate mb-20'>
-      <div className='w-full lg:w-1/2'>
+      <div className='w-full text-center'>
 
         <motion.h1
           className='space-grotesk-bold text-dark-primary text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-8xl font-bold uppercase'
@@ -34,7 +34,7 @@ const InnerBanner = (props) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5, type: 'spring', stiffness: 100, damping: 10 }}
-            className='space-grotesk-regular text-white text-lg mt-8 flex gap-2 items-center'
+            className='space-grotesk-regular text-white text-lg mt-8 flex gap-2 items-center justify-center'
           >
             {breadcrumb.map((item, index) => {
               const path = index === 0 ? '/' : `/${breadcrumb.slice(1, index + 1).join('/')}`;
@@ -44,10 +44,10 @@ const InnerBanner = (props) => {
                   {index === 0 ? (
                     <Link to="/" className='hover:underline'>Home</Link>
                   ) : (
-                    <Link to={path} className={`hover:underline ${index === breadcrumb.length - 1 ? 'text-gray-500' : ''}`}>{item.charAt(0).toUpperCase() + item.slice(1)}</Link>
+                    <Link to={path} className={`hover:underline ${index === breadcrumb.length - 1 ? 'text-dark-primary' : ''}`}>{item.charAt(0).toUpperCase() + item.slice(1)}</Link>
                   )}
 
-                  {index < breadcrumb.length - 1 && <span>{">"}</span>}
+                  {index < breadcrumb.length - 1 && <span>{"/"}</span>}
                 </div>
               )
             })}

@@ -39,7 +39,7 @@ const Navbar = () => {
       </Link> */}
 
       <Link to="/" className='lg:w-1/4'>
-        <img src="/images/logo.png" alt="A.F Dev" className='w-35' />
+        <img src="/images/logo.png" alt="A.F Dev" className='w-30 lg:w-35' />
       </Link>
 
       <motion.div className='h-auto! hidden lg:block lg:w-2/4'>

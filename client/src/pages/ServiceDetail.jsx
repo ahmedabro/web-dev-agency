@@ -8,6 +8,7 @@ import FAQs from '../components/FAQs';
 import Testimonials from '../components/Testimonials';
 import Skills from '../components/Skills';
 import { useGetServiceByIdQuery } from '../redux/api/serviceApi';
+import WhatICanBuild from '../components/WhatICanBuild';
 
 const ServiceDetail = () => {
   const { id } = useParams();
@@ -30,6 +31,7 @@ const ServiceDetail = () => {
         (!isError && !isLoading) &&
         (
           <>
+            <WhatICanBuild solutions={data?.service?.solutions || []} />
             <Solutions solutions={data?.service?.solutions || []} />
             <Process processes={data?.service?.howItWorks || []} />
             <Skills serviceType={data?.service?.title || ""} />
